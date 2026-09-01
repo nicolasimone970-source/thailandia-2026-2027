@@ -73,52 +73,89 @@
         }
 
         /* TABS NAVIGAZIONE GLOW & GLASS */
-        .nav-pills-wrapper {
-    width: 100%;
-    margin-bottom: 1.5rem;
-}
-
-.nav-pills-custom {
-    display: flex !important;
-    flex-wrap: nowrap !important;
+   /* FORZA L'USO DI CSS GRID - NESSUNO SCROLL POSSIBILE */
+.nav-pills-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important; /* Divide lo schermo in esattamente 5 parti uguali (20% ciascuna) */
     width: 100% !important;
+    max-width: 100% !important;
     padding: 4px !important;
-    background: #ffffff;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    gap: 2px !important;
+    background-color: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box !important;
 }
 
-.nav-pills-custom .nav-item {
-    flex: 1 1 0% !important; /* Divide lo spazio in 5 parti identiche */
-    min-width: 0 !important;   /* FONDAMENTALE: impedisce al contenuto di generare scrollbar */
+.nav-pills-grid .nav-item {
+    width: 100% !important;
+    min-width: 0 !important; /* Blocca l'espansione del contenitore */
 }
 
-.nav-pills-custom .nav-link {
+.nav-pills-grid .nav-link {
     width: 100% !important;
     padding: 6px 1px !important;
-    font-size: 0.65rem !important; /* ~10px per far stare tutto su 1 riga */
-    font-weight: 600;
-    color: #64748b;
-    border-radius: 12px;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* Se il testo supera lo spazio metti '...' senza rompere il layout */
+    text-align: center !important;
+    border-radius: 12px !important;
+    color: #64748b;
+    border: none !important;
 }
 
-.nav-pills-custom .nav-link i {
-    font-size: 1.1rem !important;
-    margin: 0 0 3px 0 !important;
+.nav-pills-grid .nav-link i {
+    font-size: 1rem !important;
+    margin: 0 0 2px 0 !important;
 }
 
-.nav-pills-custom .nav-link.active {
-    background: #0d9488 !important; /* Modifica col tuo colore primario */
+.nav-pills-grid .nav-link span {
+    font-size: 0.6rem !important; /* Dimensione ridotta per far stare le parole in una sola riga */
+    line-height: 1 !important;
+    display: block !important;
+    width: 100% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; /* Se una parola è troppo lunga mette '...' senza allargare la pagina */
+}
+
+.nav-pills-grid .nav-link.active {
+    background-color: #0d9488 !important; /* Il tuo colore primario */
     color: #ffffff !important;
+}
+
+/* DESKTOP E TABLET (> 768px): Ritorna al layout orizzontale classico */
+@media (min-width: 768px) {
+    .nav-pills-grid {
+        display: flex !important;
+        justify-content: center !important;
+        width: auto !important;
+        display: inline-flex !important;
+        gap: 8px !important;
+        padding: 8px !important;
+    }
+    
+    .nav-pills-grid .nav-item {
+        width: auto !important;
+    }
+    
+    .nav-pills-grid .nav-link {
+        flex-direction: row !important;
+        padding: 8px 20px !important;
+        gap: 8px;
+    }
+    
+    .nav-pills-grid .nav-link i {
+        margin: 0 !important;
+    }
+    
+    .nav-pills-grid .nav-link span {
+        font-size: 0.875rem !important;
+    }
 }
 
 /* DESKTOP (> 768px): Ripristina il layout orizzontale classico */
