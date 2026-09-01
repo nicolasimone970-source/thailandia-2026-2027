@@ -73,38 +73,104 @@
         }
 
         /* TABS NAVIGAZIONE GLOW & GLASS */
-        .nav-pills-custom {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(16px);
-            padding: 7px;
-            border-radius: 24px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .nav-pills-custom::-webkit-scrollbar { display: none; }
-        .nav-pills-custom .nav-item { flex: 0 0 auto; }
+        .nav-pills-wrapper {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
 
-        .nav-pills-custom .nav-link {
-            color: #64748b;
-            font-weight: 700;
-            border-radius: 16px;
-            padding: 10px 22px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
+.nav-pills-custom {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    padding: 4px !important;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+}
 
-        .nav-pills-custom .nav-link.active {
-            background: linear-gradient(135deg, var(--accent-teal), var(--accent-cyan));
-            color: #ffffff;
-            box-shadow: 0 8px 22px rgba(13, 148, 136, 0.38);
-        }
+.nav-pills-custom .nav-item {
+    flex: 1 1 0% !important; /* Divide lo spazio in 5 parti identiche */
+    min-width: 0 !important;   /* FONDAMENTALE: impedisce al contenuto di generare scrollbar */
+}
 
+.nav-pills-custom .nav-link {
+    width: 100% !important;
+    padding: 6px 1px !important;
+    font-size: 0.65rem !important; /* ~10px per far stare tutto su 1 riga */
+    font-weight: 600;
+    color: #64748b;
+    border-radius: 12px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Se il testo supera lo spazio metti '...' senza rompere il layout */
+}
+
+.nav-pills-custom .nav-link i {
+    font-size: 1.1rem !important;
+    margin: 0 0 3px 0 !important;
+}
+
+.nav-pills-custom .nav-link.active {
+    background: #0d9488 !important; /* Modifica col tuo colore primario */
+    color: #ffffff !important;
+}
+
+/* DESKTOP (> 768px): Ripristina il layout orizzontale classico */
+@media (min-width: 768px) {
+    .nav-pills-custom {
+        display: inline-flex !important;
+        width: auto !important;
+        padding: 6px !important;
+        border-radius: 30px;
+    }
+    .nav-pills-custom .nav-item {
+        flex: 0 0 auto !important;
+    }
+    .nav-pills-custom .nav-link {
+        flex-direction: row !important;
+        padding: 8px 20px !important;
+        font-size: 0.875rem !important;
+        gap: 8px;
+    }
+    .nav-pills-custom .nav-link i {
+        margin: 0 !important;
+        font-size: 1rem !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .nav-pills-wrapper {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1050;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid #e2e8f0;
+        padding: 6px 8px calc(6px + env(safe-area-inset-bottom)) 8px !important;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+        margin-bottom: 0 !important;
+    }
+
+    .nav-pills-custom {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+
+    /* Aggiungi padding in fondo al body così il contenuto della pagina non viene coperto dalla barra */
+    body {
+        padding-bottom: 70px;
+    }
+}
         /* CARD STYLING */
         .custom-card {
             background: #ffffff;
