@@ -43,7 +43,7 @@
 
         /* HERO BANNER CON EFFETTO PARALLASSE E GRADIENTE */
         .hero-banner {
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.55) 0%, rgba(15, 23, 42, 0.92) 100%), 
+            background: linear-gradient(180deg, rgba(0 74 251 / 55%) 0%, rgba(119 173 48  / 92%) 100%), 
                         url('https://images.unsplash.com/photo-1506665531195-3566af294710?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: white;
             padding: 65px 20px 50px 20px;
@@ -329,33 +329,47 @@
         </span>
         <h1 class="hero-title mb-2">THAILANDIA TRIP</h1>
         <p class="lead opacity-90 mb-4 fs-6"><i class="fa-regular fa-calendar-check me-2"></i>28 Dicembre 2026 – 08 Gennaio 2027</p>
-        
-        <!-- Controls Backup & Restore -->
-        <div class="d-flex justify-content-center flex-wrap gap-2">
-            <button class="btn btn-sm btn-light text-dark fw-bold rounded-pill px-3 py-2 shadow-sm" onclick="exportData()">
-                <i class="fa-solid fa-download me-1 text-teal"></i> Esporta JSON
-            </button>
-            <label class="btn btn-sm btn-outline-light fw-bold rounded-pill px-3 py-2 mb-0 shadow-sm" style="cursor:pointer;">
-                <i class="fa-solid fa-upload me-1"></i> Importa JSON
-                <input type="file" id="importFile" onchange="importData(event)" accept=".json" hidden>
-            </label>
-            <button class="btn btn-sm btn-outline-light fw-bold rounded-pill px-3 py-2 shadow-sm" onclick="resetToDefault()" title="Ripristina dati originali">
-                <i class="fa-solid fa-rotate-left"></i>
-            </button>
-        </div>
+       
     </div>
 </header>
 
 <div class="container mb-5">
 
-    <!-- NAVIGAZIONE A TABS -->
-    <ul class="nav nav-pills nav-pills-custom justify-content-start justify-content-md-center mb-4 gap-2" id="pills-tab" role="tablist">
-        <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#dashboard"><i class="fa-solid fa-chart-pie me-2"></i>Dashboard</button></li>
-        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#itinerario"><i class="fa-solid fa-route me-2"></i>Itinerario</button></li>
-        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#alloggi"><i class="fa-solid fa-hotel me-2"></i>Hotel & Maps</button></li>
-        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#esperienze"><i class="fa-solid fa-icons me-2"></i>Capodanno & Tour</button></li>
-        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#info"><i class="fa-solid fa-circle-info me-2"></i>Info Utili</button></li>
+   <!-- NAVIGAZIONE A TABS OPTIMIZED FOR MOBILE -->
+<div class="nav-pills-wrapper mb-4">
+    <ul class="nav nav-pills nav-pills-custom id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#dashboard" type="button" role="tab">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Dashboard</span>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#itinerario" type="button" role="tab">
+                <i class="fa-solid fa-route"></i>
+                <span>Itinerario</span>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#alloggi" type="button" role="tab">
+                <i class="fa-solid fa-hotel"></i>
+                <span>Hotel</span>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#esperienze" type="button" role="tab">
+                <i class="fa-solid fa-icons"></i>
+                <span>Tour</span>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#info" type="button" role="tab">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Info</span>
+            </button>
+        </li>
     </ul>
+</div>
 
     <div class="tab-content" id="pills-tabContent">
 
