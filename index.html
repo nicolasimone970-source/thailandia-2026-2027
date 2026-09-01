@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <!-- Impostazioni App Mobile PWA -->
+    <!-- Impostazioni Mobile PWA App -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Thailandia 2026">
@@ -10,7 +10,7 @@
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/201/201623.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thailandia Road Trip 2026-2027 | Travel Manager</title>
+    <title>Thailandia Road Trip 2026-2027 | Premium Travel Hub</title>
     
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,9 +29,9 @@
             --accent-teal: #0d9488;
             --accent-cyan: #06b6d4;
             --accent-gold: #f59e0b;
-            --bg-light: #f1f5f9;
-            --card-shadow: 0 12px 30px -5px rgba(15, 23, 42, 0.08);
-            --glass-bg: rgba(255, 255, 255, 0.85);
+            --accent-purple: #8b5cf6;
+            --bg-light: #f8fafc;
+            --card-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.07);
         }
 
         body {
@@ -41,45 +41,45 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* HERO BANNER CON IMMAGINE THAILANDIA */
+        /* HERO BANNER CON EFFETTO PARALLASSE E GRADIENTE */
         .hero-banner {
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.9) 100%), 
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.55) 0%, rgba(15, 23, 42, 0.92) 100%), 
                         url('https://images.unsplash.com/photo-1506665531195-3566af294710?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: white;
-            padding: 60px 20px 45px 20px;
-            border-radius: 0 0 32px 32px;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+            padding: 65px 20px 50px 20px;
+            border-radius: 0 0 36px 36px;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.28);
             position: relative;
         }
 
         .hero-badge {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: #fff;
             font-weight: 700;
-            padding: 6px 16px;
+            padding: 7px 18px;
             border-radius: 50px;
             font-size: 0.85rem;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
         }
 
         .hero-title {
             font-weight: 800;
-            letter-spacing: -1px;
-            font-size: 2.5rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: -1.2px;
+            font-size: 2.7rem;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
-        /* TABS DI NAVIGAZIONE GLOW */
+        /* TABS NAVIGAZIONE GLOW & GLASS */
         .nav-pills-custom {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            padding: 6px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            padding: 7px;
+            border-radius: 24px;
             box-shadow: var(--card-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             display: flex;
             flex-wrap: nowrap;
             overflow-x: auto;
@@ -92,8 +92,8 @@
         .nav-pills-custom .nav-link {
             color: #64748b;
             font-weight: 700;
-            border-radius: 14px;
-            padding: 10px 20px;
+            border-radius: 16px;
+            padding: 10px 22px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 0.9rem;
             white-space: nowrap;
@@ -102,13 +102,13 @@
         .nav-pills-custom .nav-link.active {
             background: linear-gradient(135deg, var(--accent-teal), var(--accent-cyan));
             color: #ffffff;
-            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
+            box-shadow: 0 8px 22px rgba(13, 148, 136, 0.38);
         }
 
-        /* CARD MODERNE */
+        /* CARD STYLING */
         .custom-card {
             background: #ffffff;
-            border-radius: 24px;
+            border-radius: 26px;
             border: 1px solid #e2e8f0;
             box-shadow: var(--card-shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -116,83 +116,127 @@
             position: relative;
         }
         .custom-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 35px -5px rgba(15, 23, 42, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 22px 40px -5px rgba(15, 23, 42, 0.12);
         }
 
-        .stat-card {
-            border-left: 5px solid var(--accent-teal);
-            background: linear-gradient(145deg, #ffffff, #f8fafc);
+        /* KPI STATS CARDS CON GRADIENTI CORNICE */
+        .kpi-card {
+            border: none;
+            color: white;
+            border-radius: 22px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        .kpi-card-1 { background: linear-gradient(135deg, #0f172a, #1e293b); }
+        .kpi-card-2 { background: linear-gradient(135deg, #0d9488, #06b6d4); }
+        .kpi-card-3 { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+        .kpi-card-4 { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .kpi-icon {
+            position: absolute;
+            right: 15px;
+            bottom: 10px;
+            font-size: 3.5rem;
+            opacity: 0.15;
         }
 
-        /* BADGES STATO */
-        .badge-status-paid {
-            background-color: #dcfce7;
-            color: #15803d;
-            font-weight: 700;
-            padding: 5px 12px;
-            border-radius: 30px;
-            font-size: 0.78rem;
+        /* SCHEDE VOLI ESTETICA "BOARDING PASS" */
+        .flight-card {
+            background: #ffffff;
+            border-radius: 20px;
+            border-left: 6px solid var(--accent-teal);
+            padding: 18px 22px;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-top: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            transition: all 0.25s ease;
         }
-        .badge-status-pending {
-            background-color: #fef3c7;
-            color: #b45309;
-            font-weight: 700;
-            padding: 5px 12px;
-            border-radius: 30px;
-            font-size: 0.78rem;
+        .flight-card:hover {
+            border-left-color: var(--accent-cyan);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+        }
+        .flight-route {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #0f172a;
         }
 
-        /* HOTEL CARDS CON OVERLAY FOTO */
+        /* HOTEL CARDS PREMIUM CON IMMAGINI REALI */
         .hotel-card-header {
             position: relative;
-            height: 200px;
+            height: 220px;
             overflow: hidden;
         }
         .hotel-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         .custom-card:hover .hotel-image {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
         .hotel-badge-city {
             position: absolute;
             top: 14px;
             left: 14px;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(10px);
             color: white;
             font-weight: 700;
             padding: 6px 14px;
             border-radius: 30px;
             font-size: 0.78rem;
+            letter-spacing: 0.4px;
         }
         .hotel-badge-price {
             position: absolute;
             bottom: 14px;
             right: 14px;
-            background: rgba(13, 148, 136, 0.9);
-            backdrop-filter: blur(8px);
+            background: rgba(13, 148, 136, 0.95);
+            backdrop-filter: blur(10px);
             color: white;
             font-weight: 800;
-            padding: 6px 14px;
+            padding: 6px 16px;
             border-radius: 30px;
-            font-size: 0.85rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
         }
 
-        /* TABELLA PERSONALIZZATA DESKTOP E MOBILE */
+        /* HIGHLIGHT CARDS DESTINAZIONI */
+        .destination-card {
+            height: 160px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .destination-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.2) 100%);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            color: white;
+        }
+
+        /* TABELLA ITINERARIO */
         .table-custom { margin-bottom: 0; }
         .table-custom th {
             background-color: #f8fafc;
             color: #64748b;
             font-weight: 800;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.7px;
             border-bottom: 2px solid #e2e8f0;
             padding: 14px 16px;
         }
@@ -202,22 +246,42 @@
             font-size: 0.9rem;
         }
 
-        /* AZIONI AZIENDA SULLE CARD */
+        /* BOTTONI AZIONI */
         .card-actions-floating {
             position: absolute;
             top: 12px;
             right: 12px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(8px);
             border-radius: 12px;
             padding: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.18);
             z-index: 10;
         }
 
-        /* MOBILE CARDS STACKED */
+        .btn-maps {
+            background: linear-gradient(135deg, #4285F4, #1a73e8);
+            color: white;
+            font-weight: 700;
+            border-radius: 14px;
+            padding: 11px 18px;
+            font-size: 0.88rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            transition: all 0.3s;
+        }
+        .btn-maps:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(66, 133, 244, 0.4);
+        }
+
+        /* STAKE MOBILE TABELLE */
         @media (max-width: 768px) {
-            .hero-title { font-size: 1.8rem; }
+            .hero-title { font-size: 1.9rem; }
             .table-mobile-cards thead { display: none; }
             .table-mobile-cards, .table-mobile-cards tbody, .table-mobile-cards tr, .table-mobile-cards td {
                 display: block; width: 100%;
@@ -253,32 +317,11 @@
             .table-mobile-cards td[data-label="Azioni"] { justify-content: flex-end; }
             .table-mobile-cards td[data-label="Azioni"]::before { display: none; }
         }
-
-        /* BOTTONI MAPPA & ACTION */
-        .btn-maps {
-            background: linear-gradient(135deg, #4285F4, #2b6cb0);
-            color: white;
-            font-weight: 700;
-            border-radius: 12px;
-            padding: 10px 18px;
-            font-size: 0.85rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: none;
-            transition: all 0.3s;
-        }
-        .btn-maps:hover {
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(66, 133, 244, 0.35);
-        }
     </style>
 </head>
 <body>
 
-<!-- HERO HEADER IMPRESSIVO -->
+<!-- HERO HEADER -->
 <header class="hero-banner text-center mb-4">
     <div class="container">
         <span class="hero-badge d-inline-block mb-3">
@@ -287,12 +330,12 @@
         <h1 class="hero-title mb-2">THAILANDIA TRIP</h1>
         <p class="lead opacity-90 mb-4 fs-6"><i class="fa-regular fa-calendar-check me-2"></i>28 Dicembre 2026 – 08 Gennaio 2027</p>
         
-        <!-- Quick Action Backup & Restore -->
+        <!-- Controls Backup & Restore -->
         <div class="d-flex justify-content-center flex-wrap gap-2">
             <button class="btn btn-sm btn-light text-dark fw-bold rounded-pill px-3 py-2 shadow-sm" onclick="exportData()">
                 <i class="fa-solid fa-download me-1 text-teal"></i> Esporta JSON
             </button>
-            <label class="btn btn-sm btn-outline-light fw-bold rounded-pill px-3 py-2 mb-0 shadow-sm">
+            <label class="btn btn-sm btn-outline-light fw-bold rounded-pill px-3 py-2 mb-0 shadow-sm" style="cursor:pointer;">
                 <i class="fa-solid fa-upload me-1"></i> Importa JSON
                 <input type="file" id="importFile" onchange="importData(event)" accept=".json" hidden>
             </label>
@@ -305,7 +348,7 @@
 
 <div class="container mb-5">
 
-    <!-- TAB DI NAVIGAZIONE -->
+    <!-- NAVIGAZIONE A TABS -->
     <ul class="nav nav-pills nav-pills-custom justify-content-start justify-content-md-center mb-4 gap-2" id="pills-tab" role="tablist">
         <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#dashboard"><i class="fa-solid fa-chart-pie me-2"></i>Dashboard</button></li>
         <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#itinerario"><i class="fa-solid fa-route me-2"></i>Itinerario</button></li>
@@ -316,28 +359,67 @@
 
     <div class="tab-content" id="pills-tabContent">
 
-        <!-- 1. DASHBOARD & VOLI -->
+        <!-- 1. DASHBOARD RIPROGETTATA -->
         <div class="tab-pane fade show active" id="dashboard">
+            <!-- SCHEDE KPI GRAFICHE -->
             <div class="row g-3 mb-4" id="statsContainer"></div>
 
+            <!-- GRAFICO CORSA E RIPARTIZIONE BUDGET -->
+            <div class="custom-card p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="fw-bold mb-0 text-uppercase text-muted style-letter-spacing"><i class="fa-solid fa-chart-bar text-teal me-2"></i>Ripartizione Spese Stimata (Quota Singola)</h6>
+                    <span class="fw-bold text-teal fs-6" id="totalBudgetLabel">€ 0</span>
+                </div>
+                <div class="progress mb-3" style="height: 14px; border-radius: 10px;" id="budgetProgressBar">
+                    <!-- Dinamico JS -->
+                </div>
+                <div class="d-flex justify-content-between small text-muted">
+                    <span><i class="fa-solid fa-circle text-teal me-1"></i> Voli: <strong id="flightBudgetLabel">€ 0</strong> (<span id="flightPercentLabel">0%</span>)</span>
+                    <span><i class="fa-solid fa-circle me-1" style="color:#8b5cf6;"></i> Hotel: <strong id="hotelBudgetLabel">€ 0</strong> (<span id="hotelPercentLabel">0%</span>)</span>
+                </div>
+            </div>
+
+            <!-- ANTEPRIMA VISUALE DELLE 3 TAPPE -->
+            <h6 class="fw-bold mb-3 text-uppercase text-muted"><i class="fa-solid fa-compass me-2"></i>Tappe del Viaggio</h6>
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80');">
+                        <div class="destination-overlay">
+                            <span class="badge bg-teal w-auto mb-1 align-self-start">Tappa 1 • 3 Notti</span>
+                            <h5 class="fw-bold mb-0">Bangkok</h5>
+                            <small class="opacity-75">Capodanno & Templi Reali</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80');">
+                        <div class="destination-overlay">
+                            <span class="badge bg-purple w-auto mb-1 align-self-start" style="background-color: #8b5cf6;">Tappa 2 • 3 Notti</span>
+                            <h5 class="fw-bold mb-0">Chiang Mai</h5>
+                            <small class="opacity-75">Natura, Templi & Chiang Rai</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80');">
+                        <div class="destination-overlay">
+                            <span class="badge bg-warning text-dark w-auto mb-1 align-self-start">Tappa 3 • 4 Notti</span>
+                            <h5 class="fw-bold mb-0">Phuket</h5>
+                            <small class="opacity-75">Mare, Phi Phi Islands & Relax</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCHEDE VOLI ESTETICA BOARDING PASS -->
             <div class="custom-card p-3 p-md-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="fw-bold mb-0"><i class="fa-solid fa-plane-up text-teal me-2"></i>Piano Voli e Trasporti</h5>
+                    <h5 class="fw-bold mb-0"><i class="fa-solid fa-plane-up text-teal me-2"></i>Voli e Trasporti</h5>
                     <button class="btn btn-sm btn-primary fw-bold rounded-pill px-3" onclick="openFlightModal()"><i class="fa-solid fa-plus me-1"></i>Nuovo Volo</button>
                 </div>
-                <table class="table table-custom table-mobile-cards">
-                    <thead>
-                        <tr>
-                            <th>Tratta</th>
-                            <th>Data</th>
-                            <th>Tipologia</th>
-                            <th>Costo / p.p.</th>
-                            <th>Stato</th>
-                            <th class="text-end">Azioni</th>
-                        </tr>
-                    </thead>
-                    <tbody id="flightsTableBody"></tbody>
-                </table>
+                <div id="flightsContainer">
+                    <!-- Voli generati dinamicamente via JS -->
+                </div>
             </div>
         </div>
 
@@ -375,12 +457,12 @@
             <div class="row g-4 mb-4" id="hotelsContainer"></div>
         </div>
 
-        <!-- 4. CAPODANNO & TOUR (NUOVA GRAFICA) -->
+        <!-- 4. CAPODANNO & TOUR -->
         <div class="tab-pane fade" id="esperienze">
             <div class="row g-4">
                 <div class="col-md-6">
                     <div class="custom-card h-100">
-                        <div style="height: 180px; overflow: hidden; position: relative;">
+                        <div style="height: 190px; overflow: hidden; position: relative;">
                             <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Capodanno Rooftop">
                             <span class="badge bg-dark position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold">31 Dicembre 🎆</span>
                         </div>
@@ -407,13 +489,13 @@
 
                 <div class="col-md-6">
                     <div class="custom-card h-100">
-                        <div style="height: 180px; overflow: hidden; position: relative;">
+                        <div style="height: 190px; overflow: hidden; position: relative;">
                             <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=800&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Chiang Rai Wat Rong Khun">
                             <span class="badge bg-teal position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold text-white">03 Gennaio 🛕</span>
                         </div>
                         <div class="p-4">
                             <h5 class="fw-bold mb-3"><i class="fa-solid fa-gopuram text-teal me-2"></i>Tour Chiang Rai da Chiang Mai</h5>
-                            <p class="small text-muted mb-3">Escursione di una giornata con minivan privato consigliata dalle ore 07:00.</p>
+                            <p class="small text-muted mb-3">Escursione di una giornata in minivan privato consigliata dalle ore 07:00.</p>
                             
                             <div class="border-start border-3 border-info ps-3 mb-3">
                                 <h6 class="fw-bold mb-1">Tempio Bianco (Wat Rong Khun)</h6>
@@ -425,7 +507,7 @@
                             </div>
                             <div class="border-start border-3 border-dark ps-3">
                                 <h6 class="fw-bold mb-1">Casa Nera (Baan Dam Museum)</h6>
-                                <p class="small text-muted mb-0">Galleria d'arte eclettica ed affascinante in legno scuro.</p>
+                                <p class="small text-muted mb-0">Galleria d'arte eclettica in legno scuro.</p>
                             </div>
                         </div>
                     </div>
@@ -440,9 +522,9 @@
                     <div class="custom-card p-4 h-100">
                         <h5 class="fw-bold mb-3"><i class="fa-solid fa-passport text-teal me-2"></i>Documentazione e Valuta</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0"><strong>TDAC Digital Pass:</strong> Compilare su <code>tdac.immigration.go.th</code> 72h prima dell'arrivo.</li>
-                            <li class="list-group-item bg-transparent px-0"><strong>Valuta Locale:</strong> Baht Thailandese (THB) | 1 EUR ≈ 37 THB. Utili contanti per street food.</li>
-                            <li class="list-group-item bg-transparent px-0"><strong>Connettività Mobile:</strong> eSIM turistica (Airalo/Holafly) o SIM fisica AIS/TrueMove in aeroporto.</li>
+                            <li class="list-group-item bg-transparent px-0"><strong>TDAC Digital Pass:</strong> Obbligatoria da fare su <code>tdac.immigration.go.th</code> entro 72h prima dell'arrivo.</li>
+                            <li class="list-group-item bg-transparent px-0"><strong>Valuta Locale:</strong> Baht Thailandese (THB) | 1 EUR ≈ 37 THB. Contanti utilissimi per street food.</li>
+                            <li class="list-group-item bg-transparent px-0"><strong>Connettività Mobile:</strong> eSIM turistica (Airalo/Holafly) o SIM fisica in aeroporto (AIS/TrueMove).</li>
                         </ul>
                     </div>
                 </div>
@@ -450,8 +532,8 @@
                     <div class="custom-card p-4 h-100">
                         <h5 class="fw-bold mb-3"><i class="fa-solid fa-heart-pulse text-teal me-2"></i>Salute e Consigli Pratici</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0"><strong>Assicurazione Sanitaria:</strong> Assicurarsi di avere massimali alti per spese mediche in loco.</li>
-                            <li class="list-group-item bg-transparent px-0"><strong>App Mobilità:</strong> Scaricare **Grab** o **Bolt** (l'equivalente di Uber in Thailandia).</li>
+                            <li class="list-group-item bg-transparent px-0"><strong>Assicurazione Sanitaria:</strong> Verifica massimali per ricoveri e assistenza.</li>
+                            <li class="list-group-item bg-transparent px-0"><strong>App Mobilità:</strong> Scarica **Grab** o **Bolt** (funzionano esattamente come Uber).</li>
                         </ul>
                     </div>
                 </div>
@@ -474,18 +556,9 @@
                 <form id="itineraryForm">
                     <input type="hidden" id="itinIndex">
                     <div class="row g-2 mb-2">
-                        <div class="col-4">
-                            <label class="form-label small fw-bold">Giorno</label>
-                            <input type="text" id="itinGiorno" class="form-control" placeholder="G1" required>
-                        </div>
-                        <div class="col-4">
-                            <label class="form-label small fw-bold">Data</label>
-                            <input type="text" id="itinData" class="form-control" placeholder="29/12" required>
-                        </div>
-                        <div class="col-4">
-                            <label class="form-label small fw-bold">Tappa</label>
-                            <input type="text" id="itinTappa" class="form-control" placeholder="Bangkok" required>
-                        </div>
+                        <div class="col-4"><label class="form-label small fw-bold">Giorno</label><input type="text" id="itinGiorno" class="form-control" placeholder="G1" required></div>
+                        <div class="col-4"><label class="form-label small fw-bold">Data</label><input type="text" id="itinData" class="form-control" placeholder="29/12" required></div>
+                        <div class="col-4"><label class="form-label small fw-bold">Tappa</label><input type="text" id="itinTappa" class="form-control" placeholder="Bangkok" required></div>
                     </div>
                     <div class="mb-2"><label class="form-label small fw-bold">Mattina</label><input type="text" id="itinMattina" class="form-control"></div>
                     <div class="mb-2"><label class="form-label small fw-bold">Pomeriggio</label><input type="text" id="itinPomeriggio" class="form-control"></div>
@@ -520,7 +593,7 @@
                     </div>
                     <div class="mb-2"><label class="form-label small fw-bold">Stato Saldo / Note</label><input type="text" id="hotelSaldo" class="form-control" placeholder="Da pagare al check-in"></div>
                     <div class="mb-2"><label class="form-label small fw-bold">Link Google Maps</label><input type="url" id="hotelMaps" class="form-control"></div>
-                    <div class="mb-3"><label class="form-label small fw-bold">URL Foto Copertina (Unsplash)</label><input type="url" id="hotelImg" class="form-control"></div>
+                    <div class="mb-3"><label class="form-label small fw-bold">URL Foto Copertina</label><input type="url" id="hotelImg" class="form-control"></div>
                     <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold py-2">Salva Hotel</button>
                 </form>
             </div>
@@ -564,7 +637,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // DATI BASE CON IMMAGINI AD ALTA RISOLUZIONE
+    // DATI BASE CON IMMAGINI DEGLI HOTEL REALI IN ALTA DEFINIZIONE
     const defaultData = {
         flights: [
             { tratta: "Milano MXP → Bangkok (BKK)", data: "28/12/2026", tipo: "Volo Internazionale", costo: 553, stato: "Prenotato" },
@@ -573,17 +646,17 @@
             { tratta: "Phuket → Milano MXP", data: "08/01/2027", tipo: "Volo Internazionale", costo: 583, stato: "Prenotato" }
         ],
         itinerary: [
-            { giorno: "G1", data: "29/12", tappa: "Bangkok", mattina: "Arrivo & Check-in hotel", pomeriggio: "Tempo libero & esplorazione", sera: "Cena panoramica fiume Chao Phraya", struttura: "Casa Nithra" },
+            { giorno: "G1", data: "29/12", tappa: "Bangkok", mattina: "Arrivo & Check-in hotel", pomeriggio: "Tempo libero & primo contatto", sera: "Cena panoramica fiume Chao Phraya", struttura: "Casa Nithra" },
             { giorno: "G2", data: "30/12", tappa: "Bangkok", mattina: "Grande Palazzo Reale", pomeriggio: "Wat Pho (Buddha Sdraiato)", sera: "Street food tour a Chinatown", struttura: "Casa Nithra" },
             { giorno: "G3", data: "31/12", tappa: "Bangkok", mattina: "Shopping IconSiam / MBK", pomeriggio: "Relax & preparazione Capodanno", sera: "🎆 Rooftop Party Capodanno", struttura: "Casa Nithra" },
             { giorno: "G4", data: "01/01", tappa: "Chiang Mai", mattina: "Relax post-Capodanno", pomeriggio: "Volo per Chiang Mai & Check-in", sera: "Centro storico murato & Night Bazaar", struttura: "MOMO Hotel" },
-            { giorno: "G5", data: "02/01", tappa: "Chiang Mai", mattina: "Wat Chedi Luang", pomeriggio: "Tempio Doi Suthep (Vista Panoramica)", sera: "Cena tipica Khao Soi", struttura: "MOMO Hotel" },
+            { giorno: "G5", data: "02/01", tappa: "Chiang Mai", mattina: "Wat Chedi Luang", pomeriggio: "Tempio Doi Suthep (Panoramico)", sera: "Cena tipica Khao Soi", struttura: "MOMO Hotel" },
             { giorno: "G6", data: "03/01", tappa: "Chiang Rai", mattina: "Tempio Bianco (Wat Rong Khun)", pomeriggio: "Tempio Blu & Casa Nera", sera: "Rientro a Chiang Mai", struttura: "MOMO Hotel" },
             { giorno: "G7", data: "04/01", tappa: "Phuket", mattina: "Check-out & Volo per Phuket", pomeriggio: "Check-in Resort & Patong Beach", sera: "Passeggiata & Cena di pesce", struttura: "Patong Paragon" },
             { giorno: "G8", data: "05/01", tappa: "Phuket", mattina: "⛵ Tour in barca Isole Phi Phi", pomeriggio: "Maya Bay & Snorkeling", sera: "Cena a Patong", struttura: "Patong Paragon" },
             { giorno: "G9", data: "06/01", tappa: "Phuket", mattina: "Phuket Big Buddha", pomeriggio: "Phuket Old Town", sera: "Cocktail al tramonto in spiaggia", struttura: "Patong Paragon" },
             { giorno: "G10", data: "07/01", tappa: "Phuket", mattina: "Relax Freedom Beach", pomeriggio: "Tramonto a Promthep Cape", sera: "Cena d'arrivederci", struttura: "Patong Paragon" },
-            { giorno: "G11", data: "08/01", tappa: "Rientro", mattina: "Check-out & ultimi souvenir", pomeriggio: "Trasferimento Aeroporto Phuket", sera: "✈️ Volo di rientro in Italia", struttura: "-" }
+            { giorno: "G11", data: "08/01", tappa: "Rientro", mattina: "Check-out & ultimi acquisti", pomeriggio: "Trasferimento Aeroporto Phuket", sera: "✈️ Volo di rientro in Italia", struttura: "-" }
         ],
         hotels: [
             {
@@ -594,7 +667,7 @@
                 quotaSingola: 152,
                 totaleGruppo: 760,
                 maps: "https://www.google.com/maps/search/?api=1&query=Casa+Nithra+Bangkok",
-                img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80"
+                img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80"
             },
             {
                 nome: "MOMO Hotel Chiang Mai",
@@ -604,7 +677,7 @@
                 quotaSingola: 89,
                 totaleGruppo: 445,
                 maps: "https://www.google.com/maps/search/?api=1&query=MOMO+Hotel+Chiang+Mai",
-                img: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=800&q=80"
+                img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80"
             },
             {
                 nome: "Patong Paragon Resort & Spa",
@@ -614,16 +687,16 @@
                 quotaSingola: 320,
                 totaleGruppo: 1600,
                 maps: "https://www.google.com/maps/search/?api=1&query=Patong+Paragon+Resort+and+Spa+Phuket",
-                img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80"
+                img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80"
             }
         ]
     };
 
-    // GESTIONE STATO LOCALSTORAGE
-    let appData = JSON.parse(localStorage.getItem('thailandTripDataV2')) || defaultData;
+    // LOCAL STORAGE
+    let appData = JSON.parse(localStorage.getItem('thailandTripDataV3')) || defaultData;
 
     function saveData() {
-        localStorage.setItem('thailandTripDataV2', JSON.stringify(appData));
+        localStorage.setItem('thailandTripDataV3', JSON.stringify(appData));
         renderAll();
     }
 
@@ -653,7 +726,7 @@
             try {
                 appData = JSON.parse(e.target.result);
                 saveData();
-                alert("Dati aggiornati con successo!");
+                alert("Dati importati con successo!");
             } catch(err) {
                 alert("File JSON non valido.");
             }
@@ -661,58 +734,94 @@
         reader.readAsText(file);
     }
 
-    // RENDER GRAFICI & ELEMENTI
+    // RENDER GRAFICO DASHBOARD
     function renderStats() {
         const totaleVoli = appData.flights.reduce((acc, f) => acc + Number(f.costo || 0), 0);
         const totaleHotel = appData.hotels.reduce((acc, h) => acc + Number(h.quotaSingola || 0), 0);
         const totaleSingolo = totaleVoli + totaleHotel;
 
+        const percVoli = totaleSingolo > 0 ? Math.round((totaleVoli / totaleSingolo) * 100) : 0;
+        const percHotel = totaleSingolo > 0 ? (100 - percVoli) : 0;
+
+        // KPI Cards
         document.getElementById('statsContainer').innerHTML = `
             <div class="col-6 col-md-3">
-                <div class="custom-card stat-card p-3">
-                    <small class="text-muted fw-bold">PARTENZA</small>
-                    <h6 class="fw-bold mt-1 mb-0"><i class="fa-solid fa-plane-departure text-teal me-1"></i>28 Dicembre</h6>
-                    <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Milano MXP</small>
+                <div class="kpi-card kpi-card-1">
+                    <small class="text-white-50 fw-bold text-uppercase d-block mb-1">Partenza</small>
+                    <h5 class="fw-bold mb-0">28 Dicembre</h5>
+                    <small class="text-white-50">Milano Malpensa</small>
+                    <i class="fa-solid fa-plane-departure kpi-icon"></i>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="custom-card stat-card p-3">
-                    <small class="text-muted fw-bold">RITORNO</small>
-                    <h6 class="fw-bold mt-1 mb-0"><i class="fa-solid fa-plane-arrival text-teal me-1"></i>08 Gennaio</h6>
-                    <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Phuket → MXP</small>
+                <div class="kpi-card kpi-card-2">
+                    <small class="text-white-50 fw-bold text-uppercase d-block mb-1">Rientro</small>
+                    <h5 class="fw-bold mb-0">08 Gennaio</h5>
+                    <small class="text-white-50">Phuket → MXP</small>
+                    <i class="fa-solid fa-plane-arrival kpi-icon"></i>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="custom-card stat-card p-3">
-                    <small class="text-muted fw-bold">ALLOGGI</small>
-                    <h6 class="fw-bold mt-1 mb-0"><i class="fa-solid fa-hotel text-teal me-1"></i>${appData.hotels.length} Hotel</h6>
-                    <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Tot. Hotel p.p: € ${totaleHotel}</small>
+                <div class="kpi-card kpi-card-3">
+                    <small class="text-white-50 fw-bold text-uppercase d-block mb-1">Alloggi Totali</small>
+                    <h5 class="fw-bold mb-0">${appData.hotels.length} Hotel</h5>
+                    <small class="text-white-50">Tot. Hotel: € ${totaleHotel}</small>
+                    <i class="fa-solid fa-hotel kpi-icon"></i>
                 </div>
             </div>
             <div class="col-6 col-md-3">
-                <div class="custom-card stat-card p-3">
-                    <small class="text-muted fw-bold">VOLI + HOTEL</small>
-                    <h6 class="fw-bold mt-1 mb-0 text-success"><i class="fa-solid fa-wallet me-1"></i>€ ${totaleSingolo} / quota</h6>
-                    <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Stima individuale</small>
+                <div class="kpi-card kpi-card-4">
+                    <small class="text-white-50 fw-bold text-uppercase d-block mb-1">Quota Individuale</small>
+                    <h5 class="fw-bold mb-0">€ ${totaleSingolo}</h5>
+                    <small class="text-white-50">Voli + Hotel / p.p.</small>
+                    <i class="fa-solid fa-wallet kpi-icon"></i>
                 </div>
             </div>
         `;
+
+        // Progress Bar Spese
+        document.getElementById('totalBudgetLabel').innerText = `€ ${totaleSingolo} / persona`;
+        document.getElementById('flightBudgetLabel').innerText = `€ ${totaleVoli}`;
+        document.getElementById('flightPercentLabel').innerText = `${percVoli}%`;
+        document.getElementById('hotelBudgetLabel').innerText = `€ ${totaleHotel}`;
+        document.getElementById('hotelPercentLabel').innerText = `${percHotel}%`;
+        
+        document.getElementById('budgetProgressBar').innerHTML = `
+            <div class="progress-bar" style="width: ${percVoli}%; background-color: var(--accent-teal);" title="Voli: ${percVoli}%"></div>
+            <div class="progress-bar" style="width: ${percHotel}%; background-color: #8b5cf6;" title="Hotel: ${percHotel}%"></div>
+        `;
     }
 
+    // RENDER VOLI COME SCHEDE BOARDING PASS
     function renderFlights() {
-        const tbody = document.getElementById('flightsTableBody');
-        tbody.innerHTML = appData.flights.map((f, i) => `
-            <tr>
-                <td data-label="Tratta"><strong>${f.tratta}</strong></td>
-                <td data-label="Data">${f.data}</td>
-                <td data-label="Tipologia">${f.tipo}</td>
-                <td data-label="Costo / p.p.">€ ${f.costo}</td>
-                <td data-label="Stato"><span class="${f.stato === 'Prenotato' ? 'badge-status-paid' : 'badge-status-pending'}">${f.stato}</span></td>
-                <td data-label="Azioni" class="text-end">
-                    <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="editFlight(${i})"><i class="fa-solid fa-pen"></i></button>
-                    <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteFlight(${i})"><i class="fa-solid fa-trash"></i></button>
-                </td>
-            </tr>
+        const container = document.getElementById('flightsContainer');
+        container.innerHTML = appData.flights.map((f, i) => `
+            <div class="flight-card">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-light p-3 rounded-circle text-teal d-none d-sm-block">
+                            <i class="fa-solid fa-plane fs-5"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-secondary mb-1">${f.tipo}</span>
+                            <div class="flight-route">${f.tratta}</div>
+                            <small class="text-muted"><i class="fa-regular fa-calendar me-1"></i>Data: ${f.data}</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between justify-content-md-end gap-3 mt-2 mt-md-0">
+                        <div class="text-md-end">
+                            <span class="fw-bold fs-5 text-dark d-block">€ ${f.costo} <small class="text-muted fs-6">/ p.p.</small></span>
+                            <span class="${f.stato === 'Prenotato' ? 'badge bg-success-subtle text-success border border-success' : 'badge bg-warning-subtle text-warning border border-warning'}">
+                                <i class="fa-solid fa-circle me-1 style-dot"></i>${f.stato}
+                            </span>
+                        </div>
+                        <div class="d-flex gap-1">
+                            <button class="btn btn-sm btn-light border py-1 px-2" onclick="editFlight(${i})"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-light border text-danger py-1 px-2" onclick="deleteFlight(${i})"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         `).join('');
     }
 
@@ -746,7 +855,7 @@
                     </div>
                     
                     <div class="hotel-card-header">
-                        <img src="${h.img || 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80'}" class="hotel-image" alt="${h.nome}">
+                        <img src="${h.img || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80'}" class="hotel-image" alt="${h.nome}">
                         <span class="hotel-badge-city">${h.citta}</span>
                         <span class="hotel-badge-price">€ ${h.quotaSingola} / p.p.</span>
                     </div>
@@ -777,7 +886,7 @@
         renderHotels();
     }
 
-    // HANDLERS PER L'ITINERARIO
+    // HANDLERS ITINERARIO
     const itinModal = new bootstrap.Modal('#itineraryModal');
     function openItineraryModal() {
         document.getElementById('itineraryForm').reset();
@@ -799,7 +908,7 @@
         itinModal.show();
     }
     function deleteItinerary(index) {
-        if(confirm("Eliminare questo giorno dall'itinerario?")) {
+        if(confirm("Eliminare questo giorno?")) {
             appData.itinerary.splice(index, 1);
             saveData();
         }
@@ -822,7 +931,7 @@
         saveData();
     };
 
-    // HANDLERS PER GLI HOTEL
+    // HANDLERS HOTEL
     const hotelModal = new bootstrap.Modal('#hotelModal');
     function openHotelModal() {
         document.getElementById('hotelForm').reset();
@@ -869,7 +978,7 @@
         saveData();
     };
 
-    // HANDLERS PER I VOLI
+    // HANDLERS VOLI
     const flightModal = new bootstrap.Modal('#flightModal');
     function openFlightModal() {
         document.getElementById('flightForm').reset();
