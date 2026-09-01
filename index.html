@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <!-- Impostazioni App Mobile -->
+    <!-- Impostazioni App Mobile PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Thailandia 2026">
-    <meta name="theme-color" content="#0d9488">
+    <meta name="theme-color" content="#0f172a">
 
-    <!-- Icona dell'App -->
     <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/201/201623.png">
-    <link rel="manifest" href="manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thailandia Road Trip 2026-2027 | Executive Travel Plan</title>
+    <title>Thailandia Road Trip 2026-2027 | Travel Manager</title>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -27,294 +25,306 @@
     
     <style>
         :root {
-            --primary-dark: #0f172a;
+            --primary: #0f172a;
             --accent-teal: #0d9488;
-            --accent-teal-light: #ccfbf1;
-            --accent-gold: #d97706;
-            --bg-light: #f8fafc;
-            --card-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05), 0 8px 10px -6px rgba(15, 23, 42, 0.03);
+            --accent-cyan: #06b6d4;
+            --accent-gold: #f59e0b;
+            --bg-light: #f1f5f9;
+            --card-shadow: 0 12px 30px -5px rgba(15, 23, 42, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.85);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-light);
-            color: #334155;
+            color: #1e293b;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Header Hero Banner */
+        /* HERO BANNER CON IMMAGINE THAILANDIA */
         .hero-banner {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(13, 148, 136, 0.85)), 
-                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(15, 23, 42, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1506665531195-3566af294710?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: white;
-            padding: 50px 20px;
-            border-radius: 0 0 28px 28px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            padding: 60px 20px 45px 20px;
+            border-radius: 0 0 32px 32px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+            position: relative;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
         }
 
         .hero-title {
             font-weight: 800;
-            letter-spacing: -0.5px;
-            font-size: 2.2rem;
+            letter-spacing: -1px;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        /* Nav Pills per Mobile (Scorrimento Orizzontale) */
+        /* TABS DI NAVIGAZIONE GLOW */
         .nav-pills-custom {
-            background-color: #ffffff;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
             padding: 6px;
-            border-radius: 16px;
+            border-radius: 20px;
             box-shadow: var(--card-shadow);
-            border: 1px solid #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.6);
             display: flex;
             flex-wrap: nowrap;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
-        .nav-pills-custom::-webkit-scrollbar {
-            display: none; /* Chrome/Safari */
-        }
-
-        .nav-pills-custom .nav-item {
-            flex: 0 0 auto;
-        }
+        .nav-pills-custom::-webkit-scrollbar { display: none; }
+        .nav-pills-custom .nav-item { flex: 0 0 auto; }
 
         .nav-pills-custom .nav-link {
             color: #64748b;
-            font-weight: 600;
-            border-radius: 12px;
-            padding: 8px 16px;
-            transition: all 0.25s ease;
+            font-weight: 700;
+            border-radius: 14px;
+            padding: 10px 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 0.9rem;
             white-space: nowrap;
         }
 
         .nav-pills-custom .nav-link.active {
-            background-color: var(--accent-teal);
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-cyan));
             color: #ffffff;
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.35);
         }
 
-        /* Cards & Components */
+        /* CARD MODERNE */
         .custom-card {
             background: #ffffff;
-            border-radius: 20px;
+            border-radius: 24px;
             border: 1px solid #e2e8f0;
             box-shadow: var(--card-shadow);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .custom-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 35px -5px rgba(15, 23, 42, 0.12);
         }
 
         .stat-card {
-            border-left: 4px solid var(--accent-teal);
+            border-left: 5px solid var(--accent-teal);
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
         }
 
+        /* BADGES STATO */
         .badge-status-paid {
             background-color: #dcfce7;
             color: #15803d;
-            font-weight: 600;
-            padding: 6px 12px;
+            font-weight: 700;
+            padding: 5px 12px;
             border-radius: 30px;
-            font-size: 0.8rem;
-            display: inline-block;
+            font-size: 0.78rem;
         }
-
         .badge-status-pending {
             background-color: #fef3c7;
             color: #b45309;
-            font-weight: 600;
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            display: inline-block;
-        }
-
-        .btn-maps {
-            background-color: #4285F4;
-            color: white;
-            font-weight: 600;
-            border-radius: 10px;
-            padding: 8px 16px;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-maps:hover {
-            background-color: #2b6cb0;
-            color: white;
-            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
-        }
-
-        .hotel-image {
-            height: 180px;
-            object-fit: cover;
-            border-radius: 16px 16px 0 0;
-        }
-
-        /* Stili Tabella Desktop */
-        .table-custom {
-            margin-bottom: 0;
-        }
-
-        .table-custom th {
-            background-color: #f1f5f9;
-            color: #475569;
             font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.78rem;
+        }
+
+        /* HOTEL CARDS CON OVERLAY FOTO */
+        .hotel-card-header {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        .hotel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .custom-card:hover .hotel-image {
+            transform: scale(1.05);
+        }
+        .hotel-badge-city {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(8px);
+            color: white;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.78rem;
+        }
+        .hotel-badge-price {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            background: rgba(13, 148, 136, 0.9);
+            backdrop-filter: blur(8px);
+            color: white;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 30px;
             font-size: 0.85rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* TABELLA PERSONALIZZATA DESKTOP E MOBILE */
+        .table-custom { margin-bottom: 0; }
+        .table-custom th {
+            background-color: #f8fafc;
+            color: #64748b;
+            font-weight: 800;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
             border-bottom: 2px solid #e2e8f0;
-            padding: 14px;
+            padding: 14px 16px;
         }
-
         .table-custom td {
-            padding: 14px;
+            padding: 14px 16px;
             vertical-align: middle;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
         }
 
-        /* =========================================================
-           OTTIMIZZAZIONE TABELLA PER MOBILE (SMARTPHONE)
-           ========================================================= */
+        /* AZIONI AZIENDA SULLE CARD */
+        .card-actions-floating {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 12px;
+            padding: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        /* MOBILE CARDS STACKED */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 1.8rem;
+            .hero-title { font-size: 1.8rem; }
+            .table-mobile-cards thead { display: none; }
+            .table-mobile-cards, .table-mobile-cards tbody, .table-mobile-cards tr, .table-mobile-cards td {
+                display: block; width: 100%;
             }
-
-            /* Nasconde le intestazioni classiche della tabella */
-            .table-mobile-cards thead {
-                display: none;
-            }
-
-            /* Trasforma righe e celle in blocchi verticali */
-            .table-mobile-cards, 
-            .table-mobile-cards tbody, 
-            .table-mobile-cards tr, 
-            .table-mobile-cards td {
-                display: block;
-                width: 100%;
-            }
-
-            /* Ogni riga diventa una Card mobile */
             .table-mobile-cards tr {
-                margin-bottom: 1rem;
+                margin-bottom: 1.2rem;
                 background: #ffffff;
                 border: 1px solid #e2e8f0;
-                border-radius: 14px;
-                padding: 10px 14px;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+                border-radius: 18px;
+                padding: 12px 16px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             }
-
-            .table-mobile-cards tr:last-child {
-                margin-bottom: 0;
-            }
-
-            /* Layout flessibile per la singola cella */
             .table-mobile-cards td {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 text-align: right;
-                padding: 8px 0;
+                padding: 10px 0;
                 border-bottom: 1px dashed #e2e8f0;
                 font-size: 0.88rem;
             }
-
-            .table-mobile-cards td:last-child {
-                border-bottom: none;
-            }
-
-            /* Mostra il valore di data-label come etichetta a sinistra */
+            .table-mobile-cards td:last-child { border-bottom: none; }
             .table-mobile-cards td::before {
                 content: attr(data-label);
-                font-weight: 700;
+                font-weight: 800;
                 color: #64748b;
                 text-transform: uppercase;
-                font-size: 0.75rem;
-                letter-spacing: 0.3px;
+                font-size: 0.72rem;
+                letter-spacing: 0.5px;
                 text-align: left;
                 padding-right: 12px;
             }
+            .table-mobile-cards td[data-label="Azioni"] { justify-content: flex-end; }
+            .table-mobile-cards td[data-label="Azioni"]::before { display: none; }
+        }
 
-            /* Gestione per celle a larghezza intera (es. Tour Phi Phi Island) */
-            .table-mobile-cards td[colspan] {
-                display: block;
-                text-align: center;
-                padding: 12px 8px;
-            }
-
-            .table-mobile-cards td[colspan]::before {
-                display: none;
-            }
+        /* BOTTONI MAPPA & ACTION */
+        .btn-maps {
+            background: linear-gradient(135deg, #4285F4, #2b6cb0);
+            color: white;
+            font-weight: 700;
+            border-radius: 12px;
+            padding: 10px 18px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            transition: all 0.3s;
+        }
+        .btn-maps:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(66, 133, 244, 0.35);
         }
     </style>
 </head>
 <body>
 
-<!-- HERO HEADER -->
+<!-- HERO HEADER IMPRESSIVO -->
 <header class="hero-banner text-center mb-4">
     <div class="container">
-        <span class="badge bg-white text-dark fw-bold px-3 py-2 rounded-pill mb-3">
-            <i class="fa-solid fa-plane-departure text-teal me-1"></i> Executive Itinerary 2026-2027
+        <span class="hero-badge d-inline-block mb-3">
+            <i class="fa-solid fa-plane-departure me-1"></i> Executive Road Trip 2026-2027
         </span>
-        <h1 class="hero-title">THAILANDIA ROAD TRIP</h1>
-        <p class="lead opacity-90 mb-0 fs-6"><i class="fa-regular fa-calendar me-2"></i>28 Dic 2026 – 08 Gen 2027 &nbsp;|&nbsp; 12 Giorni / 11 Notti</p>
+        <h1 class="hero-title mb-2">THAILANDIA TRIP</h1>
+        <p class="lead opacity-90 mb-4 fs-6"><i class="fa-regular fa-calendar-check me-2"></i>28 Dicembre 2026 – 08 Gennaio 2027</p>
+        
+        <!-- Quick Action Backup & Restore -->
+        <div class="d-flex justify-content-center flex-wrap gap-2">
+            <button class="btn btn-sm btn-light text-dark fw-bold rounded-pill px-3 py-2 shadow-sm" onclick="exportData()">
+                <i class="fa-solid fa-download me-1 text-teal"></i> Esporta JSON
+            </button>
+            <label class="btn btn-sm btn-outline-light fw-bold rounded-pill px-3 py-2 mb-0 shadow-sm">
+                <i class="fa-solid fa-upload me-1"></i> Importa JSON
+                <input type="file" id="importFile" onchange="importData(event)" accept=".json" hidden>
+            </label>
+            <button class="btn btn-sm btn-outline-light fw-bold rounded-pill px-3 py-2 shadow-sm" onclick="resetToDefault()" title="Ripristina dati originali">
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+        </div>
     </div>
 </header>
 
 <div class="container mb-5">
 
-    <!-- NAVIGATION TABS -->
+    <!-- TAB DI NAVIGAZIONE -->
     <ul class="nav nav-pills nav-pills-custom justify-content-start justify-content-md-center mb-4 gap-2" id="pills-tab" role="tablist">
         <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#dashboard"><i class="fa-solid fa-chart-pie me-2"></i>Dashboard</button></li>
         <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#itinerario"><i class="fa-solid fa-route me-2"></i>Itinerario</button></li>
         <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#alloggi"><i class="fa-solid fa-hotel me-2"></i>Hotel & Maps</button></li>
-        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#capodanno"><i class="fa-solid fa-champagne-glasses me-2"></i>Capodanno & Tour</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#esperienze"><i class="fa-solid fa-icons me-2"></i>Capodanno & Tour</button></li>
         <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#info"><i class="fa-solid fa-circle-info me-2"></i>Info Utili</button></li>
     </ul>
 
     <div class="tab-content" id="pills-tabContent">
 
-        <!-- 1. DASHBOARD -->
+        <!-- 1. DASHBOARD & VOLI -->
         <div class="tab-pane fade show active" id="dashboard">
-            <div class="row g-3 mb-4">
-                <div class="col-6 col-md-3">
-                    <div class="custom-card stat-card p-3">
-                        <small class="text-muted fw-bold">PARTENZA</small>
-                        <h6 class="fw-bold mt-1 mb-0"><i class="fa-solid fa-plane-departure text-teal me-1"></i>28 Dicembre</h6>
-                        <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Milano MXP</small>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="custom-card stat-card p-3">
-                        <small class="text-muted fw-bold">RITORNO</small>
-                        <h6 class="fw-bold mt-1 mb-0"><i class="fa-solid fa-plane-arrival text-teal me-1"></i>08 Gennaio</h6>
-                        <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Phuket → MXP</small>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="custom-card stat-card p-3">
-                        <small class="text-muted fw-bold">DESTINAZIONI</small>
-                        <h6 class="fw-bold mt-1 mb-0"><i class="fa-solid fa-city text-teal me-1"></i>3 Città</h6>
-                        <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">BKK • CNX • HKT</small>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="custom-card stat-card p-3">
-                        <small class="text-muted fw-bold">BUDGET STIMATO</small>
-                        <h6 class="fw-bold mt-1 mb-0 text-success"><i class="fa-solid fa-wallet me-1"></i>€ 1.955 / quota</h6>
-                        <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Voli + Hotel</small>
-                    </div>
-                </div>
-            </div>
+            <div class="row g-3 mb-4" id="statsContainer"></div>
 
             <div class="custom-card p-3 p-md-4">
-                <h5 class="fw-bold mb-3"><i class="fa-solid fa-plane text-teal me-2"></i>Piano dei Voli e Trasporti</h5>
-                
-                <!-- Tabella Voli Ottimizzata -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold mb-0"><i class="fa-solid fa-plane-up text-teal me-2"></i>Piano Voli e Trasporti</h5>
+                    <button class="btn btn-sm btn-primary fw-bold rounded-pill px-3" onclick="openFlightModal()"><i class="fa-solid fa-plus me-1"></i>Nuovo Volo</button>
+                </div>
                 <table class="table table-custom table-mobile-cards">
                     <thead>
                         <tr>
@@ -323,51 +333,21 @@
                             <th>Tipologia</th>
                             <th>Costo / p.p.</th>
                             <th>Stato</th>
+                            <th class="text-end">Azioni</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label="Tratta"><strong>Milano MXP → Bangkok (BKK)</strong></td>
-                            <td data-label="Data">28/12/2026</td>
-                            <td data-label="Tipologia">Volo Internazionale</td>
-                            <td data-label="Costo / p.p.">€ 553</td>
-                            <td data-label="Stato"><span class="badge-status-paid"><i class="fa-solid fa-check me-1"></i>Prenotato</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Tratta"><strong>Bangkok → Chiang Mai (CNX)</strong></td>
-                            <td data-label="Data">01/01/2027</td>
-                            <td data-label="Tipologia">Volo Domestico</td>
-                            <td data-label="Costo / p.p.">€ 94</td>
-                            <td data-label="Stato"><span class="badge-status-paid"><i class="fa-solid fa-clock me-1"></i>Prenotato</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Tratta"><strong>Chiang Mai → Phuket (HKT)</strong></td>
-                            <td data-label="Data">04/01/2027</td>
-                            <td data-label="Tipologia">Volo Domestico</td>
-                            <td data-label="Costo / p.p.">€ 164</td>
-                            <td data-label="Stato"><span class="badge-status-paid"><i class="fa-solid fa-clock me-1"></i>Prenotato</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Tratta"><strong>Phuket → Milano MXP</strong></td>
-                            <td data-label="Data">08/01/2027</td>
-                            <td data-label="Tipologia">Volo Internazionale</td>
-                            <td data-label="Costo / p.p.">€ 583</td>
-                            <td data-label="Stato"><span class="badge-status-paid"><i class="fa-solid fa-check me-1"></i>Prenotato</span></td>
-                        </tr>
-                    </tbody>
+                    <tbody id="flightsTableBody"></tbody>
                 </table>
             </div>
         </div>
 
-        <!-- 2. ITINERARIO -->
+        <!-- 2. ITINERARIO PROGRAMMATO -->
         <div class="tab-pane fade" id="itinerario">
             <div class="custom-card p-3 p-md-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="fw-bold mb-0"><i class="fa-solid fa-calendar-days text-teal me-2"></i>Itinerario Dettagliato</h5>
-                    <span class="badge bg-light text-dark border">29 Dic - 08 Gen</span>
+                    <button class="btn btn-sm btn-primary fw-bold rounded-pill px-3" onclick="openItineraryModal()"><i class="fa-solid fa-plus me-1"></i>Aggiungi Giorno</button>
                 </div>
-
-                <!-- Tabella Itinerario Ottimizzata -->
                 <table class="table table-custom table-mobile-cards">
                     <thead>
                         <tr>
@@ -378,244 +358,75 @@
                             <th>Pomeriggio</th>
                             <th>Sera</th>
                             <th>Struttura</th>
+                            <th class="text-end">Azioni</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G1</span></td>
-                            <td data-label="Data">29/12</td>
-                            <td data-label="Tappa"><strong>Bangkok</strong></td>
-                            <td data-label="Mattina">Arrivo & Check-in hotel</td>
-                            <td data-label="Pomeriggio">Tempo libero & primo contatto</td>
-                            <td data-label="Sera">Passeggiata & Cena fiume Chao Phraya</td>
-                            <td data-label="Struttura"><span class="badge bg-light text-dark">Casa Nithra</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G2</span></td>
-                            <td data-label="Data">30/12</td>
-                            <td data-label="Tappa"><strong>Bangkok</strong></td>
-                            <td data-label="Mattina">Grande Palazzo Reale</td>
-                            <td data-label="Pomeriggio">Wat Pho (Buddha Sdraiato)</td>
-                            <td data-label="Sera">Street food a Chinatown (Yaowarat)</td>
-                            <td data-label="Struttura"><span class="badge bg-light text-dark">Casa Nithra</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G3</span></td>
-                            <td data-label="Data">31/12</td>
-                            <td data-label="Tappa"><strong>Bangkok</strong></td>
-                            <td data-label="Mattina">Shopping nei centri (Siam/MBK)</td>
-                            <td data-label="Pomeriggio">Relax & preparazione Capodanno</td>
-                            <td data-label="Sera">🎆 <strong>Rooftop Party Capodanno</strong></td>
-                            <td data-label="Struttura"><span class="badge bg-light text-dark">Casa Nithra</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G4</span></td>
-                            <td data-label="Data">01/01</td>
-                            <td data-label="Tappa"><strong>Chiang Mai</strong></td>
-                            <td data-label="Mattina">Relax post-Capodanno</td>
-                            <td data-label="Pomeriggio">Volo per Chiang Mai & Check-in</td>
-                            <td data-label="Sera">Centro storico murato & Night Bazaar</td>
-                            <td data-label="Struttura"><span class="badge bg-light text-dark">MOMO Hotel</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G5</span></td>
-                            <td data-label="Data">02/01</td>
-                            <td data-label="Tappa"><strong>Chiang Mai</strong></td>
-                            <td data-label="Mattina">Wat Chedi Luang</td>
-                            <td data-label="Pomeriggio">Tempio Doi Suthep (Panoramico)</td>
-                            <td data-label="Sera">Cena tipica Khao Soi ai mercatini</td>
-                            <td data-label="Struttura"><span class="badge bg-light text-dark">MOMO Hotel</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G6</span></td>
-                            <td data-label="Data">03/01</td>
-                            <td data-label="Tappa"><strong>Chiang Rai</strong></td>
-                            <td data-label="Mattina">Tempio Bianco (Wat Rong Khun)</td>
-                            <td data-label="Pomeriggio">Tempio Blu & Casa Nera</td>
-                            <td data-label="Sera">Rientro a Chiang Mai e relax</td>
-                            <td data-label="Struttura"><span class="badge bg-light text-dark">MOMO Hotel</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G7</span></td>
-                            <td data-label="Data">04/01</td>
-                            <td data-label="Tappa"><strong>Phuket</strong></td>
-                            <td data-label="Mattina">Check-out & Volo per Phuket</td>
-                            <td data-label="Pomeriggio">Check-in Resort & Patong Beach</td>
-                            <td data-label="Sera">Passeggiata & Cena di pesce a Patong</td>
-                            <td data-label="Struttura"><span class="badge bg-light text-dark">Patong Paragon</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G8</span></td>
-                            <td data-label="Data">05/01</td>
-                            <td data-label="Tappa"><strong>Phuket</strong></td>
-                            <td colspan="3" class="bg-light text-center fw-semibold text-teal rounded my-1">
-                                ⛵ Tour in barca intera giornata alle Isole Phi Phi (Maya Bay, Pileh Lagoon & Snorkeling)
-                            </td>
-                            <td data-label="Struttura"><span class="badge bg-light text-dark">Patong Paragon</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G9</span></td>
-                            <td data-label="Data">06/01</td>
-                            <td data-label="Tappa"><strong>Phuket</strong></td>
-                            <td data-label="Mattina">Phuket Big Buddha</td>
-                            <td data-label="Pomeriggio">Phuket Old Town</td>
-                            <td data-label="Sera">Cocktail al tramonto in spiaggia</td>
-                            <td data-label="Struttura"><span class="badge bg-light text-dark">Patong Paragon</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G10</span></td>
-                            <td data-label="Data">07/01</td>
-                            <td data-label="Tappa"><strong>Phuket</strong></td>
-                            <td data-label="Mattina">Relax Freedom Beach / Kata Noi</td>
-                            <td data-label="Pomeriggio">Tramonto a Promthep Cape</td>
-                            <td data-label="Sera">Cena d'arrivederci sul mare</td>
-                            <td data-label="Struttura"><span class="badge bg-light text-dark">Patong Paragon</span></td>
-                        </tr>
-                        <tr>
-                            <td data-label="Giorno"><span class="fw-bold text-teal">G11</span></td>
-                            <td data-label="Data">08/01</td>
-                            <td data-label="Tappa"><strong>Rientro</strong></td>
-                            <td data-label="Mattina">Ultimi acquisti & Check-out</td>
-                            <td data-label="Pomeriggio">Trasferimento in Aeroporto Phuket</td>
-                            <td data-label="Sera">✈️ Volo di rientro in Italia</td>
-                            <td data-label="Struttura">-</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="itineraryTableBody"></tbody>
                 </table>
             </div>
         </div>
 
-        <!-- 3. HOTEL & MAPS -->
+        <!-- 3. ALLOGGI HOTEL -->
         <div class="tab-pane fade" id="alloggi">
-            <div class="row g-4 mb-4">
-                <!-- HOTEL 1: BANGKOK -->
-                <div class="col-md-4">
-                    <div class="custom-card h-100 d-flex flex-column">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" class="hotel-image" alt="Casa Nithra Bangkok">
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <span class="badge bg-secondary w-auto mb-2 align-self-start">Bangkok • 3 Notti</span>
-                            <h5 class="fw-bold">Casa Nithra Bangkok</h5>
-                            <p class="text-muted small mb-3"><i class="fa-regular fa-calendar-check me-1"></i>29 Dicembre - 01 Gennaio</p>
-                            
-                            <ul class="list-unstyled small mb-4 flex-grow-1">
-                                <li class="mb-2"><i class="fa-solid fa-credit-card text-teal me-2"></i><strong>Saldo:</strong> Da pagare al check-in</li>
-                                <li class="mb-2"><i class="fa-solid fa-user me-2"></i><strong>Quota singola:</strong> € 152</li>
-                                <li class="mb-2"><i class="fa-solid fa-users me-2"></i><strong>Totale gruppo:</strong> € 760</li>
-                            </ul>
-
-                            <a href="https://www.google.com/maps/search/?api=1&query=Casa+Nithra+Bangkok" target="_blank" class="btn btn-maps w-100 justify-content-center">
-                                <i class="fa-solid fa-map-location-dot"></i> Apri su Google Maps
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HOTEL 2: CHIANG MAI -->
-                <div class="col-md-4">
-                    <div class="custom-card h-100 d-flex flex-column">
-                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" class="hotel-image" alt="MOMO Hotel Chiang Mai">
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <span class="badge bg-secondary w-auto mb-2 align-self-start">Chiang Mai • 3 Notti</span>
-                            <h5 class="fw-bold">MOMO Hotel Chiang Mai</h5>
-                            <p class="text-muted small mb-3"><i class="fa-regular fa-calendar-check me-1"></i>01 Gennaio - 04 Gennaio</p>
-                            
-                            <ul class="list-unstyled small mb-4 flex-grow-1">
-                                <li class="mb-2"><i class="fa-solid fa-credit-card text-teal me-2"></i><strong>Saldo:</strong> Da pagare al check-in</li>
-                                <li class="mb-2"><i class="fa-solid fa-user me-2"></i><strong>Quota singola:</strong> € 89</li>
-                                <li class="mb-2"><i class="fa-solid fa-users me-2"></i><strong>Totale gruppo:</strong> € 445</li>
-                            </ul>
-
-                            <a href="https://www.google.com/maps/search/?api=1&query=MOMO+Hotel+Chiang+Mai" target="_blank" class="btn btn-maps w-100 justify-content-center">
-                                <i class="fa-solid fa-map-location-dot"></i> Apri su Google Maps
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HOTEL 3: PHUKET -->
-                <div class="col-md-4">
-                    <div class="custom-card h-100 d-flex flex-column">
-                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80" class="hotel-image" alt="Patong Paragon Resort">
-                        <div class="p-4 d-flex flex-column flex-grow-1">
-                            <span class="badge bg-secondary w-auto mb-2 align-self-start">Phuket • 4 Notti</span>
-                            <h5 class="fw-bold">Patong Paragon Resort & Spa</h5>
-                            <p class="text-muted small mb-3"><i class="fa-regular fa-calendar-check me-1"></i>04 Gennaio - 08 Gennaio</p>
-                            
-                            <ul class="list-unstyled small mb-4 flex-grow-1">
-                                <li class="mb-2"><i class="fa-solid fa-clock text-warning me-2"></i><strong>Saldo:</strong> Addebito il 19 Dicembre</li>
-                                <li class="mb-2"><i class="fa-solid fa-user me-2"></i><strong>Quota singola:</strong> € 320</li>
-                                <li class="mb-2"><i class="fa-solid fa-users me-2"></i><strong>Totale gruppo:</strong> € 1.600</li>
-                            </ul>
-
-                            <a href="https://www.google.com/maps/search/?api=1&query=Patong+Paragon+Resort+and+Spa+Phuket" target="_blank" class="btn btn-maps w-100 justify-content-center">
-                                <i class="fa-solid fa-map-location-dot"></i> Apri su Google Maps
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0"><i class="fa-solid fa-hotel text-teal me-2"></i>Hotel e Resort Selezionati</h5>
+                <button class="btn btn-sm btn-primary fw-bold rounded-pill px-3" onclick="openHotelModal()"><i class="fa-solid fa-plus me-1"></i>Aggiungi Hotel</button>
             </div>
-
-            <!-- HOTEL SUMMARY ALERT -->
-            <div class="alert alert-info border-0 shadow-sm rounded-4 p-4">
-                <h6 class="fw-bold"><i class="fa-solid fa-circle-exclamation me-2"></i>Riepilogo Pagamenti Alloggi</h6>
-                <p class="mb-0 small">Totale Notti: <strong>10 Notti</strong> | Quota Alloggi Singola: <strong>€ 561</strong> | Totale Gruppo Alloggi: <strong>€ 2.805</strong></p>
-            </div>
+            <div class="row g-4 mb-4" id="hotelsContainer"></div>
         </div>
 
-        <!-- 4. CAPODANNO & CHIANG RAI -->
-        <div class="tab-pane fade" id="capodanno">
+        <!-- 4. CAPODANNO & TOUR (NUOVA GRAFICA) -->
+        <div class="tab-pane fade" id="esperienze">
             <div class="row g-4">
                 <div class="col-md-6">
-                    <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-glass-cheers text-teal me-2"></i>Rooftop Bar Capodanno (31 Dic)</h5>
-                        
-                        <div class="mb-3 p-3 bg-light rounded-3">
-                            <h6 class="fw-bold mb-1">1. Tichuca Rooftop Bar</h6>
-                            <small class="text-muted d-block mb-2">Zona Sukhumvit (T-One Building)</small>
-                            <p class="small mb-2">Jungle-bar moderno, iconico albero LED cangiante, ambiente giovanile con vista 360°.</p>
-                            <a href="https://www.google.com/maps/search/?api=1&query=Tichuca+Rooftop+Bar+Bangkok" target="_blank" class="btn btn-sm btn-outline-primary">
-                                <i class="fa-solid fa-location-dot me-1"></i> Maps
-                            </a>
+                    <div class="custom-card h-100">
+                        <div style="height: 180px; overflow: hidden; position: relative;">
+                            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Capodanno Rooftop">
+                            <span class="badge bg-dark position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold">31 Dicembre 🎆</span>
                         </div>
-
-                        <div class="mb-3 p-3 bg-light rounded-3">
-                            <h6 class="fw-bold mb-1">2. Octave Rooftop Lounge & Bar</h6>
-                            <small class="text-muted d-block mb-2">Zona Sukhumvit (Marriott Hotel)</small>
-                            <p class="small mb-2">Disposto su 3 livelli con bar circolare panoramico, elegante ed energico.</p>
-                            <a href="https://www.google.com/maps/search/?api=1&query=Octave+Rooftop+Lounge+and+Bar+Bangkok" target="_blank" class="btn btn-sm btn-outline-primary">
-                                <i class="fa-solid fa-location-dot me-1"></i> Maps
-                            </a>
-                        </div>
-
-                        <div class="p-3 bg-light rounded-3">
-                            <h6 class="fw-bold mb-1">3. Mahanakhon SkyWalk</h6>
-                            <small class="text-muted d-block mb-2">Zona Silom/Sathorn (King Power)</small>
-                            <p class="small mb-2">L'osservatorio più alto della Thailandia (314m) con pavimento in vetro per i fuochi.</p>
-                            <a href="https://www.google.com/maps/search/?api=1&query=King+Power+Mahanakhon+Bangkok" target="_blank" class="btn btn-sm btn-outline-primary">
-                                <i class="fa-solid fa-location-dot me-1"></i> Maps
-                            </a>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-3"><i class="fa-solid fa-glass-cheers text-teal me-2"></i>Rooftop Bar Capodanno</h5>
+                            <div class="mb-3 p-3 bg-light rounded-3">
+                                <h6 class="fw-bold mb-1">1. Tichuca Rooftop Bar</h6>
+                                <p class="small text-muted mb-2">Sukhumvit • Iconico albero LED illuminato 360°</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Tichuca+Rooftop+Bar+Bangkok" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">Google Maps</a>
+                            </div>
+                            <div class="mb-3 p-3 bg-light rounded-3">
+                                <h6 class="fw-bold mb-1">2. Octave Rooftop Lounge</h6>
+                                <p class="small text-muted mb-2">Marriott Sukhumvit • Vista panoramica su 3 livelli</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Octave+Rooftop+Lounge+and+Bar+Bangkok" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">Google Maps</a>
+                            </div>
+                            <div class="p-3 bg-light rounded-3">
+                                <h6 class="fw-bold mb-1">3. Mahanakhon SkyWalk</h6>
+                                <p class="small text-muted mb-2">Silom • Vista fuochi d'artificio a 314m di altezza</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=King+Power+Mahanakhon+Bangkok" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">Google Maps</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-gopuram text-teal me-2"></i>Tour Chiang Rai (03 Gennaio)</h5>
-                        <p class="small text-muted mb-3">Partenza consigliata ore 07:00 in minivan privato o tour guidato.</p>
-
-                        <div class="mb-3 border-bottom pb-2">
-                            <h6 class="fw-bold mb-1"><i class="fa-solid fa-synagogue text-teal me-2"></i>Tempio Bianco (Wat Rong Khun)</h6>
-                            <p class="small text-muted mb-0">Capolavoro di gesso bianco e specchi incastonati. Dress code: spalle e ginocchia coperte.</p>
+                    <div class="custom-card h-100">
+                        <div style="height: 180px; overflow: hidden; position: relative;">
+                            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=800&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Chiang Rai Wat Rong Khun">
+                            <span class="badge bg-teal position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold text-white">03 Gennaio 🛕</span>
                         </div>
-
-                        <div class="mb-3 border-bottom pb-2">
-                            <h6 class="fw-bold mb-1"><i class="fa-solid fa-landmark text-teal me-2"></i>Tempio Blu (Rong Suea Ten)</h6>
-                            <p class="small text-muted mb-0">Struttura moderna con tonalità blu e dettagli dorati estremamente fotogenici.</p>
-                        </div>
-
-                        <div>
-                            <h6 class="fw-bold mb-1"><i class="fa-solid fa-house-chimney text-teal me-2"></i>Casa Nera (Baan Dam Museum)</h6>
-                            <p class="small text-muted mb-0">Complesso in legno scuro creato dall'artista Thawan Duchanee con atmosfera unica.</p>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-3"><i class="fa-solid fa-gopuram text-teal me-2"></i>Tour Chiang Rai da Chiang Mai</h5>
+                            <p class="small text-muted mb-3">Escursione di una giornata con minivan privato consigliata dalle ore 07:00.</p>
+                            
+                            <div class="border-start border-3 border-info ps-3 mb-3">
+                                <h6 class="fw-bold mb-1">Tempio Bianco (Wat Rong Khun)</h6>
+                                <p class="small text-muted mb-0">Capolavoro contemporaneo in gesso e specchi.</p>
+                            </div>
+                            <div class="border-start border-3 border-primary ps-3 mb-3">
+                                <h6 class="fw-bold mb-1">Tempio Blu (Rong Suea Ten)</h6>
+                                <p class="small text-muted mb-0">Sculture blu zaffiro e interni affrescati straordinari.</p>
+                            </div>
+                            <div class="border-start border-3 border-dark ps-3">
+                                <h6 class="fw-bold mb-1">Casa Nera (Baan Dam Museum)</h6>
+                                <p class="small text-muted mb-0">Galleria d'arte eclettica ed affascinante in legno scuro.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -627,37 +438,20 @@
             <div class="row g-4">
                 <div class="col-md-6">
                     <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-passport text-teal me-2"></i>Documenti & Tecnologia</h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-passport text-teal me-2"></i>Documentazione e Valuta</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0">
-                                <strong>TDAC (Digital Arrival Card):</strong> Obbligatoria dal 2025 su <code>tdac.immigration.go.th</code> entro 72 ore prima dell'arrivo.
-                            </li>
-                            <li class="list-group-item bg-transparent px-0">
-                                <strong>Valuta & Cambio:</strong> Baht Thailandese (THB) | 1 EUR ≈ 36-38 THB. Meglio prelevare/cambiare in loco.
-                            </li>
-                            <li class="list-group-item bg-transparent px-0">
-                                <strong>Elettricità:</strong> Prese A, B, C (220V). Portare adattatore universale e Power Bank.
-                            </li>
-                            <li class="list-group-item bg-transparent px-0">
-                                <strong>Connettività:</strong> SIM turistica AIS o TrueMove acquistabile in aeroporto (~200-500 THB).
-                            </li>
+                            <li class="list-group-item bg-transparent px-0"><strong>TDAC Digital Pass:</strong> Compilare su <code>tdac.immigration.go.th</code> 72h prima dell'arrivo.</li>
+                            <li class="list-group-item bg-transparent px-0"><strong>Valuta Locale:</strong> Baht Thailandese (THB) | 1 EUR ≈ 37 THB. Utili contanti per street food.</li>
+                            <li class="list-group-item bg-transparent px-0"><strong>Connettività Mobile:</strong> eSIM turistica (Airalo/Holafly) o SIM fisica AIS/TrueMove in aeroporto.</li>
                         </ul>
                     </div>
                 </div>
-
                 <div class="col-md-6">
                     <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-shield-halved text-teal me-2"></i>Salute & Sicurezza</h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-heart-pulse text-teal me-2"></i>Salute e Consigli Pratici</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0">
-                                <strong>Assicurazione Sanitaria:</strong> Fondamentale avere una polizza viaggio con copertura medica completa e rimpatrio.
-                            </li>
-                            <li class="list-group-item bg-transparent px-0">
-                                <strong>Acqua & Cibo:</strong> Bere solo acqua in bottiglia sigillata. Evitare ghiaccio nei carrettini di strada non ufficiali.
-                            </li>
-                            <li class="list-group-item bg-transparent px-0">
-                                <strong>Farmaci da viaggio:</strong> Portare fermenti lattici, antistaminici, paracetamolo e repellente antizanzare (es. DEET).
-                            </li>
+                            <li class="list-group-item bg-transparent px-0"><strong>Assicurazione Sanitaria:</strong> Assicurarsi di avere massimali alti per spese mediche in loco.</li>
+                            <li class="list-group-item bg-transparent px-0"><strong>App Mobilità:</strong> Scaricare **Grab** o **Bolt** (l'equivalente di Uber in Thailandia).</li>
                         </ul>
                     </div>
                 </div>
@@ -667,7 +461,457 @@
     </div>
 </div>
 
-<!-- Bootstrap 5 JS Bundle -->
+<!-- MODALI DI MODIFICA / AGGIUNTA -->
+<!-- MODAL: ITINERARIO -->
+<div class="modal fade" id="itineraryModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="itineraryModalTitle">Giorno Itinerario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="itineraryForm">
+                    <input type="hidden" id="itinIndex">
+                    <div class="row g-2 mb-2">
+                        <div class="col-4">
+                            <label class="form-label small fw-bold">Giorno</label>
+                            <input type="text" id="itinGiorno" class="form-control" placeholder="G1" required>
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label small fw-bold">Data</label>
+                            <input type="text" id="itinData" class="form-control" placeholder="29/12" required>
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label small fw-bold">Tappa</label>
+                            <input type="text" id="itinTappa" class="form-control" placeholder="Bangkok" required>
+                        </div>
+                    </div>
+                    <div class="mb-2"><label class="form-label small fw-bold">Mattina</label><input type="text" id="itinMattina" class="form-control"></div>
+                    <div class="mb-2"><label class="form-label small fw-bold">Pomeriggio</label><input type="text" id="itinPomeriggio" class="form-control"></div>
+                    <div class="mb-2"><label class="form-label small fw-bold">Sera</label><input type="text" id="itinSera" class="form-control"></div>
+                    <div class="mb-3"><label class="form-label small fw-bold">Hotel / Struttura</label><input type="text" id="itinStruttura" class="form-control" placeholder="Casa Nithra"></div>
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold py-2">Salva Giorno</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: HOTEL -->
+<div class="modal fade" id="hotelModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="hotelModalTitle">Dettagli Hotel</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="hotelForm">
+                    <input type="hidden" id="hotelIndex">
+                    <div class="mb-2"><label class="form-label small fw-bold">Nome Struttura</label><input type="text" id="hotelNome" class="form-control" required></div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-6"><label class="form-label small fw-bold">Città & Notti</label><input type="text" id="hotelCitta" class="form-control" placeholder="Bangkok • 3 Notti" required></div>
+                        <div class="col-6"><label class="form-label small fw-bold">Date Soggiorno</label><input type="text" id="hotelDate" class="form-control" placeholder="29 Dic - 01 Gen" required></div>
+                    </div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-6"><label class="form-label small fw-bold">Quota Singola (€)</label><input type="number" id="hotelQuotaSingola" class="form-control" required></div>
+                        <div class="col-6"><label class="form-label small fw-bold">Totale Gruppo (€)</label><input type="number" id="hotelTotaleGruppo" class="form-control" required></div>
+                    </div>
+                    <div class="mb-2"><label class="form-label small fw-bold">Stato Saldo / Note</label><input type="text" id="hotelSaldo" class="form-control" placeholder="Da pagare al check-in"></div>
+                    <div class="mb-2"><label class="form-label small fw-bold">Link Google Maps</label><input type="url" id="hotelMaps" class="form-control"></div>
+                    <div class="mb-3"><label class="form-label small fw-bold">URL Foto Copertina (Unsplash)</label><input type="url" id="hotelImg" class="form-control"></div>
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold py-2">Salva Hotel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: VOLO -->
+<div class="modal fade" id="flightModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="flightModalTitle">Dettagli Trasporto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="flightForm">
+                    <input type="hidden" id="flightIndex">
+                    <div class="mb-2"><label class="form-label small fw-bold">Tratta</label><input type="text" id="flightTratta" class="form-control" placeholder="Milano MXP → Bangkok" required></div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-6"><label class="form-label small fw-bold">Data</label><input type="text" id="flightData" class="form-control" placeholder="28/12/2026" required></div>
+                        <div class="col-6"><label class="form-label small fw-bold">Tipologia</label><input type="text" id="flightTipo" class="form-control" placeholder="Volo Internazionale" required></div>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6"><label class="form-label small fw-bold">Costo (€ / p.p.)</label><input type="number" id="flightCosto" class="form-control" required></div>
+                        <div class="col-6"><label class="form-label small fw-bold">Stato</label>
+                            <select id="flightStato" class="form-select">
+                                <option value="Prenotato">Prenotato</option>
+                                <option value="In attesa">In attesa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold py-2">Salva Trasporto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JAVASCRIPT ENGINE -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // DATI BASE CON IMMAGINI AD ALTA RISOLUZIONE
+    const defaultData = {
+        flights: [
+            { tratta: "Milano MXP → Bangkok (BKK)", data: "28/12/2026", tipo: "Volo Internazionale", costo: 553, stato: "Prenotato" },
+            { tratta: "Bangkok → Chiang Mai (CNX)", data: "01/01/2027", tipo: "Volo Domestico", costo: 94, stato: "Prenotato" },
+            { tratta: "Chiang Mai → Phuket (HKT)", data: "04/01/2027", tipo: "Volo Domestico", costo: 164, stato: "Prenotato" },
+            { tratta: "Phuket → Milano MXP", data: "08/01/2027", tipo: "Volo Internazionale", costo: 583, stato: "Prenotato" }
+        ],
+        itinerary: [
+            { giorno: "G1", data: "29/12", tappa: "Bangkok", mattina: "Arrivo & Check-in hotel", pomeriggio: "Tempo libero & esplorazione", sera: "Cena panoramica fiume Chao Phraya", struttura: "Casa Nithra" },
+            { giorno: "G2", data: "30/12", tappa: "Bangkok", mattina: "Grande Palazzo Reale", pomeriggio: "Wat Pho (Buddha Sdraiato)", sera: "Street food tour a Chinatown", struttura: "Casa Nithra" },
+            { giorno: "G3", data: "31/12", tappa: "Bangkok", mattina: "Shopping IconSiam / MBK", pomeriggio: "Relax & preparazione Capodanno", sera: "🎆 Rooftop Party Capodanno", struttura: "Casa Nithra" },
+            { giorno: "G4", data: "01/01", tappa: "Chiang Mai", mattina: "Relax post-Capodanno", pomeriggio: "Volo per Chiang Mai & Check-in", sera: "Centro storico murato & Night Bazaar", struttura: "MOMO Hotel" },
+            { giorno: "G5", data: "02/01", tappa: "Chiang Mai", mattina: "Wat Chedi Luang", pomeriggio: "Tempio Doi Suthep (Vista Panoramica)", sera: "Cena tipica Khao Soi", struttura: "MOMO Hotel" },
+            { giorno: "G6", data: "03/01", tappa: "Chiang Rai", mattina: "Tempio Bianco (Wat Rong Khun)", pomeriggio: "Tempio Blu & Casa Nera", sera: "Rientro a Chiang Mai", struttura: "MOMO Hotel" },
+            { giorno: "G7", data: "04/01", tappa: "Phuket", mattina: "Check-out & Volo per Phuket", pomeriggio: "Check-in Resort & Patong Beach", sera: "Passeggiata & Cena di pesce", struttura: "Patong Paragon" },
+            { giorno: "G8", data: "05/01", tappa: "Phuket", mattina: "⛵ Tour in barca Isole Phi Phi", pomeriggio: "Maya Bay & Snorkeling", sera: "Cena a Patong", struttura: "Patong Paragon" },
+            { giorno: "G9", data: "06/01", tappa: "Phuket", mattina: "Phuket Big Buddha", pomeriggio: "Phuket Old Town", sera: "Cocktail al tramonto in spiaggia", struttura: "Patong Paragon" },
+            { giorno: "G10", data: "07/01", tappa: "Phuket", mattina: "Relax Freedom Beach", pomeriggio: "Tramonto a Promthep Cape", sera: "Cena d'arrivederci", struttura: "Patong Paragon" },
+            { giorno: "G11", data: "08/01", tappa: "Rientro", mattina: "Check-out & ultimi souvenir", pomeriggio: "Trasferimento Aeroporto Phuket", sera: "✈️ Volo di rientro in Italia", struttura: "-" }
+        ],
+        hotels: [
+            {
+                nome: "Casa Nithra Bangkok",
+                citta: "Bangkok • 3 Notti",
+                date: "29 Dic - 01 Gen",
+                saldo: "Da pagare al check-in",
+                quotaSingola: 152,
+                totaleGruppo: 760,
+                maps: "https://www.google.com/maps/search/?api=1&query=Casa+Nithra+Bangkok",
+                img: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                nome: "MOMO Hotel Chiang Mai",
+                citta: "Chiang Mai • 3 Notti",
+                date: "01 Gen - 04 Gen",
+                saldo: "Da pagare al check-in",
+                quotaSingola: 89,
+                totaleGruppo: 445,
+                maps: "https://www.google.com/maps/search/?api=1&query=MOMO+Hotel+Chiang+Mai",
+                img: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                nome: "Patong Paragon Resort & Spa",
+                citta: "Phuket • 4 Notti",
+                date: "04 Gen - 08 Gen",
+                saldo: "Addebito il 19 Dicembre",
+                quotaSingola: 320,
+                totaleGruppo: 1600,
+                maps: "https://www.google.com/maps/search/?api=1&query=Patong+Paragon+Resort+and+Spa+Phuket",
+                img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80"
+            }
+        ]
+    };
+
+    // GESTIONE STATO LOCALSTORAGE
+    let appData = JSON.parse(localStorage.getItem('thailandTripDataV2')) || defaultData;
+
+    function saveData() {
+        localStorage.setItem('thailandTripDataV2', JSON.stringify(appData));
+        renderAll();
+    }
+
+    function resetToDefault() {
+        if(confirm("Vuoi ripristinare i dati di viaggio originali?")) {
+            appData = JSON.parse(JSON.stringify(defaultData));
+            saveData();
+        }
+    }
+
+    // EXPORT / IMPORT JSON
+    function exportData() {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", "thailandia_viaggio_2026.json");
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+    }
+
+    function importData(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                appData = JSON.parse(e.target.result);
+                saveData();
+                alert("Dati aggiornati con successo!");
+            } catch(err) {
+                alert("File JSON non valido.");
+            }
+        };
+        reader.readAsText(file);
+    }
+
+    // RENDER GRAFICI & ELEMENTI
+    function renderStats() {
+        const totaleVoli = appData.flights.reduce((acc, f) => acc + Number(f.costo || 0), 0);
+        const totaleHotel = appData.hotels.reduce((acc, h) => acc + Number(h.quotaSingola || 0), 0);
+        const totaleSingolo = totaleVoli + totaleHotel;
+
+        document.getElementById('statsContainer').innerHTML = `
+            <div class="col-6 col-md-3">
+                <div class="custom-card stat-card p-3">
+                    <small class="text-muted fw-bold">PARTENZA</small>
+                    <h6 class="fw-bold mt-1 mb-0"><i class="fa-solid fa-plane-departure text-teal me-1"></i>28 Dicembre</h6>
+                    <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Milano MXP</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="custom-card stat-card p-3">
+                    <small class="text-muted fw-bold">RITORNO</small>
+                    <h6 class="fw-bold mt-1 mb-0"><i class="fa-solid fa-plane-arrival text-teal me-1"></i>08 Gennaio</h6>
+                    <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Phuket → MXP</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="custom-card stat-card p-3">
+                    <small class="text-muted fw-bold">ALLOGGI</small>
+                    <h6 class="fw-bold mt-1 mb-0"><i class="fa-solid fa-hotel text-teal me-1"></i>${appData.hotels.length} Hotel</h6>
+                    <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Tot. Hotel p.p: € ${totaleHotel}</small>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="custom-card stat-card p-3">
+                    <small class="text-muted fw-bold">VOLI + HOTEL</small>
+                    <h6 class="fw-bold mt-1 mb-0 text-success"><i class="fa-solid fa-wallet me-1"></i>€ ${totaleSingolo} / quota</h6>
+                    <small class="text-secondary d-block mt-1" style="font-size:0.75rem;">Stima individuale</small>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderFlights() {
+        const tbody = document.getElementById('flightsTableBody');
+        tbody.innerHTML = appData.flights.map((f, i) => `
+            <tr>
+                <td data-label="Tratta"><strong>${f.tratta}</strong></td>
+                <td data-label="Data">${f.data}</td>
+                <td data-label="Tipologia">${f.tipo}</td>
+                <td data-label="Costo / p.p.">€ ${f.costo}</td>
+                <td data-label="Stato"><span class="${f.stato === 'Prenotato' ? 'badge-status-paid' : 'badge-status-pending'}">${f.stato}</span></td>
+                <td data-label="Azioni" class="text-end">
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="editFlight(${i})"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteFlight(${i})"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function renderItinerary() {
+        const tbody = document.getElementById('itineraryTableBody');
+        tbody.innerHTML = appData.itinerary.map((item, i) => `
+            <tr>
+                <td data-label="Giorno"><span class="fw-bold text-teal">${item.giorno}</span></td>
+                <td data-label="Data">${item.data}</td>
+                <td data-label="Tappa"><strong>${item.tappa}</strong></td>
+                <td data-label="Mattina">${item.mattina || '-'}</td>
+                <td data-label="Pomeriggio">${item.pomeriggio || '-'}</td>
+                <td data-label="Sera">${item.sera || '-'}</td>
+                <td data-label="Struttura"><span class="badge bg-light text-dark border">${item.struttura || '-'}</span></td>
+                <td data-label="Azioni" class="text-end">
+                    <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="editItinerary(${i})"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="deleteItinerary(${i})"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    function renderHotels() {
+        const container = document.getElementById('hotelsContainer');
+        container.innerHTML = appData.hotels.map((h, i) => `
+            <div class="col-md-4">
+                <div class="custom-card h-100 d-flex flex-column">
+                    <div class="card-actions-floating">
+                        <button class="btn btn-sm btn-light border py-1 px-2 me-1" onclick="editHotel(${i})"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn btn-sm btn-light border text-danger py-1 px-2" onclick="deleteHotel(${i})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                    
+                    <div class="hotel-card-header">
+                        <img src="${h.img || 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80'}" class="hotel-image" alt="${h.nome}">
+                        <span class="hotel-badge-city">${h.citta}</span>
+                        <span class="hotel-badge-price">€ ${h.quotaSingola} / p.p.</span>
+                    </div>
+
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h5 class="fw-bold mb-1">${h.nome}</h5>
+                        <p class="text-muted small mb-3"><i class="fa-regular fa-calendar me-1"></i>${h.date}</p>
+                        
+                        <ul class="list-unstyled small mb-4 flex-grow-1">
+                            <li class="mb-2"><i class="fa-solid fa-credit-card text-teal me-2"></i><strong>Saldo:</strong> ${h.saldo}</li>
+                            <li class="mb-2"><i class="fa-solid fa-users me-2"></i><strong>Totale Gruppo:</strong> € ${h.totaleGruppo}</li>
+                        </ul>
+
+                        ${h.maps ? `
+                        <a href="${h.maps}" target="_blank" class="btn btn-maps w-100 justify-content-center">
+                            <i class="fa-solid fa-map-location-dot"></i> Apri su Maps
+                        </a>` : ''}
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderAll() {
+        renderStats();
+        renderFlights();
+        renderItinerary();
+        renderHotels();
+    }
+
+    // HANDLERS PER L'ITINERARIO
+    const itinModal = new bootstrap.Modal('#itineraryModal');
+    function openItineraryModal() {
+        document.getElementById('itineraryForm').reset();
+        document.getElementById('itinIndex').value = "-1";
+        document.getElementById('itineraryModalTitle').innerText = "Aggiungi Giorno";
+        itinModal.show();
+    }
+    function editItinerary(index) {
+        const item = appData.itinerary[index];
+        document.getElementById('itinIndex').value = index;
+        document.getElementById('itinGiorno').value = item.giorno;
+        document.getElementById('itinData').value = item.data;
+        document.getElementById('itinTappa').value = item.tappa;
+        document.getElementById('itinMattina').value = item.mattina;
+        document.getElementById('itinPomeriggio').value = item.pomeriggio;
+        document.getElementById('itinSera').value = item.sera;
+        document.getElementById('itinStruttura').value = item.struttura;
+        document.getElementById('itineraryModalTitle').innerText = "Modifica Giorno";
+        itinModal.show();
+    }
+    function deleteItinerary(index) {
+        if(confirm("Eliminare questo giorno dall'itinerario?")) {
+            appData.itinerary.splice(index, 1);
+            saveData();
+        }
+    }
+    document.getElementById('itineraryForm').onsubmit = function(e) {
+        e.preventDefault();
+        const index = parseInt(document.getElementById('itinIndex').value);
+        const newItem = {
+            giorno: document.getElementById('itinGiorno').value,
+            data: document.getElementById('itinData').value,
+            tappa: document.getElementById('itinTappa').value,
+            mattina: document.getElementById('itinMattina').value,
+            pomeriggio: document.getElementById('itinPomeriggio').value,
+            sera: document.getElementById('itinSera').value,
+            struttura: document.getElementById('itinStruttura').value
+        };
+        if(index === -1) appData.itinerary.push(newItem);
+        else appData.itinerary[index] = newItem;
+        itinModal.hide();
+        saveData();
+    };
+
+    // HANDLERS PER GLI HOTEL
+    const hotelModal = new bootstrap.Modal('#hotelModal');
+    function openHotelModal() {
+        document.getElementById('hotelForm').reset();
+        document.getElementById('hotelIndex').value = "-1";
+        document.getElementById('hotelModalTitle').innerText = "Aggiungi Hotel";
+        hotelModal.show();
+    }
+    function editHotel(index) {
+        const h = appData.hotels[index];
+        document.getElementById('hotelIndex').value = index;
+        document.getElementById('hotelNome').value = h.nome;
+        document.getElementById('hotelCitta').value = h.citta;
+        document.getElementById('hotelDate').value = h.date;
+        document.getElementById('hotelQuotaSingola').value = h.quotaSingola;
+        document.getElementById('hotelTotaleGruppo').value = h.totaleGruppo;
+        document.getElementById('hotelSaldo').value = h.saldo;
+        document.getElementById('hotelMaps').value = h.maps || "";
+        document.getElementById('hotelImg').value = h.img || "";
+        document.getElementById('hotelModalTitle').innerText = "Modifica Hotel";
+        hotelModal.show();
+    }
+    function deleteHotel(index) {
+        if(confirm("Eliminare questo alloggio?")) {
+            appData.hotels.splice(index, 1);
+            saveData();
+        }
+    }
+    document.getElementById('hotelForm').onsubmit = function(e) {
+        e.preventDefault();
+        const index = parseInt(document.getElementById('hotelIndex').value);
+        const newHotel = {
+            nome: document.getElementById('hotelNome').value,
+            citta: document.getElementById('hotelCitta').value,
+            date: document.getElementById('hotelDate').value,
+            quotaSingola: Number(document.getElementById('hotelQuotaSingola').value),
+            totaleGruppo: Number(document.getElementById('hotelTotaleGruppo').value),
+            saldo: document.getElementById('hotelSaldo').value,
+            maps: document.getElementById('hotelMaps').value,
+            img: document.getElementById('hotelImg').value
+        };
+        if(index === -1) appData.hotels.push(newHotel);
+        else appData.hotels[index] = newHotel;
+        hotelModal.hide();
+        saveData();
+    };
+
+    // HANDLERS PER I VOLI
+    const flightModal = new bootstrap.Modal('#flightModal');
+    function openFlightModal() {
+        document.getElementById('flightForm').reset();
+        document.getElementById('flightIndex').value = "-1";
+        document.getElementById('flightModalTitle').innerText = "Aggiungi Volo";
+        flightModal.show();
+    }
+    function editFlight(index) {
+        const f = appData.flights[index];
+        document.getElementById('flightIndex').value = index;
+        document.getElementById('flightTratta').value = f.tratta;
+        document.getElementById('flightData').value = f.data;
+        document.getElementById('flightTipo').value = f.tipo;
+        document.getElementById('flightCosto').value = f.costo;
+        document.getElementById('flightStato').value = f.stato;
+        document.getElementById('flightModalTitle').innerText = "Modifica Volo";
+        flightModal.show();
+    }
+    function deleteFlight(index) {
+        if(confirm("Eliminare questo volo?")) {
+            appData.flights.splice(index, 1);
+            saveData();
+        }
+    }
+    document.getElementById('flightForm').onsubmit = function(e) {
+        e.preventDefault();
+        const index = parseInt(document.getElementById('flightIndex').value);
+        const newFlight = {
+            tratta: document.getElementById('flightTratta').value,
+            data: document.getElementById('flightData').value,
+            tipo: document.getElementById('flightTipo').value,
+            costo: Number(document.getElementById('flightCosto').value),
+            stato: document.getElementById('flightStato').value
+        };
+        if(index === -1) appData.flights.push(newFlight);
+        else appData.flights[index] = newFlight;
+        flightModal.hide();
+        saveData();
+    };
+
+    // INIZIALIZZAZIONE ALL'AVVIO
+    document.addEventListener("DOMContentLoaded", renderAll);
+</script>
 </body>
 </html>
