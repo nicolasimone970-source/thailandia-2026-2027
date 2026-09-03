@@ -875,7 +875,26 @@
         };
         reader.readAsText(file);
     }
+ function renderCountdown() {
+        const target = new Date("2026-12-28T00:00:00");
+        const returnDate = new Date("2027-01-08T00:00:00");
+        const now = new Date();
+        const el = document.getElementById('countdownDays');
+        const label = document.getElementById('countdownLabel');
+        const oneDay = 86400000;
 
+        if (now < target) {
+            const days = Math.ceil((target - now) / oneDay);
+            el.innerText = days;
+            label.innerText = days === 1 ? "giorno al decollo da Malpensa" : "giorni al decollo da Malpensa";
+        } else if (now >= target && now <= returnDate) {
+            el.innerText = "✈️";
+            label.innerText = "siete in viaggio, buon divertimento!";
+        } else {
+            el.innerText = "✓";
+            label.innerText = "viaggio concluso — bentornati!";
+        }
+    }
     // RENDER GRAFICO DASHBOARD
     function renderStats() {
         const totaleVoli = appData.flights.reduce((acc, f) => acc + Number(f.costo || 0), 0);
