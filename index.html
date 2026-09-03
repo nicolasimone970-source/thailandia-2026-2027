@@ -904,7 +904,7 @@
         if (now < target) {
             const days = Math.ceil((target - now) / oneDay);
             el.innerText = days;
-            label.innerText = days === 1 ? "giorno al decollo da Malpensa" : "giorni al decollo da Malpensa";
+            label.innerText = days === 1 ? "giorno al decollo da " : "giorni al decollo da ";
         } else if (now >= target && now <= returnDate) {
             el.innerText = "✈️";
             label.innerText = "siete in viaggio, buon divertimento!";
@@ -928,7 +928,7 @@
                 <div class="kpi-card kpi-card-1">
                     <small class="text-white-50 fw-bold text-uppercase d-block mb-1">Partenza</small>
                     <h5 class="fw-bold mb-0">28 Dicembre</h5>
-                    <small class="text-white-50">Milano Malpensa</small>
+                    <small class="text-white-50">Milano Malpensa -> Bangkok</small>
                     <i class="fa-solid fa-plane-departure kpi-icon"></i>
                 </div>
             </div>
@@ -936,7 +936,7 @@
                 <div class="kpi-card kpi-card-2">
                     <small class="text-white-50 fw-bold text-uppercase d-block mb-1">Rientro</small>
                     <h5 class="fw-bold mb-0">08 Gennaio</h5>
-                    <small class="text-white-50">Phuket → MXP</small>
+                    <small class="text-white-50">Phuket → Milano Malpensa</small>
                     <i class="fa-solid fa-plane-arrival kpi-icon"></i>
                 </div>
             </div>
