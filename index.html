@@ -425,14 +425,22 @@
 <body>
 
 <!-- HERO HEADER -->
+<!-- LOADING OVERLAY -->
+<div class="app-loading" id="appLoading">
+    <div class="loading-ring"></div>
+    <p>Sto aprendo il vostro diario di viaggio…</p>
+</div>
+
+<!-- HERO HEADER -->
 <header class="hero-banner text-center mb-4">
     <div class="container">
-        <span class="hero-badge d-inline-block mb-3">
-            <i class="fa-solid fa-plane-departure me-1"></i> Executive Road Trip 2026-2027
-        </span>
-        <h1 class="hero-title mb-2">THAILANDIA TRIP</h1>
-        <p class="lead opacity-90 mb-4 fs-6"><i class="fa-regular fa-calendar-check me-2"></i>28 Dicembre 2026 – 08 Gennaio 2027</p>
-       
+        <p class="hero-route">Bangkok → Chiang Mai → Phuket</p>
+        <h1 class="hero-title font-display mb-2">THAILANDIA TRIP</h1>
+        <p class="hero-dates"><i class="fa-regular fa-calendar-check me-2"></i>28 dicembre 2026 – 8 gennaio 2027</p>
+        <div class="hero-countdown">
+            <span class="countdown-number font-display" id="countdownDays">–</span>
+            <span class="countdown-label" id="countdownLabel">al decollo da Malpensa</span>
+        </div>
     </div>
 </header>
 
