@@ -475,8 +475,8 @@
         <h1 class="hero-title font-display mb-2">THAILANDIA TRIP</h1>
         <p class="hero-dates"><i class="fa-regular fa-calendar-check me-2"></i>28 dicembre 2026 – 8 gennaio 2027</p>
         <div class="hero-countdown">
-            <span class="countdown-number font-display" id="countdownDays">manca pocoooooooo</span>
-            <span class="countdown-label" id="countdownLabel">al decollo da Malpensa</span>
+            <div class="countdown-number" id="days">–</div>
+            <div class="countdown-label" id="label">giorni al 28 dicembre</div>
         </div>
     </div>
 </header>
@@ -1198,6 +1198,30 @@
         saveData();
     };
 
+    function updateCountdown() {
+      const target = new Date("2026-12-28T00:00:00");
+      const now = new Date();
+      const oneDay = 86400000;
+
+      const daysEl = document.getElementById("days");
+      const labelEl = document.getElementById("label");
+
+      if (now < target) {
+        const days = Math.ceil((target - now) / oneDay);
+        daysEl.textContent = days;
+        labelEl.textContent = days === 1 ? "giorno al 28 dicembre" : "giorni al 28 dicembre";
+      } else {
+        daysEl.textContent = "🎉";
+        labelEl.textContent = "è il 28 dicembre (o è già passato)!";
+      }
+    }
+
+    updateCountdown();
+    // aggiorna ogni ora, così resta corretto se la pagina resta aperta
+    setInterval(updateCountdown, 1000 * 60 * 60);
+
+
+    
     // INIZIALIZZAZIONE ALL'AVVIO
     document.addEventListener("DOMContentLoaded", renderAll);
 </script>
