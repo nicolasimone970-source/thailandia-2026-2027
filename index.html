@@ -1252,6 +1252,33 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+
+    // === 1. ASCOLTO TEMPO REALE: HOTEL ===
+db.ref('hotels').on('value', (snapshot) => {
+    const data = snapshot.val();
+    // Aggiorna la variabile globale degli hotel (convertendo l'oggetto in Array)
+    hotels = data ? Object.values(data) : [];
+    
+    renderHotels(); // Ridisegna la scheda degli hotel
+    renderStats();  // Aggiorna i totali del budget nella Dashboard
+});
+
+// === 2. ASCOLTO TEMPO REALE: ITINERARIO ===
+db.ref('itinerary').on('value', (snapshot) => {
+    const data = snapshot.val();
+    itinerary = data ? Object.values(data) : [];
+    
+    renderItinerary(); // Ridisegna la tabella dell'itinerario
+});
+
+// === 3. ASCOLTO TEMPO REALE: VOLI ===
+db.ref('flights').on('value', (snapshot) => {
+    const data = snapshot.val();
+    flights = data ? Object.values(data) : [];
+    
+    renderFlights(); // Ridisegna i voli
+    renderStats();   // Aggiorna la Dashboard
+});
 </script>
 </body>
 </html>
