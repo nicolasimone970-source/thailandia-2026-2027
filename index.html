@@ -1232,6 +1232,7 @@
 
 </script>
 <!-- Firebase SDK JS (v10.8.0) -->
+<!-- Firebase SDK JS (v10.8.0) -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
@@ -1244,7 +1245,7 @@
     remove 
   } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-  // Configurazione del tuo progetto Firebase
+  // Configurazione Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyBJhOlDx26YmF0dl2u6lypO6eX-nz3NgHo",
     authDomain: "thailandia-2026-2027.firebaseapp.com",
@@ -1256,47 +1257,88 @@
     measurementId: "G-TCYREXCHCS"
   };
 
-  // Inizializzazione Firebase
+  // Inizializzazione Firebase App & Database
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const db = getDatabase(app);
 
-  // Riferimenti ai nodi nel Database Firebase
+  // Riferimenti ai nodi di Firebase Realtime Database
   const flightsRef = ref(db, 'flights');
   const itineraryRef = ref(db, 'itinerary');
   const hotelsRef = ref(db, 'hotels');
 
-  // Variabili per mantenere i dati locali
+  // DATI PREDEFINITI DEL VIAGGIO (Se Firebase è vuoto)
+  const defaultFlights = {
+    "f1": { route: "Milano (MXP) → Bangkok (BKK)", date: "28 Dic 2026", time: "14:30", company: "Volo Internazionale", price: 550 },
+    "f2": { route: "Bangkok (DMK) → Chiang Mai (CNX)", date: "01 Gen 2027", time: "10:15", company: "Volo Domestico", price: 80 },
+    "f3": { route: "Chiang Mai (CNX) → Phuket (HKT)", date: "04 Gen 2027", time: "11:15", company: "Nok Air (DD127 / DD530)", price: 127 },
+    "f4": { route: "Phuket (HKT) → Milano (MXP)", date: "08 Gen 2027", time: "18:20", company: "Volo di Rientro", price: 400 }
+  };
+
+  const defaultHotels = {
+    "h1": { name: "Casa Nithra / Eastin Grand Hotel", city: "Bangkok", dates: "28 - 31 Dicembre (3 Notti)", price: 200, image: "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80", mapsUrl: "https://www.google.com/maps/search/?api=1&query=Casa+Nithra+Bangkok" },
+    "h2": { name: "MOMO Hotel Chiang Mai", city: "Chiang Mai", dates: "01 - 04 Gennaio (3 Notti)", price: 150, image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80", mapsUrl: "https://www.google.com/maps/search/?api=1&query=MOMO+Hotel+Chiang+Mai" },
+    "h3": { name: "Patong Paragon Resort & Spa", city: "Phuket", dates: "04 - 08 Gennaio (4 Notti)", price: 350, image: "https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80", mapsUrl: "https://www.google.com/maps/search/?api=1&query=Patong+Paragon+Resort" }
+  };
+
+  const defaultItinerary = {
+    "d1": { dayNumber: 1, date: "28/12/2026", location: "Bangkok", morning: "Volo e Arrivo BKK", afternoon: "Check-in Hotel & Relax", evening: "Cena a Yaowarat (Chinatown)", hotel: "Casa Nithra Bangkok" },
+    "d2": { dayNumber: 2, date: "29/12/2026", location: "Bangkok", morning: "Grande Palazzo Reale & Wat Phra Kaew", afternoon: "Wat Pho & Wat Arun", evening: "Cocktail vista fiume Chao Phraya", hotel: "Casa Nithra Bangkok" },
+    "d3": { dayNumber: 3, date: "30/12/2026", location: "Bangkok", morning: "Mercato Galleggiante Damnoen Saduak", afternoon: "Shopping IconSIAM", evening: "Street Food Night Market", hotel: "Casa Nithra Bangkok" },
+    "d4": { dayNumber: 4, date: "31/12/2026", location: "Bangkok", morning: "Khao San Road / Relax", afternoon: "Preparazione Capodanno", evening: "Capodanno Rooftop Tichuca", hotel: "Casa Nithra Bangkok" },
+    "d5": { dayNumber: 5, date: "01/01/2027", location: "Chiang Mai", morning: "Volo Bangkok → Chiang Mai", afternoon: "Check-in Hotel & Old City", evening: "Chiang Mai Night Bazaar", hotel: "MOMO Hotel Chiang Mai" },
+    "d6": { dayNumber: 6, date: "02/01/2027", location: "Chiang Mai", morning: "Tempio Doi Suthep", afternoon: "Santuario Elefanti Etico", evening: "Cena tipica Khao Soi", hotel: "MOMO Hotel Chiang Mai" },
+    "d7": { dayNumber: 7, date: "03/01/2027", location: "Chiang Rai", morning: "Tour Tempio Bianco (Wat Rong Khun)", afternoon: "Tempio Blu & Casa Nera", evening: "Rientro a Chiang Mai", hotel: "MOMO Hotel Chiang Mai" },
+    "d8": { dayNumber: 8, date: "04/01/2027", location: "Phuket", morning: "Volo Chiang Mai → Phuket", afternoon: "Check-in Resort & Spiaggia Patong", evening: "Bangla Road / Night Life", hotel: "Patong Paragon Resort" },
+    "d9": { dayNumber: 9, date: "05/01/2027", location: "Phuket", morning: "Escursione Isole Phi Phi", afternoon: "Maya Bay & Snorkeling", evening: "Cena Pesce fresco Patong", hotel: "Patong Paragon Resort" },
+    "d10": { dayNumber: 10, date: "06/01/2027", location: "Phuket", morning: "Tour James Bond Island", afternoon: "Canoa Phang Nga Bay", evening: "Sunset Cocktail Promthep Cape", hotel: "Patong Paragon Resort" },
+    "d11": { dayNumber: 11, date: "07/01/2027", location: "Phuket", morning: "Relax Kata / Karon Beach", afternoon: "Big Buddha & Old Phuket Town", evening: "Ultima cena thailandese", hotel: "Patong Paragon Resort" },
+    "d12": { dayNumber: 12, date: "08/01/2027", location: "Ritorno", morning: "Check-out & Trasferimento Aeroporto", afternoon: "Volo di Rientro in Italia", evening: "Arrivo a Casa", hotel: "-" }
+  };
+
+  // Variabili di stato locale
   let flightsData = {};
   let itineraryData = {};
   let hotelsData = {};
 
   // -------------------------------------------------------------
-  // 1. ASCOLTO IN TEMPO REALE DA FIREBASE (READ)
+  // 1. ASCOLTO IN TEMPO REALE ED INIZIALIZZAZIONE DATI
   // -------------------------------------------------------------
 
   // Sincronizzazione Voli
   onValue(flightsRef, (snapshot) => {
-    flightsData = snapshot.val() || {};
-    renderFlights();
-    updateDashboardStats();
+    if (!snapshot.exists()) {
+      set(flightsRef, defaultFlights);
+    } else {
+      flightsData = snapshot.val() || {};
+      renderFlights();
+      updateDashboardStats();
+    }
   });
 
   // Sincronizzazione Itinerario
   onValue(itineraryRef, (snapshot) => {
-    itineraryData = snapshot.val() || {};
-    renderItinerary();
+    if (!snapshot.exists()) {
+      set(itineraryRef, defaultItinerary);
+    } else {
+      itineraryData = snapshot.val() || {};
+      renderItinerary();
+    }
   });
 
   // Sincronizzazione Hotel
   onValue(hotelsRef, (snapshot) => {
-    hotelsData = snapshot.val() || {};
-    renderHotels();
-    updateDashboardStats();
+    if (!snapshot.exists()) {
+      set(hotelsRef, defaultHotels);
+    } else {
+      hotelsData = snapshot.val() || {};
+      renderHotels();
+      updateDashboardStats();
+    }
   });
 
   // -------------------------------------------------------------
-  // 2. FUNZIONI DI RENDERING DELLA UI
+  // 2. FUNZIONI DI RENDERING DELLA INTERFACCIA
   // -------------------------------------------------------------
 
   // Renderizza la lista dei Voli
@@ -1306,7 +1348,7 @@
 
     const keys = Object.keys(flightsData);
     if (keys.length === 0) {
-      container.innerHTML = `<p class="text-muted text-center py-3">Nessun volo memorizzato. Clicca su "Nuovo Volo" per aggiungerne uno.</p>`;
+      container.innerHTML = `<p class="text-muted text-center py-3">Nessun volo presente. Clicca su "Nuovo Volo" per aggiungerne uno.</p>`;
       return;
     }
 
@@ -1342,11 +1384,11 @@
 
     const keys = Object.keys(itineraryData);
     if (keys.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted py-4">Nessun giorno inserito nell'itinerario. Clicca su "Aggiungi Giorno".</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted py-4">Nessun giorno nell'itinerario. Clicca su "Aggiungi Giorno".</td></tr>`;
       return;
     }
 
-    // Ordina i giorni per numero di giorno
+    // Ordina i giorni per numero progressivo
     const sortedKeys = keys.sort((a, b) => (itineraryData[a].dayNumber || 0) - (itineraryData[b].dayNumber || 0));
 
     let html = '';
@@ -1372,14 +1414,14 @@
     tbody.innerHTML = html;
   }
 
-  // Renderizza la lista degli Hotel
+  // Renderizza le schede degli Hotel
   function renderHotels() {
     const container = document.getElementById('hotelsContainer');
     if (!container) return;
 
     const keys = Object.keys(hotelsData);
     if (keys.length === 0) {
-      container.innerHTML = `<div class="col-12 text-center text-muted py-4">Nessun hotel salvato.</div>`;
+      container.innerHTML = `<div class="col-12 text-center text-muted py-4">Nessun hotel memorizzato.</div>`;
       return;
     }
 
@@ -1388,18 +1430,20 @@
       const h = hotelsData[key];
       html += `
         <div class="col-md-4">
-          <div class="custom-card">
+          <div class="custom-card h-100">
             <div class="hotel-card-header">
               <img src="${h.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80'}" class="hotel-image" alt="${h.name}">
               <span class="hotel-badge-city">${h.city || 'Thailandia'}</span>
               <span class="hotel-badge-price">€ ${h.price || 0}</span>
             </div>
-            <div class="p-3">
-              <h6 class="fw-bold mb-1">${h.name || 'Nome Hotel'}</h6>
-              <p class="small text-muted mb-2">${h.dates || ''}</p>
+            <div class="p-3 d-flex flex-column justify-content-between">
+              <div>
+                <h6 class="fw-bold mb-1">${h.name || 'Nome Hotel'}</h6>
+                <p class="small text-muted mb-3">${h.dates || ''}</p>
+              </div>
               <div class="d-flex justify-content-between align-items-center">
                 ${h.mapsUrl ? `<a href="${h.mapsUrl}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">Mappa</a>` : '<span></span>'}
-                <button class="btn btn-sm btn-outline-danger border-0" onclick="deleteHotel('${key}')"><i class="fa-solid fa-trash"></i></button>
+                <button class="btn btn-sm btn-outline-danger border-0" onclick="deleteHotel('${key}')" title="Elimina hotel"><i class="fa-solid fa-trash"></i></button>
               </div>
             </div>
           </div>
@@ -1409,7 +1453,7 @@
     container.innerHTML = html;
   }
 
-  // Calcolo automatico di KPI e Totali Budget
+  // Ricalcola il Totale Budget in tempo reale
   function updateDashboardStats() {
     let totalFlights = 0;
     Object.values(flightsData).forEach(f => totalFlights += parseFloat(f.price || 0));
@@ -1429,55 +1473,46 @@
   }
 
   // -------------------------------------------------------------
-  // 3. FUNZIONI DI SCRITTURA ED ELIMINAZIONE SU FIREBASE
+  // 3. FUNZIONI OPERATIVE GLOBALI (SALVATAGGIO & CANCELLAZIONE)
   // -------------------------------------------------------------
 
-  // Salva nuovo Volo
+  // Salva o aggiorna un Volo
   window.saveFlight = function(flightObj) {
     const newFlightRef = push(flightsRef);
-    set(newFlightRef, flightObj)
-      .then(() => console.log("Volo salvato con successo!"))
-      .catch((err) => console.error("Errore salvataggio volo:", err));
+    set(newFlightRef, flightObj);
   };
 
-  // Elimina Volo
   window.deleteFlight = function(key) {
     if (confirm("Sei sicuro di voler eliminare questo volo?")) {
       remove(ref(db, `flights/${key}`));
     }
   };
 
-  // Salva nuovo Giorno Itinerario
+  // Salva o aggiorna un Giorno di Itinerario
   window.saveItineraryDay = function(itineraryObj) {
     const newDayRef = push(itineraryRef);
-    set(newDayRef, itineraryObj)
-      .then(() => console.log("Giorno itinerario salvato con successo!"))
-      .catch((err) => console.error("Errore salvataggio itinerario:", err));
+    set(newDayRef, itineraryObj);
   };
 
-  // Elimina Giorno Itinerario
   window.deleteItineraryDay = function(key) {
     if (confirm("Sei sicuro di voler eliminare questo giorno dall'itinerario?")) {
       remove(ref(db, `itinerary/${key}`));
     }
   };
 
-  // Salva nuovo Hotel
+  // Salva o aggiorna un Hotel
   window.saveHotel = function(hotelObj) {
     const newHotelRef = push(hotelsRef);
-    set(newHotelRef, hotelObj)
-      .then(() => console.log("Hotel salvato con successo!"))
-      .catch((err) => console.error("Errore salvataggio hotel:", err));
+    set(newHotelRef, hotelObj);
   };
 
-  // Elimina Hotel
   window.deleteHotel = function(key) {
     if (confirm("Sei sicuro di voler eliminare questo hotel?")) {
       remove(ref(db, `hotels/${key}`));
     }
   };
 
-  // Countdown alla data del viaggio
+  // Calcolo del Countdown alla partenza
   function updateCountdown() {
     const startDate = new Date('2026-12-28T00:00:00');
     const now = new Date();
