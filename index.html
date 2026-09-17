@@ -1068,7 +1068,6 @@
         renderFlights();
         renderItinerary();
         renderHotels();
-        db.ref('hotels').push(nuovoHotel);
     }
 
     // HANDLERS ITINERARIO
@@ -1230,62 +1229,267 @@
     
     // INIZIALIZZAZIONE ALL'AVVIO
     document.addEventListener("DOMContentLoaded", renderAll);
-        // Import the functions you need from the SDKs you need
-src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"
-src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"
 
-// Import the functions you need from the SDKs you need
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBJhOlDx26YmF0dl2u6lypO6eX-nz3NgHo",
-  authDomain: "thailandia-2026-2027.firebaseapp.com",
-  databaseURL: "https://thailandia-2026-2027-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "thailandia-2026-2027",
-  storageBucket: "thailandia-2026-2027.firebasestorage.app",
-  messagingSenderId: "467381336160",
-  appId: "1:467381336160:web:c5626186a47ed6d092eb05",
-  measurementId: "G-TCYREXCHCS"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-// Initialize Firebase
-//const app = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
-
-    // === 1. ASCOLTO TEMPO REALE: HOTEL ===
-db.ref('hotels').on('value', (snapshot) => {
-    const data = snapshot.val();
-    // Aggiorna la variabile globale degli hotel (convertendo l'oggetto in Array)
-    hotels = data ? Object.values(data) : [];
-    
-    renderHotels(); // Ridisegna la scheda degli hotel
-    renderStats();  // Aggiorna i totali del budget nella Dashboard
 });
+<!-- Firebase SDK JS (v10.8.0) -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+  import { 
+    getDatabase, 
+    ref, 
+    set, 
+    push, 
+    onValue, 
+    remove 
+  } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-// === 2. ASCOLTO TEMPO REALE: ITINERARIO ===
-db.ref('itinerary').on('value', (snapshot) => {
-    const data = snapshot.val();
-    itinerary = data ? Object.values(data) : [];
-    
-    renderItinerary(); // Ridisegna la tabella dell'itinerario
-});
+  // Configurazione del tuo progetto Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyBJhOlDx26YmF0dl2u6lypO6eX-nz3NgHo",
+    authDomain: "thailandia-2026-2027.firebaseapp.com",
+    databaseURL: "https://thailandia-2026-2027-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "thailandia-2026-2027",
+    storageBucket: "thailandia-2026-2027.firebasestorage.app",
+    messagingSenderId: "467381336160",
+    appId: "1:467381336160:web:c5626186a47ed6d092eb05",
+    measurementId: "G-TCYREXCHCS"
+  };
 
-// === 3. ASCOLTO TEMPO REALE: VOLI ===
-db.ref('flights').on('value', (snapshot) => {
-    const data = snapshot.val();
-    flights = data ? Object.values(data) : [];
+  // Inizializzazione Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const db = getDatabase(app);
+
+  // Riferimenti ai nodi nel Database Firebase
+  const flightsRef = ref(db, 'flights');
+  const itineraryRef = ref(db, 'itinerary');
+  const hotelsRef = ref(db, 'hotels');
+
+  // Variabili per mantenere i dati locali
+  let flightsData = {};
+  let itineraryData = {};
+  let hotelsData = {};
+
+  // -------------------------------------------------------------
+  // 1. ASCOLTO IN TEMPO REALE DA FIREBASE (READ)
+  // -------------------------------------------------------------
+
+  // Sincronizzazione Voli
+  onValue(flightsRef, (snapshot) => {
+    flightsData = snapshot.val() || {};
+    renderFlights();
+    updateDashboardStats();
+  });
+
+  // Sincronizzazione Itinerario
+  onValue(itineraryRef, (snapshot) => {
+    itineraryData = snapshot.val() || {};
+    renderItinerary();
+  });
+
+  // Sincronizzazione Hotel
+  onValue(hotelsRef, (snapshot) => {
+    hotelsData = snapshot.val() || {};
+    renderHotels();
+    updateDashboardStats();
+  });
+
+  // -------------------------------------------------------------
+  // 2. FUNZIONI DI RENDERING DELLA UI
+  // -------------------------------------------------------------
+
+  // Renderizza la lista dei Voli
+  function renderFlights() {
+    const container = document.getElementById('flightsContainer');
+    if (!container) return;
+
+    const keys = Object.keys(flightsData);
+    if (keys.length === 0) {
+      container.innerHTML = `<p class="text-muted text-center py-3">Nessun volo memorizzato. Clicca su "Nuovo Volo" per aggiungerne uno.</p>`;
+      return;
+    }
+
+    let html = '';
+    keys.forEach(key => {
+      const f = flightsData[key];
+      html += `
+        <div class="flight-card d-flex justify-content-between align-items-center">
+          <div>
+            <div class="flight-route"><i class="fa-solid fa-plane me-2 text-teal"></i>${f.route || 'Tratta non specificata'}</div>
+            <small class="text-muted">
+              ${f.date ? '<i class="fa-regular fa-calendar me-1"></i>' + f.date : ''} 
+              ${f.time ? '| <i class="fa-regular fa-clock me-1"></i>' + f.time : ''} 
+              ${f.company ? '| ' + f.company : ''}
+            </small>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span class="fw-bold text-teal">€ ${f.price || 0}</span>
+            <button class="btn btn-sm btn-outline-danger border-0" onclick="deleteFlight('${key}')" title="Elimina volo">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      `;
+    });
+    container.innerHTML = html;
+  }
+
+  // Renderizza la tabella dell'Itinerario
+  function renderItinerary() {
+    const tbody = document.getElementById('itineraryTableBody');
+    if (!tbody) return;
+
+    const keys = Object.keys(itineraryData);
+    if (keys.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="8" class="text-center text-muted py-4">Nessun giorno inserito nell'itinerario. Clicca su "Aggiungi Giorno".</td></tr>`;
+      return;
+    }
+
+    // Ordina i giorni per numero di giorno
+    const sortedKeys = keys.sort((a, b) => (itineraryData[a].dayNumber || 0) - (itineraryData[b].dayNumber || 0));
+
+    let html = '';
+    sortedKeys.forEach(key => {
+      const item = itineraryData[key];
+      html += `
+        <tr>
+          <td data-label="Giorno"><span class="badge bg-teal">Giorno ${item.dayNumber || '-'}</span></td>
+          <td data-label="Data">${item.date || '-'}</td>
+          <td data-label="Tappa"><strong>${item.location || '-'}</strong></td>
+          <td data-label="Mattina">${item.morning || '-'}</td>
+          <td data-label="Pomeriggio">${item.afternoon || '-'}</td>
+          <td data-label="Sera">${item.evening || '-'}</td>
+          <td data-label="Struttura">${item.hotel || '-'}</td>
+          <td data-label="Azioni" class="text-end">
+            <button class="btn btn-sm btn-outline-danger border-0" onclick="deleteItineraryDay('${key}')" title="Elimina giorno">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      `;
+    });
+    tbody.innerHTML = html;
+  }
+
+  // Renderizza la lista degli Hotel
+  function renderHotels() {
+    const container = document.getElementById('hotelsContainer');
+    if (!container) return;
+
+    const keys = Object.keys(hotelsData);
+    if (keys.length === 0) {
+      container.innerHTML = `<div class="col-12 text-center text-muted py-4">Nessun hotel salvato.</div>`;
+      return;
+    }
+
+    let html = '';
+    keys.forEach(key => {
+      const h = hotelsData[key];
+      html += `
+        <div class="col-md-4">
+          <div class="custom-card">
+            <div class="hotel-card-header">
+              <img src="${h.image || 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80'}" class="hotel-image" alt="${h.name}">
+              <span class="hotel-badge-city">${h.city || 'Thailandia'}</span>
+              <span class="hotel-badge-price">€ ${h.price || 0}</span>
+            </div>
+            <div class="p-3">
+              <h6 class="fw-bold mb-1">${h.name || 'Nome Hotel'}</h6>
+              <p class="small text-muted mb-2">${h.dates || ''}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                ${h.mapsUrl ? `<a href="${h.mapsUrl}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">Mappa</a>` : '<span></span>'}
+                <button class="btn btn-sm btn-outline-danger border-0" onclick="deleteHotel('${key}')"><i class="fa-solid fa-trash"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    container.innerHTML = html;
+  }
+
+  // Calcolo automatico di KPI e Totali Budget
+  function updateDashboardStats() {
+    let totalFlights = 0;
+    Object.values(flightsData).forEach(f => totalFlights += parseFloat(f.price || 0));
+
+    let totalHotels = 0;
+    Object.values(hotelsData).forEach(h => totalHotels += parseFloat(h.price || 0));
+
+    const totalBudget = totalFlights + totalHotels;
+
+    const totalBudgetLabel = document.getElementById('totalBudgetLabel');
+    const flightBudgetLabel = document.getElementById('flightBudgetLabel');
+    const hotelBudgetLabel = document.getElementById('hotelBudgetLabel');
+
+    if (totalBudgetLabel) totalBudgetLabel.innerText = `€ ${totalBudget.toFixed(2)}`;
+    if (flightBudgetLabel) flightBudgetLabel.innerText = `€ ${totalFlights.toFixed(2)}`;
+    if (hotelBudgetLabel) hotelBudgetLabel.innerText = `€ ${totalHotels.toFixed(2)}`;
+  }
+
+  // -------------------------------------------------------------
+  // 3. FUNZIONI DI SCRITTURA ED ELIMINAZIONE SU FIREBASE
+  // -------------------------------------------------------------
+
+  // Salva nuovo Volo
+  window.saveFlight = function(flightObj) {
+    const newFlightRef = push(flightsRef);
+    set(newFlightRef, flightObj)
+      .then(() => console.log("Volo salvato con successo!"))
+      .catch((err) => console.error("Errore salvataggio volo:", err));
+  };
+
+  // Elimina Volo
+  window.deleteFlight = function(key) {
+    if (confirm("Sei sicuro di voler eliminare questo volo?")) {
+      remove(ref(db, `flights/${key}`));
+    }
+  };
+
+  // Salva nuovo Giorno Itinerario
+  window.saveItineraryDay = function(itineraryObj) {
+    const newDayRef = push(itineraryRef);
+    set(newDayRef, itineraryObj)
+      .then(() => console.log("Giorno itinerario salvato con successo!"))
+      .catch((err) => console.error("Errore salvataggio itinerario:", err));
+  };
+
+  // Elimina Giorno Itinerario
+  window.deleteItineraryDay = function(key) {
+    if (confirm("Sei sicuro di voler eliminare questo giorno dall'itinerario?")) {
+      remove(ref(db, `itinerary/${key}`));
+    }
+  };
+
+  // Salva nuovo Hotel
+  window.saveHotel = function(hotelObj) {
+    const newHotelRef = push(hotelsRef);
+    set(newHotelRef, hotelObj)
+      .then(() => console.log("Hotel salvato con successo!"))
+      .catch((err) => console.error("Errore salvataggio hotel:", err));
+  };
+
+  // Elimina Hotel
+  window.deleteHotel = function(key) {
+    if (confirm("Sei sicuro di voler eliminare questo hotel?")) {
+      remove(ref(db, `hotels/${key}`));
+    }
+  };
+
+  // Countdown alla data del viaggio
+  function updateCountdown() {
+    const startDate = new Date('2026-12-28T00:00:00');
+    const now = new Date();
+    const diffTime = startDate - now;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     
-    renderFlights(); // Ridisegna i voli
-    renderStats();   // Aggiorna la Dashboard
-});
+    const daysElem = document.getElementById('days');
+    if (daysElem) {
+      daysElem.innerText = diffDays > 0 ? diffDays : 0;
+    }
+  }
+  updateCountdown();
 </script>
 </body>
 </html>
