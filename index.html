@@ -1064,11 +1064,11 @@
     }
 
     function renderAll() {
-        renderStats();
-        renderFlights();
-        renderItinerary();
-        renderHotels();
-        //db.ref('hotels').push(nuovoHotel);
+        //renderStats();
+        //renderFlights();
+        //renderItinerary();
+        //renderHotels();
+        db.ref('hotels').push(nuovoHotel);
     }
 
     // HANDLERS ITINERARIO
