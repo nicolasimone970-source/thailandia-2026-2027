@@ -223,7 +223,7 @@
         }
         #pills-tabContent { scroll-margin-top: 100px; }
 
-        /* ====== WIDGET METEO PERFETTAMENTO LAYOUT ====== */
+        /* ====== WIDGET METEO PERFETTAMENTE LAYOUT ====== */
         .weather-card-container {
             background: #ffffff;
             border-radius: 24px;
@@ -318,6 +318,8 @@
             position: relative;
             height: 230px;
             overflow: hidden;
+            display: block;
+            cursor: pointer;
         }
         .hotel-image {
             width: 100%;
@@ -676,7 +678,7 @@
                         <ul class="list-unstyled small text-muted mb-0">
                             <li class="mb-2 pb-2 border-bottom border-light"><i class="fa-solid fa-check text-teal me-2"></i><strong>Passaporto:</strong> Validità residua minima di 6 mesi.</li>
                             <li class="mb-2 pb-2 border-bottom border-light"><i class="fa-solid fa-check text-teal me-2"></i><strong>TDAC Digital Pass:</strong> Registrazione online obbligatoria entro 72 ore dall'arrivo (<a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer">tdac.immigration.go.th</a>).</li>
-                            <li class="mb-0"><i class="fa-solid fa-ban text-coral me-2"></i><strong>Vaping Vietato:</strong> Divieto assoluto di sigarettes elettroniche ed IQOS (rischio multe pesanti).</li>
+                            <li class="mb-0"><i class="fa-solid fa-ban text-coral me-2"></i><strong>Vaping Vietato:</strong> Divieto assoluto di sigarette elettroniche ed IQOS (rischio multe pesanti).</li>
                         </ul>
                     </div>
                 </div>
@@ -1457,7 +1459,7 @@
         }).join('');
     }
 
-    // ====== RENDER: HOTEL ======
+    // ====== RENDER: HOTEL (CON FOTO CLICCABILE) ======
     function renderHotels() {
         const container = el('hotelsContainer');
         if (!appData.hotels.length) {
@@ -1466,7 +1468,7 @@
         }
         container.innerHTML = appData.hotels.map((h, i) => {
             const img = safeUrl(h.img) || FALLBACK_HOTEL_IMG;
-            const maps = safeUrl(h.maps);
+            const maps = safeUrl(h.maps) || `https://www.google.com/search?q=${encodeURIComponent(h.nome)}`;
             return `
             <div class="col-md-4">
                 <div class="custom-card h-100 d-flex flex-column">
@@ -1475,12 +1477,12 @@
                         <button type="button" class="btn btn-sm btn-light border text-danger py-1 px-2 rounded-circle shadow-sm" onclick="deleteHotel(${i})" aria-label="Elimina hotel" title="Elimina"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
                     </div>
 
-                    <div class="hotel-card-header">
+                    <a href="${esc(maps)}" target="_blank" rel="noopener noreferrer" class="hotel-card-header" title="Clicca per aprire la pagina Google / Maps dell'hotel">
                         <img src="${esc(img)}" class="hotel-image" alt="${esc(h.nome)}" loading="lazy"
                              onerror="this.onerror=null;this.src='${FALLBACK_HOTEL_IMG}'">
                         <span class="hotel-badge-city">${esc(h.citta)}</span>
                         <span class="hotel-badge-price">${eur(h.quotaSingola)} / p.p.</span>
-                    </div>
+                    </a>
 
                     <div class="p-4 d-flex flex-column flex-grow-1">
                         <h5 class="fw-bold mb-1">${esc(h.nome)}</h5>
