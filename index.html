@@ -428,9 +428,10 @@
         .currency-box {
             background: linear-gradient(135deg, #0f172a, #1e293b);
             color: white;
-            border-radius: 24px;
+            border-radius: 26px;
             padding: 24px;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.15);
+            height: 100%;
         }
 
         /* ====== DESKTOP MEDIA QUERIES ====== */
@@ -563,6 +564,39 @@
         <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
             <!-- KPI -->
             <div class="row g-3 mb-4 reveal-on-scroll" id="statsContainer"></div>
+
+            <!-- CONVERTITORE VALUTA & INFO FLASH IN DASHBOARD -->
+            <div class="row g-4 mb-4 reveal-on-scroll">
+                <div class="col-md-6">
+                    <div class="currency-box">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h5 class="fw-bold mb-0"><i class="fa-solid fa-calculator text-gold me-2"></i>Convertitore Valuta</h5>
+                            <span class="badge bg-warning text-dark fw-bold">EUR ⇄ THB</span>
+                        </div>
+                        <p class="small text-white-50 mb-3">Cambio stimato indicativo (1 EUR ≈ 38.50 THB)</p>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold text-white-50" for="eurInputDash">Euro (€)</label>
+                                <input type="number" id="eurInputDash" class="form-control bg-dark text-white border-secondary" value="100" min="0" oninput="convertCurrency()">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold text-white-50" for="thbOutputDash">Baht (THB)</label>
+                                <input type="text" id="thbOutputDash" class="form-control bg-dark text-warning fw-bold border-secondary" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="custom-card p-4 h-100 border-start border-4 border-coral">
+                        <h5 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-triangle-exclamation text-coral me-2"></i>Avvisi & Info Flash</h5>
+                        <ul class="list-unstyled small text-muted mb-0">
+                            <li class="mb-2.5 pb-2 border-bottom border-light"><i class="fa-solid fa-check text-teal me-2"></i><strong>Passaporto:</strong> Validità residua minima di 6 mesi.</li>
+                            <li class="mb-2.5 pb-2 border-bottom border-light"><i class="fa-solid fa-check text-teal me-2"></i><strong>TDAC Digital Pass:</strong> Registrazione online obbligatoria entro 72 ore dall'arrivo (<a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer">tdac.immigration.go.th</a>).</li>
+                            <li class="mb-0"><i class="fa-solid fa-ban text-coral me-2"></i><strong>Vaping Vietato:</strong> Divieto assoluto di sigarette elettroniche ed IQOS (rischio multe pesanti).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
             <!-- RIPARTIZIONE BUDGET -->
             <div class="custom-card p-4 mb-4 reveal-on-scroll">
@@ -717,7 +751,7 @@
         <div class="tab-pane fade" id="info" role="tabpanel">
             <div class="row g-4 reveal-on-scroll">
                 
-                <!-- Convertitore di Valuta e Utility -->
+                <!-- Convertitore esteso -->
                 <div class="col-12">
                     <div class="currency-box">
                         <div class="row align-items-center g-3">
@@ -755,7 +789,7 @@
                     <div class="custom-card p-4 h-100 border-start border-4 border-cyan">
                         <h5 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-taxi text-cyan me-2"></i>2. Mobilità e App Essenziali</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Ride-Hailing:</strong> Scarica subito le app <strong>Grab</strong> e <strong>Bolt</strong> per spostarti in città a prezzi trasparenti ed evitare contrattazioni con i taxi tradizionali.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Ride-Hailing:</strong> Scarica subito le app <strong>Grab</strong> e <strong>Bolt</strong> per muoverti in città a prezzi trasparenti ed evitare contrattazioni con i taxi tradizionali.</li>
                             <li class="list-group-item bg-transparent px-0 py-2"><strong>Bangkok Transit:</strong> Usa il <em>BTS Skytrain</em> e la <em>MRT (Metropolitana)</em> per evitare il traffico caotico della capitale.</li>
                             <li class="list-group-item bg-transparent px-0 py-2"><strong>Voli Domestici e Treni:</strong> Compagnie low cost come Bangkok Airways e AirAsia collegano rapidamente Bangkok, Chiang Mai e Phuket. Per il nord valuta anche il treno notturno cuccetta.</li>
                         </ul>
@@ -1125,10 +1159,13 @@
 
     // ====== CONVERTITORE VALUTA ======
     function convertCurrency() {
-        const eurVal = parseFloat(el('eurInput').value) || 0;
+        const eurVal = parseFloat(el('eurInputDash').value) || 0;
         const rate = 38.50;
         const thbVal = eurVal * rate;
-        el('thbOutput').value = thbVal.toLocaleString('it-IT', { maximumFractionDigits: 0 }) + ' THB';
+        const formatted = thbVal.toLocaleString('it-IT', { maximumFractionDigits: 0 }) + ' THB';
+        el('thbOutputDash').value = formatted;
+        if (el('eurInput')) el('eurInput').value = eurVal;
+        if (el('thbOutput')) el('thbOutput').value = formatted;
     }
 
     // ====== CHECKLIST PERSISTENTE ======
