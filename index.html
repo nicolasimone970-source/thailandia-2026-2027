@@ -223,7 +223,7 @@
         }
         #pills-tabContent { scroll-margin-top: 100px; }
 
-        /* ====== WIDGET METEO PERFETTAMENTE LAYOUT ====== */
+        /* ====== WIDGET METEO CON MIN / MAX ====== */
         .weather-card-container {
             background: #ffffff;
             border-radius: 24px;
@@ -245,7 +245,7 @@
         .weather-item {
             background: #f8fafc;
             border-radius: 16px;
-            padding: 10px 12px;
+            padding: 12px 10px;
             text-align: center;
             border: 1px solid #f1f5f9;
         }
@@ -560,7 +560,7 @@
 </head>
 <body>
 
-<!-- HERO HEADER RIPULITO & RIDISEGNATO -->
+<!-- HERO HEADER -->
 <header class="hero-banner text-center mb-4">
     <div class="container reveal-on-scroll">
         <div class="hero-route-badge">
@@ -617,7 +617,7 @@
         <!-- 1. DASHBOARD -->
         <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
             
-            <!-- TOP DASHBOARD: WEATHER BENTO CARD PERFETTA E ORDINATA -->
+            <!-- TOP DASHBOARD: WEATHER BENTO CARD -->
             <div class="weather-card-container mb-4 reveal-on-scroll">
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
                     <span class="weather-badge-tag"><i class="fa-solid fa-sun text-warning"></i> Clima Stagionale Ideale (Dic - Gen)</span>
@@ -627,22 +627,25 @@
                     <div class="col-4">
                         <div class="weather-item">
                             <i class="fa-solid fa-city text-teal fs-5 mb-1 d-block"></i>
-                            <span class="d-block small text-muted fw-bold">Bangkok</span>
-                            <strong class="fs-6 text-dark">31°C</strong>
+                            <span class="d-block small text-muted fw-bold mb-1">Bangkok</span>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Min: <strong class="text-dark">23°C</strong></div>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Max: <strong class="text-dark">31°C</strong></div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="weather-item">
                             <i class="fa-solid fa-mountain-sun text-purple fs-5 mb-1 d-block"></i>
-                            <span class="d-block small text-muted fw-bold">Chiang Mai</span>
-                            <strong class="fs-6 text-dark">26°C</strong>
+                            <span class="d-block small text-muted fw-bold mb-1">Chiang Mai</span>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Min: <strong class="text-dark">15°C</strong></div>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Max: <strong class="text-dark">26°C</strong></div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="weather-item">
                             <i class="fa-solid fa-umbrella-beach text-warning fs-5 mb-1 d-block"></i>
-                            <span class="d-block small text-muted fw-bold">Phuket</span>
-                            <strong class="fs-6 text-dark">30°C</strong>
+                            <span class="d-block small text-muted fw-bold mb-1">Phuket</span>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Min: <strong class="text-dark">23°C</strong></div>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Max: <strong class="text-dark">30°C</strong></div>
                         </div>
                     </div>
                 </div>
@@ -651,7 +654,7 @@
             <!-- KPI STATS -->
             <div class="row g-3 mb-4 reveal-on-scroll" id="statsContainer"></div>
 
-            <!-- CONVERTITORE VALUTA & INFO FLASH IN DASHBOARD -->
+            <!-- CONVERTITORE VALUTA BIDIREZIONALE & INFO FLASH -->
             <div class="row g-4 mb-4 reveal-on-scroll">
                 <div class="col-md-6">
                     <div class="currency-box">
@@ -659,15 +662,15 @@
                             <h5 class="fw-bold mb-0"><i class="fa-solid fa-calculator text-gold me-2"></i>Convertitore Valuta</h5>
                             <span class="badge bg-warning text-dark fw-bold">EUR ⇄ THB</span>
                         </div>
-                        <p class="small text-white-50 mb-3">Cambio stimato indicativo (1 EUR ≈ 38.50 THB)</p>
+                        <p class="small text-white-50 mb-3">Cambio indicativo (1 EUR ≈ 38.50 THB). Modifica uno dei due campi:</p>
                         <div class="row g-2">
                             <div class="col-6">
                                 <label class="form-label small fw-bold text-white-50" for="eurInputDash">Euro (€)</label>
-                                <input type="number" id="eurInputDash" class="form-control bg-dark text-white border-secondary" value="100" min="0" oninput="convertCurrency()">
+                                <input type="number" id="eurInputDash" class="form-control bg-dark text-white border-secondary" value="100" min="0" step="any" oninput="convertFromEur('dash')">
                             </div>
                             <div class="col-6">
-                                <label class="form-label small fw-bold text-white-50" for="thbOutputDash">Baht (THB)</label>
-                                <input type="text" id="thbOutputDash" class="form-control bg-dark text-warning fw-bold border-secondary" readonly>
+                                <label class="form-label small fw-bold text-white-50" for="thbInputDash">Baht (THB)</label>
+                                <input type="number" id="thbInputDash" class="form-control bg-dark text-warning fw-bold border-secondary" min="0" step="any" oninput="convertFromThb('dash')">
                             </div>
                         </div>
                     </div>
@@ -889,21 +892,21 @@
         <div class="tab-pane fade" id="info" role="tabpanel">
             <div class="row g-4 reveal-on-scroll">
                 
-                <!-- Convertitore esteso -->
+                <!-- Convertitore esteso bidirezionale -->
                 <div class="col-12">
                     <div class="currency-box">
                         <div class="row align-items-center g-3">
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 <h5 class="fw-bold mb-1"><i class="fa-solid fa-calculator text-gold me-2"></i>Convertitore EUR ⇄ THB</h5>
-                                <p class="small text-white-50 mb-0">Cambio stimato indicativo (1 EUR ≈ 38.50 THB)</p>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="form-label small fw-bold text-white-50" for="eurInput">Importo in Euro (€)</label>
-                                <input type="number" id="eurInput" class="form-control bg-dark text-white border-secondary" value="100" min="0" oninput="convertCurrency()">
+                                <p class="small text-white-50 mb-0">Cambio stimato (1 EUR ≈ 38.50 THB)</p>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label small fw-bold text-white-50" for="thbOutput">Totale in Baht (THB)</label>
-                                <input type="text" id="thbOutput" class="form-control bg-dark text-warning fw-bold border-secondary" readonly>
+                                <label class="form-label small fw-bold text-white-50" for="eurInput">Importo in Euro (€)</label>
+                                <input type="number" id="eurInput" class="form-control bg-dark text-white border-secondary" value="100" min="0" step="any" oninput="convertFromEur('info')">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold text-white-50" for="thbInput">Totale in Baht (THB)</label>
+                                <input type="number" id="thbInput" class="form-control bg-dark text-warning fw-bold border-secondary" min="0" step="any" oninput="convertFromThb('info')">
                             </div>
                         </div>
                     </div>
@@ -1126,6 +1129,7 @@
     const DAY_MS = 86400000;
     const TRIP_START = new Date(2026, 11, 28);
     const TRIP_END = new Date(2027, 0, 8);
+    const EXCHANGE_RATE = 38.50;
 
     // ====== DATI DI BASE ======
     const defaultData = {
@@ -1295,15 +1299,35 @@
         return now.getDate() === Number(m[1]) && (now.getMonth() + 1) === Number(m[2]);
     }
 
-    // ====== CONVERTITORE VALUTA ======
-    function convertCurrency() {
-        const eurVal = parseFloat(el('eurInputDash').value) || 0;
-        const rate = 38.50;
-        const thbVal = eurVal * rate;
-        const formatted = thbVal.toLocaleString('it-IT', { maximumFractionDigits: 0 }) + ' THB';
-        el('thbOutputDash').value = formatted;
-        if (el('eurInput')) el('eurInput').value = eurVal;
-        if (el('thbOutput')) el('thbOutput').value = formatted;
+    // ====== CONVERTITORE VALUTA BIDIREZIONALE ======
+    function convertFromEur(source) {
+        let eurVal = 0;
+        if (source === 'dash') {
+            eurVal = parseFloat(el('eurInputDash').value) || 0;
+        } else {
+            eurVal = parseFloat(el('eurInput').value) || 0;
+        }
+        const thbVal = Math.round(eurVal * EXCHANGE_RATE);
+
+        if (el('eurInputDash')) el('eurInputDash').value = eurVal === 0 && el('eurInputDash').value === '' ? '' : eurVal;
+        if (el('thbInputDash')) el('thbInputDash').value = thbVal === 0 && eurVal === 0 ? '' : thbVal;
+        if (el('eurInput')) el('eurInput').value = eurVal === 0 && el('eurInput').value === '' ? '' : eurVal;
+        if (el('thbInput')) el('thbInput').value = thbVal === 0 && eurVal === 0 ? '' : thbVal;
+    }
+
+    function convertFromThb(source) {
+        let thbVal = 0;
+        if (source === 'dash') {
+            thbVal = parseFloat(el('thbInputDash').value) || 0;
+        } else {
+            thbVal = parseFloat(el('thbInput').value) || 0;
+        }
+        const eurVal = thbVal > 0 ? Number((thbVal / EXCHANGE_RATE).toFixed(2)) : 0;
+
+        if (el('thbInputDash')) el('thbInputDash').value = thbVal === 0 && el('thbInputDash').value === '' ? '' : thbVal;
+        if (el('eurInputDash')) el('eurInputDash').value = eurVal === 0 && thbVal === 0 ? '' : eurVal;
+        if (el('thbInput')) el('thbInput').value = thbVal === 0 && el('thbInput').value === '' ? '' : thbVal;
+        if (el('eurInput')) el('eurInput').value = eurVal === 0 && thbVal === 0 ? '' : eurVal;
     }
 
     // ====== CHECKLIST PERSISTENTE ======
@@ -1459,7 +1483,7 @@
         }).join('');
     }
 
-    // ====== RENDER: HOTEL (CON FOTO CLICCABILE) ======
+    // ====== RENDER: HOTEL ======
     function renderHotels() {
         const container = el('hotelsContainer');
         if (!appData.hotels.length) {
@@ -1676,7 +1700,7 @@
         renderAll();
         initTabs();
         updateCountdown();
-        convertCurrency();
+        convertFromEur('dash');
         loadChecklist();
         initScrollObserver();
         setInterval(updateCountdown, 60 * 60 * 1000);
