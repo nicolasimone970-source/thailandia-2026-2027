@@ -223,7 +223,7 @@
             border: none;
             color: white;
             border-radius: 26px;
-            padding: 26px;
+            padding: 24px;
             position: relative;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(13, 148, 136, 0.25);
@@ -236,7 +236,7 @@
             position: absolute;
             right: 18px;
             bottom: 12px;
-            font-size: 4.5rem;
+            font-size: 4.2rem;
             opacity: 0.18;
             transition: transform 0.3s ease;
         }
@@ -434,6 +434,18 @@
             height: 100%;
         }
 
+        /* BENTO WEATHER PILL */
+        .weather-pill {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--card-shadow);
+        }
+
         /* ====== DESKTOP MEDIA QUERIES ====== */
         @media (min-width: 768px) {
             .nav-pills-grid {
@@ -553,7 +565,7 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link" data-bs-toggle="pill" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="false">
                 <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-                <span>Guida & Info</span>
+                <span>Guida Info</span>
             </button>
         </li>
     </ul>
@@ -562,7 +574,25 @@
 
         <!-- 1. DASHBOARD -->
         <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
-            <!-- KPI -->
+            
+            <!-- TOP DASHBOARD: WEATHER BENTO BAR -->
+            <div class="row g-3 mb-4 reveal-on-scroll">
+                <div class="col-12">
+                    <div class="weather-pill">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-teal-gradient px-3 py-2 rounded-pill fw-bold"><i class="fa-solid fa-cloud-sun me-1"></i>Clima Ideale (Dic-Gen)</span>
+                            <span class="small text-muted d-none d-md-inline">Stagione fresca e asciutta in tutto il Paese</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-4 text-dark small fw-bold">
+                            <span><i class="fa-solid fa-city text-teal me-1"></i> BKK: <strong>31°C</strong></span>
+                            <span><i class="fa-solid fa-mountain-sun text-purple me-1"></i> CNX: <strong>26°C</strong></span>
+                            <span><i class="fa-solid fa-umbrella-beach text-gold me-1"></i> HKT: <strong>30°C</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KPI STATS -->
             <div class="row g-3 mb-4 reveal-on-scroll" id="statsContainer"></div>
 
             <!-- CONVERTITORE VALUTA & INFO FLASH IN DASHBOARD -->
@@ -590,8 +620,8 @@
                     <div class="custom-card p-4 h-100 border-start border-4 border-coral">
                         <h5 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-triangle-exclamation text-coral me-2"></i>Avvisi & Info Flash</h5>
                         <ul class="list-unstyled small text-muted mb-0">
-                            <li class="mb-2.5 pb-2 border-bottom border-light"><i class="fa-solid fa-check text-teal me-2"></i><strong>Passaporto:</strong> Validità residua minima di 6 mesi.</li>
-                            <li class="mb-2.5 pb-2 border-bottom border-light"><i class="fa-solid fa-check text-teal me-2"></i><strong>TDAC Digital Pass:</strong> Registrazione online obbligatoria entro 72 ore dall'arrivo (<a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer">tdac.immigration.go.th</a>).</li>
+                            <li class="mb-2 pb-2 border-bottom border-light"><i class="fa-solid fa-check text-teal me-2"></i><strong>Passaporto:</strong> Validità residua minima di 6 mesi.</li>
+                            <li class="mb-2 pb-2 border-bottom border-light"><i class="fa-solid fa-check text-teal me-2"></i><strong>TDAC Digital Pass:</strong> Registrazione online obbligatoria entro 72 ore dall'arrivo (<a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer">tdac.immigration.go.th</a>).</li>
                             <li class="mb-0"><i class="fa-solid fa-ban text-coral me-2"></i><strong>Vaping Vietato:</strong> Divieto assoluto di sigarette elettroniche ed IQOS (rischio multe pesanti).</li>
                         </ul>
                     </div>
@@ -689,9 +719,10 @@
             <div class="row g-4 mb-4 reveal-on-scroll" id="hotelsContainer"></div>
         </div>
 
-        <!-- 4. CAPODANNO & TOUR -->
+        <!-- 4. CAPODANNO & TOUR ARRICCHITI -->
         <div class="tab-pane fade" id="esperienze" role="tabpanel">
             <div class="row g-4 reveal-on-scroll">
+                <!-- Tour 1: Capodanno Bangkok -->
                 <div class="col-md-6">
                     <div class="custom-card h-100">
                         <div style="height: 205px; overflow: hidden; position: relative;">
@@ -719,6 +750,7 @@
                     </div>
                 </div>
 
+                <!-- Tour 2: Chiang Rai -->
                 <div class="col-md-6">
                     <div class="custom-card h-100">
                         <div style="height: 205px; overflow: hidden; position: relative;">
@@ -740,6 +772,60 @@
                             <div class="border-start border-3 border-dark ps-3">
                                 <h6 class="fw-bold mb-1">Casa Nera (Baan Dam Museum)</h6>
                                 <p class="small text-muted mb-0">Galleria d'arte eclettica in legno scuro.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 3: Phi Phi Islands & Maya Bay -->
+                <div class="col-md-6">
+                    <div class="custom-card h-100">
+                        <div style="height: 205px; overflow: hidden; position: relative;">
+                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Isole Phi Phi e Maya Bay" loading="lazy">
+                            <span class="badge bg-gold-gradient text-dark position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold shadow">05 Gennaio ⛵</span>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-3"><i class="fa-solid fa-ship text-warning me-2"></i>Speedboat Tour Isole Phi Phi</h5>
+                            <p class="small text-muted mb-3">Partenza mattutina da Phuket in motoscafo veloce con snorkeling incluso.</p>
+
+                            <div class="border-start border-3 border-warning ps-3 mb-3">
+                                <h6 class="fw-bold mb-1">Maya Bay</h6>
+                                <p class="small text-muted mb-0">La celebre baia protetta resa famosa dal film The Beach.</p>
+                            </div>
+                            <div class="border-start border-3 border-success ps-3 mb-3">
+                                <h6 class="fw-bold mb-1">Pileh Lagoon</h6>
+                                <p class="small text-muted mb-0">Piscina naturale di acqua smeralda circondata da falesie carsiche.</p>
+                            </div>
+                            <div class="border-start border-3 border-info ps-3">
+                                <h6 class="fw-bold mb-1">Monkey Beach & Khai Island</h6>
+                                <p class="small text-muted mb-0">Soste per snorkeling tra banchi di pesci tropicali.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tour 4: Santuario Elefanti / Doi Suthep -->
+                <div class="col-md-6">
+                    <div class="custom-card h-100">
+                        <div style="height: 205px; overflow: hidden; position: relative;">
+                            <img src="https://images.unsplash.com/photo-1564760055775-d63b19a5a2cf?auto=format&fit=crop&w=800&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Santuario etico elefanti Chiang Mai" loading="lazy">
+                            <span class="badge bg-purple-gradient position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold shadow">02 Gennaio 🐘</span>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-3"><i class="fa-solid fa-tree text-purple me-2"></i>Doi Suthep & Santuario Elefanti</h5>
+                            <p class="small text-muted mb-3">Esperienze naturalistiche e culturali imperdibili a Chiang Mai.</p>
+
+                            <div class="border-start border-3 border-purple ps-3 mb-3">
+                                <h6 class="fw-bold mb-1">Tempio Doi Suthep (Wat Phra That)</h6>
+                                <p class="small text-muted mb-0">Sacro tempio sulla montagna con vista spettacolare sulla città.</p>
+                            </div>
+                            <div class="border-start border-3 border-teal ps-3 mb-3">
+                                <h6 class="fw-bold mb-1">Santuario Etico degli Elefanti</h6>
+                                <p class="small text-muted mb-0">Mezza giornata per osservare e nutrire gli elefanti nel loro habitat protetto.</p>
+                            </div>
+                            <div class="border-start border-3 border-danger ps-3">
+                                <h6 class="fw-bold mb-1">Night Bazaar di Chiang Mai</h6>
+                                <p class="small text-muted mb-0">Shopping serale tra artigianato locale e street food tipico.</p>
                             </div>
                         </div>
                     </div>
