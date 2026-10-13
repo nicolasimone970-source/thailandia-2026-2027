@@ -39,22 +39,6 @@
             --card-shadow-hover: 0 22px 50px -10px rgba(13, 148, 136, 0.22);
         }
 
-        /* ====== SCROLLBAR PERSONALIZZATA FLUIDA ====== */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-teal);
-        }
-
         html {
             scroll-behavior: smooth;
         }
@@ -67,11 +51,11 @@
             padding-bottom: env(safe-area-inset-bottom, 30px);
         }
 
-        /* ====== ANIMAZIONI DI SCORRIMENTO FLUIDE ====== */
+        /* ====== ANIMAZIONI DI SCORRIMENTO ====== */
         .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(24px);
+            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
             will-change: opacity, transform;
         }
         .reveal-on-scroll.is-visible {
@@ -222,7 +206,6 @@
             background: linear-gradient(135deg, var(--accent-teal), var(--accent-cyan));
             color: white;
             box-shadow: 0 8px 22px rgba(13, 148, 136, 0.4);
-            transform: scale(1.02);
         }
         .nav-pills-grid .nav-link:hover:not(.active) {
             color: var(--accent-teal);
@@ -238,6 +221,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        #pills-tabContent { scroll-margin-top: 100px; }
 
         /* ====== WIDGET METEO IN TEMPO REALE ====== */
         .weather-card-container {
@@ -265,11 +249,6 @@
             text-align: center;
             border: 1px solid #f1f5f9;
             height: 100%;
-            transition: transform 0.3s ease;
-        }
-        .weather-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
         }
 
         /* ====== CARD STRUTTURALI ====== */
@@ -300,7 +279,7 @@
             box-shadow: 0 15px 35px rgba(13, 148, 136, 0.25);
             background: linear-gradient(135deg, #0d9488, #06b6d4);
             height: 100%;
-            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: transform 0.3s ease;
         }
         .kpi-card:hover { transform: translateY(-3px); }
         .kpi-icon {
@@ -322,7 +301,7 @@
             padding: 22px 26px;
             margin-bottom: 16px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.3s ease;
         }
         .flight-card:hover {
             border-left-color: var(--accent-coral);
@@ -386,7 +365,7 @@
             background-size: cover;
             background-position: center;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: transform 0.35s ease;
         }
         .destination-card:hover { transform: scale(1.03); }
         .destination-overlay {
