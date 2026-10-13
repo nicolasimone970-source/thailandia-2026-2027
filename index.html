@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Thailandia Road Trip 2026-2027 | Premium Travel Hub</title>
+    <title>Thailandia Road Trip 2026-2027 | Elite Travel Hub</title>
 
     <!-- Impostazioni Mobile PWA App -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -31,11 +31,12 @@
             --accent-teal-dark: #0b7f75;
             --accent-cyan: #06b6d4;
             --accent-gold: #f59e0b;
+            --accent-coral: #f43f5e;
             --accent-purple: #8b5cf6;
             --gold-light: #fde047;
             --bg-light: #f8fafc;
-            --card-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
-            --card-shadow-hover: 0 20px 40px -10px rgba(13, 148, 136, 0.15);
+            --card-shadow: 0 12px 35px -5px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
+            --card-shadow-hover: 0 22px 50px -10px rgba(13, 148, 136, 0.22);
         }
 
         html {
@@ -47,13 +48,13 @@
             background-color: var(--bg-light);
             color: #1e293b;
             -webkit-font-smoothing: antialiased;
-            padding-bottom: env(safe-area-inset-bottom, 20px);
+            padding-bottom: env(safe-area-inset-bottom, 30px);
         }
 
         /* ====== ANIMAZIONI DI SCORRIMENTO ====== */
         .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(24px);
             transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
             will-change: opacity, transform;
         }
@@ -62,13 +63,17 @@
             transform: translateY(0);
         }
 
-        /* ====== UTILITY COLORI ====== */
+        /* ====== UTILITY COLORI VIVACI ====== */
         .text-teal { color: var(--accent-teal) !important; }
-        .bg-teal { background-color: var(--accent-teal) !important; color: #fff; }
-        .bg-purple { background-color: var(--accent-purple) !important; color: #fff; }
-        .section-label { letter-spacing: 1px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
+        .text-coral { color: var(--accent-coral) !important; }
+        .text-gold { color: var(--accent-gold) !important; }
+        .bg-teal-gradient { background: linear-gradient(135deg, #0d9488, #06b6d4) !important; color: #fff; }
+        .bg-coral-gradient { background: linear-gradient(135deg, #f43f5e, #fb7185) !important; color: #fff; }
+        .bg-purple-gradient { background: linear-gradient(135deg, #8b5cf6, #a78bfa) !important; color: #fff; }
+        .bg-gold-gradient { background: linear-gradient(135deg, #f59e0b, #fbbf24) !important; color: #fff; }
+        .section-label { letter-spacing: 1.5px; font-size: 0.78rem; text-transform: uppercase; font-weight: 800; }
 
-        /* Bottoni primari personalizzati */
+        /* Bottoni primari professionali */
         .btn-primary {
             --bs-btn-bg: var(--accent-teal);
             --bs-btn-border-color: var(--accent-teal);
@@ -76,117 +81,117 @@
             --bs-btn-hover-border-color: var(--accent-teal-dark);
             --bs-btn-active-bg: #0a6f66;
             --bs-btn-active-border-color: #0a6f66;
-            --bs-btn-focus-shadow-rgb: 13, 148, 136;
-            border-radius: 12px;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
+            border-radius: 14px;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.3);
             transition: all 0.25s ease;
         }
         .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(13, 148, 136, 0.4);
         }
 
-        /* ====== HERO BANNER ====== */
+        /* ====== HERO BANNER PROFESSIONALE ====== */
         .hero-banner {
             background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(13, 148, 136, 0.85) 100%),
                         url('https://images.unsplash.com/photo-1506665531195-3566af294710?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: white;
-            padding: calc(75px + env(safe-area-inset-top, 0px)) 20px 65px 20px;
-            border-radius: 0 0 44px 44px;
-            box-shadow: 0 25px 50px rgba(15, 23, 42, 0.25);
+            padding: calc(85px + env(safe-area-inset-top, 0px)) 20px 75px 20px;
+            border-radius: 0 0 50px 50px;
+            box-shadow: 0 35px 70px rgba(15, 23, 42, 0.35);
             position: relative;
             overflow: hidden;
         }
         .hero-route {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--gold-light);
-            font-weight: 700;
-            letter-spacing: 1.5px;
+            font-weight: 800;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         .hero-title {
             font-weight: 800;
-            letter-spacing: -1px;
-            font-size: 2.8rem;
-            line-height: 1.1;
-            margin-bottom: 8px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: -1.5px;
+            font-size: 3.2rem;
+            line-height: 1.05;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
         }
         .hero-dates {
-            font-size: 1.05rem;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.92);
             margin-bottom: 0;
-            font-weight: 500;
+            font-weight: 600;
         }
         .hero-countdown {
-            margin-top: 24px;
+            margin-top: 30px;
             display: inline-flex;
             align-items: baseline;
-            gap: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 12px 26px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            gap: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 14px 28px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
         }
         .countdown-number {
-            font-size: 2.3rem;
+            font-size: 2.5rem;
             font-weight: 800;
             color: var(--gold-light);
             line-height: 1;
         }
         .countdown-label {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
         }
 
-        /* ====== NAVIGAZIONE A TABS ====== */
+        /* ====== NAVIGAZIONE A TABS STYLISH ====== */
         .nav-pills-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 6px;
-            padding: 6px;
+            gap: 8px;
+            padding: 8px;
             background-color: #ffffff;
-            border-radius: 20px;
+            border-radius: 24px;
             border: 1px solid #e2e8f0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
             position: sticky;
-            top: calc(env(safe-area-inset-top, 0px) + 12px);
+            top: calc(env(safe-area-inset-top, 0px) + 14px);
             z-index: 1020;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
         .nav-pills-grid .nav-item { min-width: 0; }
         .nav-pills-grid .nav-link {
             width: 100%;
-            padding: 10px 4px;
+            padding: 12px 6px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            border-radius: 14px;
-            font-weight: 600;
+            gap: 5px;
+            border-radius: 16px;
+            font-weight: 700;
             color: #64748b;
-            transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         .nav-pills-grid .nav-link.active {
-            background-color: var(--accent-teal);
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-cyan));
             color: white;
-            box-shadow: 0 6px 18px rgba(13, 148, 136, 0.35);
+            box-shadow: 0 8px 22px rgba(13, 148, 136, 0.4);
         }
         .nav-pills-grid .nav-link:hover:not(.active) {
             color: var(--accent-teal);
-            background-color: rgba(13, 148, 136, 0.06);
+            background-color: rgba(13, 148, 136, 0.08);
         }
-        .nav-pills-grid .nav-link i { font-size: 1.1rem; }
+        .nav-pills-grid .nav-link i { font-size: 1.2rem; }
         .nav-pills-grid .nav-link span {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             line-height: 1.1;
             display: block;
             width: 100%;
@@ -194,67 +199,67 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        #pills-tabContent { scroll-margin-top: 90px; }
+        #pills-tabContent { scroll-margin-top: 100px; }
 
-        /* ====== CARD ====== */
+        /* ====== CARD STRUTTURALI ====== */
         .custom-card {
             background: #ffffff;
-            border-radius: 26px;
+            border-radius: 28px;
             border: 1px solid #e2e8f0;
             box-shadow: var(--card-shadow);
-            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
             overflow: hidden;
             position: relative;
         }
         @media (hover: hover) {
             .custom-card:hover {
-                transform: translateY(-4px);
+                transform: translateY(-5px);
                 box-shadow: var(--card-shadow-hover);
             }
         }
 
-        /* KPI CARDS */
+        /* KPI CARDS VIVACI */
         .kpi-card {
             border: none;
             color: white;
-            border-radius: 24px;
-            padding: 24px;
+            border-radius: 26px;
+            padding: 26px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 12px 30px rgba(13, 148, 136, 0.2);
+            box-shadow: 0 15px 35px rgba(13, 148, 136, 0.25);
             background: linear-gradient(135deg, #0d9488, #06b6d4);
             height: 100%;
-        }
-        .kpi-icon {
-            position: absolute;
-            right: 15px;
-            bottom: 10px;
-            font-size: 4rem;
-            opacity: 0.15;
             transition: transform 0.3s ease;
         }
-        .kpi-card:hover .kpi-icon {
-            transform: scale(1.1);
+        .kpi-card:hover { transform: translateY(-3px); }
+        .kpi-icon {
+            position: absolute;
+            right: 18px;
+            bottom: 12px;
+            font-size: 4.5rem;
+            opacity: 0.18;
+            transition: transform 0.3s ease;
         }
+        .kpi-card:hover .kpi-icon { transform: scale(1.12); }
 
         /* SCHEDE VOLI */
         .flight-card {
             background: #ffffff;
-            border-radius: 20px;
+            border-radius: 22px;
             border: 1px solid #e2e8f0;
-            border-left: 6px solid var(--accent-teal);
-            padding: 20px 24px;
-            margin-bottom: 14px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-            transition: all 0.25s ease;
+            border-left: 8px solid var(--accent-teal);
+            padding: 22px 26px;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
         }
         .flight-card:hover {
-            border-left-color: var(--accent-cyan);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-            transform: translateX(2px);
+            border-left-color: var(--accent-coral);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transform: translateX(3px);
         }
         .flight-route {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: #0f172a;
         }
@@ -262,7 +267,7 @@
         /* HOTEL CARDS */
         .hotel-card-header {
             position: relative;
-            height: 220px;
+            height: 230px;
             overflow: hidden;
         }
         .hotel-image {
@@ -271,51 +276,51 @@
             object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        .custom-card:hover .hotel-image { transform: scale(1.06); }
+        .custom-card:hover .hotel-image { transform: scale(1.07); }
         .hotel-badge-city {
             position: absolute;
-            top: 14px;
-            left: 14px;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            top: 16px;
+            left: 16px;
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: white;
             font-weight: 700;
-            padding: 6px 14px;
+            padding: 7px 16px;
             border-radius: 30px;
-            font-size: 0.78rem;
-            letter-spacing: 0.4px;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
         }
         .hotel-badge-price {
             position: absolute;
-            bottom: 14px;
-            right: 14px;
+            bottom: 16px;
+            right: 16px;
             background: var(--accent-teal);
             color: white;
             font-weight: 800;
-            padding: 6px 16px;
+            padding: 7px 18px;
             border-radius: 30px;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            font-size: 0.95rem;
+            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.35);
         }
 
         /* DESTINAZIONI */
         .destination-card {
-            height: 180px;
-            border-radius: 22px;
+            height: 190px;
+            border-radius: 24px;
             overflow: hidden;
             position: relative;
             background-size: cover;
             background-position: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.35s ease;
         }
-        .destination-card:hover { transform: scale(1.02); }
+        .destination-card:hover { transform: scale(1.03); }
         .destination-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(0deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.15) 100%);
-            padding: 20px;
+            background: linear-gradient(0deg, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.15) 100%);
+            padding: 22px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -328,70 +333,104 @@
             background-color: #f8fafc;
             color: #64748b;
             font-weight: 800;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.9px;
             border-bottom: 2px solid #e2e8f0;
-            padding: 16px;
+            padding: 18px;
         }
         .table-custom td {
-            padding: 16px;
+            padding: 18px;
             vertical-align: middle;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
             border-bottom: 1px solid #f1f5f9;
         }
-        .table-custom tr.is-today { background-color: rgba(13, 148, 136, 0.06); }
+        .table-custom tr.is-today { background-color: rgba(13, 148, 136, 0.08); }
 
         /* BOTTONI MAPS & AZIONI FLUTTUANTI */
         .card-actions-floating {
             position: absolute;
-            top: 14px;
-            right: 14px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 14px;
-            padding: 4px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 5px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
             z-index: 10;
         }
         .btn-maps {
             background: linear-gradient(135deg, #4285F4, #1a73e8);
             color: white;
             font-weight: 700;
-            border-radius: 12px;
-            padding: 9px 16px;
-            font-size: 0.85rem;
+            border-radius: 14px;
+            padding: 10px 18px;
+            font-size: 0.88rem;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             border: none;
-            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.25);
+            box-shadow: 0 6px 16px rgba(66, 133, 244, 0.3);
             transition: all 0.25s ease;
         }
         .btn-maps:hover {
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(66, 133, 244, 0.4);
+            box-shadow: 0 8px 20px rgba(66, 133, 244, 0.45);
         }
 
         .empty-state {
             text-align: center;
             color: #64748b;
-            font-size: 0.9rem;
-            padding: 32px 16px;
+            font-size: 0.95rem;
+            padding: 40px 20px;
         }
 
         /* INPUTS E FORM MODALI */
         .form-control, .form-select {
-            border-radius: 12px;
-            padding: 11px 16px;
+            border-radius: 14px;
+            padding: 12px 18px;
             border-color: #cbd5e1;
+            font-weight: 500;
         }
         .form-control:focus, .form-select:focus {
             border-color: var(--accent-teal);
-            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15);
+            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.18);
+        }
+
+        /* CHECKLIST STYLING */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: #f8fafc;
+            border-radius: 14px;
+            margin-bottom: 8px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+        .checklist-item:hover { background: #f1f5f9; }
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent-teal);
+            cursor: pointer;
+        }
+        .checklist-item.completed span {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+
+        /* WIDGET CONVERTITORE VALUTA */
+        .currency-box {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
         }
 
         /* ====== DESKTOP MEDIA QUERIES ====== */
@@ -400,35 +439,35 @@
                 display: flex;
                 width: fit-content;
                 margin-inline: auto;
-                gap: 8px;
-                padding: 8px 16px;
+                gap: 10px;
+                padding: 10px 20px;
             }
             .nav-pills-grid .nav-item { width: auto; }
             .nav-pills-grid .nav-link {
                 width: auto;
                 flex-direction: row;
-                padding: 10px 22px;
-                gap: 8px;
+                padding: 12px 26px;
+                gap: 10px;
             }
-            .nav-pills-grid .nav-link span { font-size: 0.875rem; width: auto; }
+            .nav-pills-grid .nav-link span { font-size: 0.9rem; width: auto; }
             .itinerary-scroll { overflow-x: auto; }
         }
 
         /* ====== MOBILE CARD VIEW PER TABELLA ITINERARIO ====== */
         @media (max-width: 767.98px) {
-            .hero-title { font-size: 2.2rem; }
+            .hero-title { font-size: 2.3rem; }
             .table-mobile-cards thead { display: none; }
             .table-mobile-cards, .table-mobile-cards tbody, .table-mobile-cards tr, .table-mobile-cards td {
                 display: block;
                 width: 100%;
             }
             .table-mobile-cards tr {
-                margin-bottom: 1rem;
+                margin-bottom: 1.2rem;
                 background: #ffffff;
                 border: 1px solid #e2e8f0;
-                border-radius: 20px;
-                padding: 14px 18px;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+                border-radius: 22px;
+                padding: 16px 20px;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
             }
             .table-mobile-cards tr.is-today { border-color: var(--accent-teal); border-width: 2px; }
             .table-mobile-cards td {
@@ -436,9 +475,9 @@
                 justify-content: space-between;
                 align-items: center;
                 text-align: right;
-                padding: 10px 0;
+                padding: 11px 0;
                 border-bottom: 1px dashed #f1f5f9;
-                font-size: 0.88rem;
+                font-size: 0.9rem;
             }
             .table-mobile-cards td:last-child { border-bottom: none; }
             .table-mobile-cards td::before {
@@ -446,8 +485,8 @@
                 font-weight: 800;
                 color: #64748b;
                 text-transform: uppercase;
-                font-size: 0.7rem;
-                letter-spacing: 0.5px;
+                font-size: 0.72rem;
+                letter-spacing: 0.6px;
                 text-align: left;
                 padding-right: 12px;
             }
@@ -513,7 +552,7 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link" data-bs-toggle="pill" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="false">
                 <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-                <span>Info</span>
+                <span>Guida & Info</span>
             </button>
         </li>
     </ul>
@@ -544,7 +583,7 @@
                 <div class="col-md-4">
                     <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80');">
                         <div class="destination-overlay">
-                            <span class="badge bg-teal w-auto mb-1 align-self-start fw-bold">Tappa 1 • 3 Notti</span>
+                            <span class="badge bg-teal-gradient w-auto mb-1 align-self-start fw-bold shadow-sm">Tappa 1 • 3 Notti</span>
                             <h5 class="fw-bold mb-0">Bangkok</h5>
                             <small class="opacity-75">Capodanno & Templi Reali</small>
                         </div>
@@ -553,7 +592,7 @@
                 <div class="col-md-4">
                     <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80');">
                         <div class="destination-overlay">
-                            <span class="badge bg-purple w-auto mb-1 align-self-start fw-bold">Tappa 2 • 3 Notti</span>
+                            <span class="badge bg-purple-gradient w-auto mb-1 align-self-start fw-bold shadow-sm">Tappa 2 • 3 Notti</span>
                             <h5 class="fw-bold mb-0">Chiang Mai</h5>
                             <small class="opacity-75">Natura, Templi & Chiang Rai</small>
                         </div>
@@ -562,7 +601,7 @@
                 <div class="col-md-4">
                     <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80');">
                         <div class="destination-overlay">
-                            <span class="badge bg-warning text-dark w-auto mb-1 align-self-start fw-bold">Tappa 3 • 4 Notti</span>
+                            <span class="badge bg-gold-gradient w-auto mb-1 align-self-start fw-bold shadow-sm text-dark">Tappa 3 • 4 Notti</span>
                             <h5 class="fw-bold mb-0">Phuket</h5>
                             <small class="opacity-75">Mare, Phi Phi Islands & Relax</small>
                         </div>
@@ -621,12 +660,12 @@
             <div class="row g-4 reveal-on-scroll">
                 <div class="col-md-6">
                     <div class="custom-card h-100">
-                        <div style="height: 195px; overflow: hidden; position: relative;">
+                        <div style="height: 205px; overflow: hidden; position: relative;">
                             <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Capodanno su un rooftop di Bangkok" loading="lazy">
-                            <span class="badge bg-dark position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold shadow">31 Dicembre 🎆</span>
+                            <span class="badge bg-coral-gradient position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold shadow">31 Dicembre 🎆</span>
                         </div>
                         <div class="p-4">
-                            <h5 class="fw-bold mb-3"><i class="fa-solid fa-champagne-glasses text-teal me-2"></i>Rooftop bar per Capodanno</h5>
+                            <h5 class="fw-bold mb-3"><i class="fa-solid fa-champagne-glasses text-coral me-2"></i>Rooftop bar per Capodanno</h5>
                             <div class="mb-3 p-3 bg-light rounded-4 border border-1 border-light">
                                 <h6 class="fw-bold mb-1">1. Tichuca Rooftop Bar</h6>
                                 <p class="small text-muted mb-2">Sukhumvit • Iconico albero LED illuminato 360°</p>
@@ -648,9 +687,9 @@
 
                 <div class="col-md-6">
                     <div class="custom-card h-100">
-                        <div style="height: 195px; overflow: hidden; position: relative;">
+                        <div style="height: 205px; overflow: hidden; position: relative;">
                             <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=800&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Wat Rong Khun, il Tempio Bianco di Chiang Rai" loading="lazy">
-                            <span class="badge bg-teal position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold shadow">03 Gennaio 🛕</span>
+                            <span class="badge bg-teal-gradient position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold shadow">03 Gennaio 🛕</span>
                         </div>
                         <div class="p-4">
                             <h5 class="fw-bold mb-3"><i class="fa-solid fa-gopuram text-teal me-2"></i>Tour Chiang Rai da Chiang Mai</h5>
@@ -674,76 +713,124 @@
             </div>
         </div>
 
-        <!-- 5. INFO UTILI & MANUALE DI VIAGGIO PROFESSIONALE -->
+        <!-- 5. GUIDA & INFO UTILI SULLA THAILANDIA -->
         <div class="tab-pane fade" id="info" role="tabpanel">
             <div class="row g-4 reveal-on-scroll">
+                
+                <!-- Convertitore di Valuta e Utility -->
+                <div class="col-12">
+                    <div class="currency-box">
+                        <div class="row align-items-center g-3">
+                            <div class="col-md-5">
+                                <h5 class="fw-bold mb-1"><i class="fa-solid fa-calculator text-gold me-2"></i>Convertitore EUR ⇄ THB</h5>
+                                <p class="small text-white-50 mb-0">Cambio stimato indicativo (1 EUR ≈ 38.50 THB)</p>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label small fw-bold text-white-50" for="eurInput">Importo in Euro (€)</label>
+                                <input type="number" id="eurInput" class="form-control bg-dark text-white border-secondary" value="100" min="0" oninput="convertCurrency()">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold text-white-50" for="thbOutput">Totale in Baht (THB)</label>
+                                <input type="text" id="thbOutput" class="form-control bg-dark text-warning fw-bold border-secondary" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 1. Ingresso e Burocrazia -->
                 <div class="col-md-6">
-                    <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-passport text-teal me-2"></i>Documenti e Ingresso Ufficiale</h5>
+                    <div class="custom-card p-4 h-100 border-start border-4 border-teal">
+                        <h5 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-passport text-teal me-2"></i>1. Documenti, Visto e TDAC</h5>
                         <ul class="list-group list-group-flush small">
                             <li class="list-group-item bg-transparent px-0 py-2"><strong>Passaporto:</strong> Validità residua di almeno 6 mesi dalla data di arrivo e almeno 2 pagine libere.</li>
                             <li class="list-group-item bg-transparent px-0 py-2"><strong>TDAC Digital Pass:</strong> Obbligatorio completare la registrazione online su <a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer"><code>tdac.immigration.go.th</code></a> entro 72 ore prima dell'arrivo.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Franchigia Fondi:</strong> Le autorità doganali possono richiedere prova di fondi sufficienti (circa 10.000 THB a persona o 20.000 THB a nucleo familiare).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Visto Turistico:</strong> Per i cittadini italiani non è richiesto visto per soggiorni turistici inferiori a 60 giorni.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Dogana e Vaping:</strong> Severissimo divieto assoluto di importazione e utilizzo di sigarette elettroniche (vaping), IQOS e liquidi (rischio di multe salatissime o fermo di polizia).</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- 2. Mobilità e Trasporti -->
                 <div class="col-md-6">
-                    <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-taxi text-teal me-2"></i>Mobilità e App Essenziali</h5>
+                    <div class="custom-card p-4 h-100 border-start border-4 border-cyan">
+                        <h5 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-taxi text-cyan me-2"></i>2. Mobilità e App Essenziali</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Ride-Hailing:</strong> Scarica subito le app <strong>Grab</strong> e <strong>Bolt</strong> per muoverti in città a prezzi trasparenti ed evitare contrattazioni con i taxi.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Bangkok Transit:</strong> Usa il <em>BTS Skytrain</em> e la <em>MRT (Metro)</em> per saltare il traffico caotico della capitale.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Traghetti e Isole:</strong> Prenota i trasferimenti in motoscafo o traghetto (es. verso le Phi Phi Islands) tramite compagnie certificate o direttamente dai resort.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Ride-Hailing:</strong> Scarica subito le app <strong>Grab</strong> e <strong>Bolt</strong> per spostarti in città a prezzi trasparenti ed evitare contrattazioni con i taxi tradizionali.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Bangkok Transit:</strong> Usa il <em>BTS Skytrain</em> e la <em>MRT (Metropolitana)</em> per evitare il traffico caotico della capitale.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Voli Domestici e Treni:</strong> Compagnie low cost come Bangkok Airways e AirAsia collegano rapidamente Bangkok, Chiang Mai e Phuket. Per il nord valuta anche il treno notturno cuccetta.</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- 3. Sicurezza e Numeri Utili -->
                 <div class="col-md-6">
-                    <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-shield-halved text-teal me-2"></i>Sicurezza e Numeri di Emergenza</h5>
+                    <div class="custom-card p-4 h-100 border-start border-4 border-purple">
+                        <h5 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-shield-halved text-purple me-2"></i>3. Sicurezza e Numeri di Emergenza</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Polizia Turistica (Tourist Police):</strong> Composizione rapida <strong>1155</strong> (operatori con supporto in lingua inglese dedicati ai turisti).</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Emergenze Mediche / Ospedali:</strong> Chiamare il <strong>1669</strong>. Le strutture sanitarie private a Bangkok e Phuket sono di altissimo livello (consigliata comunque polizza assicurativa completa).</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Ambasciata Italiana:</strong> A Bangkok (Tel: +66 2 285 4090).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Polizia Turistica:</strong> Numero unico <strong>1155</strong> (operatori con supporto in lingua inglese dedicati esclusivamente ai turisti).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Emergenze Mediche:</strong> Chiamare il <strong>1669</strong>. Gli ospedali privati a Bangkok e Phuket sono di altissimo livello (si raccomanda polizza assicurativa sanitaria con massimali alti).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Ambasciata Italiana:</strong> Situata a Bangkok (Tel: +66 2 285 4090). Conserva sempre copie digitali dei documenti nel cloud.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- 4. Clima e Valuta -->
+                <!-- 4. Valuta, Cambi e Connettività -->
                 <div class="col-md-6">
-                    <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-coins text-teal me-2"></i>Valuta, Cambi e Clima</h5>
+                    <div class="custom-card p-4 h-100 border-start border-4 border-gold">
+                        <h5 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-coins text-gold me-2"></i>4. Valuta, Denaro e Connettività</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Moneta Locale:</strong> Baht Thailandese (THB). Porta contanti (banconote in dollari USA immacolate o Euro) da cambiare nei centri autorizzati come <em>SuperRich</em> per i tassi migliori.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Meteo Dicembre-Gennaio:</strong> Il periodo migliore dell'anno. Clima asciutto, soleggiato e ventilato nel Sud e nelle isole; serate piacevolmente fresche a Chiang Mai.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Moneta Locale:</strong> Baht Thailandese (THB). Porta contanti (banconote in EUR o USD in perfette condizioni) da cambiare nei centri autorizzati come <em>SuperRich</em> per tassi eccellenti.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Connettività Mobile:</strong> Acquista una eSIM turistica (es. Airalo o Holafly) prima di partire oppure una SIM fisica in aeroporto (AIS o TrueMove H).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Mance:</strong> Non obbligatorie ma gradite nei ristoranti turistici (solitamente 10%) e per le guide o autisti privati.</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- 5. Etichetta e Cultura -->
                 <div class="col-md-6">
-                    <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-hands-praying text-teal me-2"></i>Etichetta e Usanze Locali</h5>
+                    <div class="custom-card p-4 h-100 border-start border-4 border-coral">
+                        <h5 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-hands-praying text-coral me-2"></i>5. Etichetta e Usanze Locali</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Tempie e Luoghi Sacri:</strong> Spalle e ginocchia coperte; rimuovere sempre le scarpe prima di entrare nelle sale di preghiera o nelle case private.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Rispetto Corporale:</strong> La testa è considerata sacra (mai toccarla); i piedi sono la parte più bassa e impura (mai puntarli verso immagini di Buddha o persone).</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Il Saluto Tradizionale:</strong> Il <em>Wai</em> (palmi uniti all'altezza del petto con un leggero inchino).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Templi e Luoghi Sacri:</strong> Spalle e ginocchia rigorosamente coperte sia per uomini che per donne; togliersi sempre le scarpe prima di entrare.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Rispetto Corporale:</strong> La testa è considerata sacra (mai toccarla); i piedi sono considerati la parte più impura (mai puntarli verso persone o statue di Buddha).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Il Saluto Tradizionale:</strong> Il <em>Wai</em> (palmi uniti all'altezza del petto con un leggero inchino). Evita strette di mano vigorose o conflitti verbali pubblici.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- 6. Gastronomia -->
+                <!-- 6. Gastronomia, Clima e Natura -->
                 <div class="col-md-6">
-                    <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-utensils text-teal me-2"></i>Cucina e Street Food</h5>
+                    <div class="custom-card p-4 h-100 border-start border-4 border-primary">
+                        <h5 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-utensils text-primary me-2"></i>6. Gastronomia, Clima e Natura</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Must da provare:</strong> <em>Pad Thai</em>, zuppa <em>Tom Yum</em>, riso al curry verde e il celebre dessert <em>Mango Sticky Rice</em>.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Consiglio igienico:</strong> Lo street food è eccellente e sicuro se consumato in bancarelle affollate da locali; preferire acqua in bottiglia sigillata ed evitare il ghiaccio non certificato.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Piatti Iconici:</strong> <em>Pad Thai</em>, zuppa agrodipiccante <em>Tom Yum</em>, curry verde e il celebre dessert <em>Mango Sticky Rice</em>.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Clima (Dicembre - Gennaio):</strong> Il periodo migliore dell'anno, fresco e asciutto nel nord (Chiang Mai) e soleggiato sulle spiagge del sud (Phuket). Portare una felpa leggera per le serate nel nord e l'aria condizionata forte nei locali.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Parchi e Natura:</strong> Straordinari parchi nazionali come il Doi Inthanon (Chiang Mai) e la giungla fluviale di Khao Sok.</li>
                         </ul>
+                    </div>
+                </div>
+
+                <!-- 7. Checklist Bagaglio Interattiva -->
+                <div class="col-12">
+                    <div class="custom-card p-4">
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-suitcase-rolling text-teal me-2"></i>Checklist Bagaglio Intelligente</h5>
+                        <div class="row" id="checklistContainer">
+                            <div class="col-md-4">
+                                <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()"> <span>Passaporto (validità > 6 mesi)</span></label>
+                                <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()"> <span>Registrazione TDAC completata</span></label>
+                                <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()"> <span>Assicurazione sanitaria stipulata</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()"> <span>Abbigliamento coprispalle/ginocchia per templi</span></label>
+                                <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()"> <span>Adattatore universale di corrente</span></label>
+                                <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()"> <span>Crema solare biodegradabile & Repellente</span></label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()"> <span>Contanti in EUR / USD immacolati</span></label>
+                                <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()"> <span>eSIM o piano dati attivo</span></label>
+                                <label class="checklist-item"><input type="checkbox" onchange="saveChecklist()"> <span>Medicine personali e fermenti lattici</span></label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -860,7 +947,8 @@
 
 <script>
     // ====== COSTANTI ======
-    const STORAGE_KEY = 'thailandTripDataV3';
+    const STORAGE_KEY = 'thailandTripDataV4';
+    const CHECKLIST_KEY = 'thailandTripChecklistV4';
     const TAB_KEY = 'thailandTripActiveTab';
     const FALLBACK_HOTEL_IMG = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80';
     const DAY_MS = 86400000;
@@ -1033,6 +1121,46 @@
         if (!m) return false;
         const now = new Date();
         return now.getDate() === Number(m[1]) && (now.getMonth() + 1) === Number(m[2]);
+    }
+
+    // ====== CONVERTITORE VALUTA ======
+    function convertCurrency() {
+        const eurVal = parseFloat(el('eurInput').value) || 0;
+        const rate = 38.50;
+        const thbVal = eurVal * rate;
+        el('thbOutput').value = thbVal.toLocaleString('it-IT', { maximumFractionDigits: 0 }) + ' THB';
+    }
+
+    // ====== CHECKLIST PERSISTENTE ======
+    function saveChecklist() {
+        const checkboxes = document.querySelectorAll('#checklistContainer input[type="checkbox"]');
+        const states = [...checkboxes].map(cb => cb.checked);
+        storageSet(CHECKLIST_KEY, JSON.stringify(states));
+        updateChecklistUI();
+    }
+
+    function loadChecklist() {
+        const saved = storageGet(CHECKLIST_KEY);
+        if (!saved) return;
+        try {
+            const states = JSON.parse(saved);
+            const checkboxes = document.querySelectorAll('#checklistContainer input[type="checkbox"]');
+            checkboxes.forEach((cb, idx) => {
+                if (states[idx] !== undefined) {
+                    cb.checked = states[idx];
+                }
+            });
+            updateChecklistUI();
+        } catch {}
+    }
+
+    function updateChecklistUI() {
+        const checkboxes = document.querySelectorAll('#checklistContainer input[type="checkbox"]');
+        checkboxes.forEach(cb => {
+            const parent = cb.closest('.checklist-item');
+            if (cb.checked) parent.classList.add('completed');
+            else parent.classList.remove('completed');
+        });
     }
 
     // ====== RENDER: DASHBOARD ======
@@ -1373,6 +1501,8 @@
         renderAll();
         initTabs();
         updateCountdown();
+        convertCurrency();
+        loadChecklist();
         initScrollObserver();
         setInterval(updateCountdown, 60 * 60 * 1000);
         document.addEventListener('visibilitychange', () => {
