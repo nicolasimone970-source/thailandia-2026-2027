@@ -223,7 +223,7 @@
         }
         #pills-tabContent { scroll-margin-top: 100px; }
 
-        /* ====== WIDGET METEO CON MIN / MAX ====== */
+        /* ====== WIDGET METEO IN TEMPO REALE ====== */
         .weather-card-container {
             background: #ffffff;
             border-radius: 24px;
@@ -617,35 +617,35 @@
         <!-- 1. DASHBOARD -->
         <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
             
-            <!-- TOP DASHBOARD: WEATHER BENTO CARD -->
+            <!-- TOP DASHBOARD: WEATHER BENTO CARD IN TEMPO REALE -->
             <div class="weather-card-container mb-4 reveal-on-scroll">
                 <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
-                    <span class="weather-badge-tag"><i class="fa-solid fa-sun text-warning"></i> Clima Stagionale Ideale (Dic - Gen)</span>
-                    <small class="text-muted fw-bold">Periodo secco e soleggiato</small>
+                    <span class="weather-badge-tag"><i class="fa-solid fa-cloud-sun text-warning"></i> Meteo in Tempo Reale (Open-Meteo)</span>
+                    <small class="text-muted fw-bold">Aggiornato live</small>
                 </div>
                 <div class="row g-2">
                     <div class="col-4">
                         <div class="weather-item">
                             <i class="fa-solid fa-city text-teal fs-5 mb-1 d-block"></i>
                             <span class="d-block small text-muted fw-bold mb-1">Bangkok</span>
-                            <div class="small text-muted" style="font-size: 0.78rem;">Min: <strong class="text-dark">23°C</strong></div>
-                            <div class="small text-muted" style="font-size: 0.78rem;">Max: <strong class="text-dark">31°C</strong></div>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Min: <strong class="text-dark" id="bkk-min">23°C</strong></div>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Max: <strong class="text-dark" id="bkk-max">31°C</strong></div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="weather-item">
                             <i class="fa-solid fa-mountain-sun text-purple fs-5 mb-1 d-block"></i>
                             <span class="d-block small text-muted fw-bold mb-1">Chiang Mai</span>
-                            <div class="small text-muted" style="font-size: 0.78rem;">Min: <strong class="text-dark">15°C</strong></div>
-                            <div class="small text-muted" style="font-size: 0.78rem;">Max: <strong class="text-dark">26°C</strong></div>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Min: <strong class="text-dark" id="cnx-min">15°C</strong></div>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Max: <strong class="text-dark" id="cnx-max">26°C</strong></div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="weather-item">
                             <i class="fa-solid fa-umbrella-beach text-warning fs-5 mb-1 d-block"></i>
                             <span class="d-block small text-muted fw-bold mb-1">Phuket</span>
-                            <div class="small text-muted" style="font-size: 0.78rem;">Min: <strong class="text-dark">23°C</strong></div>
-                            <div class="small text-muted" style="font-size: 0.78rem;">Max: <strong class="text-dark">30°C</strong></div>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Min: <strong class="text-dark" id="hkt-min">23°C</strong></div>
+                            <div class="small text-muted" style="font-size: 0.78rem;">Max: <strong class="text-dark" id="hkt-max">30°C</strong></div>
                         </div>
                     </div>
                 </div>
@@ -1299,6 +1299,32 @@
         return now.getDate() === Number(m[1]) && (now.getMonth() + 1) === Number(m[2]);
     }
 
+    // ====== METEO IN TEMPO REALE (OPEN-METEO API) ======
+    async function fetchLiveWeather() {
+        const locations = [
+            { idMin: 'bkk-min', idMax: 'bkk-max', lat: 13.7563, lon: 100.5018 },
+            { idMin: 'cnx-min', idMax: 'cnx-max', lat: 18.7883, lon: 98.9853 },
+            { idMin: 'hkt-min', idMax: 'hkt-max', lat: 7.8804, lon: 98.3923 }
+        ];
+
+        for (const loc of locations) {
+            try {
+                const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&daily=temperature_2m_max,temperature_2m_min&timezone=auto`);
+                const data = await response.json();
+                if (data && data.daily && data.daily.temperature_2m_min && data.daily.temperature_2m_max) {
+                    const minTemp = Math.round(data.daily.temperature_2m_min[0]);
+                    const maxTemp = Math.round(data.daily.temperature_2m_max[0]);
+                    const minEl = el(loc.idMin);
+                    const maxEl = el(loc.idMax);
+                    if (minEl) minEl.textContent = `${minTemp}°C`;
+                    if (maxEl) maxEl.textContent = `${maxTemp}°C`;
+                }
+            } catch (err) {
+                console.warn("Impossibile caricare il meteo live per", loc.idMin, err);
+            }
+        }
+    }
+
     // ====== CONVERTITORE VALUTA BIDIREZIONALE ======
     function convertFromEur(source) {
         let eurVal = 0;
@@ -1700,6 +1726,7 @@
         renderAll();
         initTabs();
         updateCountdown();
+        fetchLiveWeather();
         convertFromEur('dash');
         loadChecklist();
         initScrollObserver();
