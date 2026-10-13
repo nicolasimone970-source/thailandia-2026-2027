@@ -50,11 +50,11 @@
             padding-bottom: env(safe-area-inset-bottom, 20px);
         }
 
-        /* ====== ANIMAZIONI DI SCORRIMENTO (FADE UP) ====== */
+        /* ====== ANIMAZIONI DI SCORRIMENTO ====== */
         .reveal-on-scroll {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
             will-change: opacity, transform;
         }
         .reveal-on-scroll.is-visible {
@@ -66,7 +66,7 @@
         .text-teal { color: var(--accent-teal) !important; }
         .bg-teal { background-color: var(--accent-teal) !important; color: #fff; }
         .bg-purple { background-color: var(--accent-purple) !important; color: #fff; }
-        .section-label { letter-spacing: 0.8px; font-size: 0.75rem; text-transform: uppercase; }
+        .section-label { letter-spacing: 1px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; }
 
         /* Bottoni primari personalizzati */
         .btn-primary {
@@ -89,12 +89,12 @@
 
         /* ====== HERO BANNER ====== */
         .hero-banner {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(13, 148, 136, 0.85) 100%),
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(13, 148, 136, 0.85) 100%),
                         url('https://images.unsplash.com/photo-1506665531195-3566af294710?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: white;
-            padding: calc(70px + env(safe-area-inset-top, 0px)) 20px 60px 20px;
-            border-radius: 0 0 40px 40px;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+            padding: calc(75px + env(safe-area-inset-top, 0px)) 20px 65px 20px;
+            border-radius: 0 0 44px 44px;
+            box-shadow: 0 25px 50px rgba(15, 23, 42, 0.25);
             position: relative;
             overflow: hidden;
         }
@@ -102,20 +102,20 @@
             font-size: 0.9rem;
             color: var(--gold-light);
             font-weight: 700;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             margin-bottom: 8px;
         }
         .hero-title {
             font-weight: 800;
             letter-spacing: -1px;
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             line-height: 1.1;
             margin-bottom: 8px;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
         .hero-dates {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 0;
             font-weight: 500;
@@ -125,16 +125,16 @@
             display: inline-flex;
             align-items: baseline;
             gap: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
-            padding: 12px 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 12px 26px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         }
         .countdown-number {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             font-weight: 800;
             color: var(--gold-light);
             line-height: 1;
@@ -154,12 +154,12 @@
             background-color: #ffffff;
             border-radius: 20px;
             border: 1px solid #e2e8f0;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: calc(env(safe-area-inset-top, 0px) + 12px);
             z-index: 1020;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
         .nav-pills-grid .nav-item { min-width: 0; }
         .nav-pills-grid .nav-link {
@@ -199,7 +199,7 @@
         /* ====== CARD ====== */
         .custom-card {
             background: #ffffff;
-            border-radius: 24px;
+            border-radius: 26px;
             border: 1px solid #e2e8f0;
             box-shadow: var(--card-shadow);
             transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -217,11 +217,11 @@
         .kpi-card {
             border: none;
             color: white;
-            border-radius: 22px;
-            padding: 22px;
+            border-radius: 24px;
+            padding: 24px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.2);
+            box-shadow: 0 12px 30px rgba(13, 148, 136, 0.2);
             background: linear-gradient(135deg, #0d9488, #06b6d4);
             height: 100%;
         }
@@ -229,7 +229,7 @@
             position: absolute;
             right: 15px;
             bottom: 10px;
-            font-size: 3.8rem;
+            font-size: 4rem;
             opacity: 0.15;
             transition: transform 0.3s ease;
         }
@@ -240,10 +240,10 @@
         /* SCHEDE VOLI */
         .flight-card {
             background: #ffffff;
-            border-radius: 18px;
+            border-radius: 20px;
             border: 1px solid #e2e8f0;
             border-left: 6px solid var(--accent-teal);
-            padding: 18px 22px;
+            padding: 20px 24px;
             margin-bottom: 14px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
             transition: all 0.25s ease;
@@ -262,7 +262,7 @@
         /* HOTEL CARDS */
         .hotel-card-header {
             position: relative;
-            height: 210px;
+            height: 220px;
             overflow: hidden;
         }
         .hotel-image {
@@ -276,7 +276,7 @@
             position: absolute;
             top: 14px;
             left: 14px;
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             color: white;
@@ -301,13 +301,13 @@
 
         /* DESTINAZIONI */
         .destination-card {
-            height: 170px;
-            border-radius: 20px;
+            height: 180px;
+            border-radius: 22px;
             overflow: hidden;
             position: relative;
             background-size: cover;
             background-position: center;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease;
         }
         .destination-card:hover { transform: scale(1.02); }
@@ -315,7 +315,7 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(0deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.15) 100%);
-            padding: 18px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -386,7 +386,7 @@
         /* INPUTS E FORM MODALI */
         .form-control, .form-select {
             border-radius: 12px;
-            padding: 10px 14px;
+            padding: 11px 16px;
             border-color: #cbd5e1;
         }
         .form-control:focus, .form-select:focus {
@@ -416,7 +416,7 @@
 
         /* ====== MOBILE CARD VIEW PER TABELLA ITINERARIO ====== */
         @media (max-width: 767.98px) {
-            .hero-title { font-size: 2.1rem; }
+            .hero-title { font-size: 2.2rem; }
             .table-mobile-cards thead { display: none; }
             .table-mobile-cards, .table-mobile-cards tbody, .table-mobile-cards tr, .table-mobile-cards td {
                 display: block;
@@ -674,56 +674,80 @@
             </div>
         </div>
 
-        <!-- 5. INFO UTILI & APPROFONDIMENTI THAILANDIA -->
+        <!-- 5. INFO UTILI & MANUALE DI VIAGGIO PROFESSIONALE -->
         <div class="tab-pane fade" id="info" role="tabpanel">
             <div class="row g-4 reveal-on-scroll">
-                <!-- Documenti e Burocrazia -->
+                <!-- 1. Ingresso e Burocrazia -->
                 <div class="col-md-6">
                     <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-passport text-teal me-2"></i>Documenti e Ingresso</h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-passport text-teal me-2"></i>Documenti e Ingresso Ufficiale</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Passaporto:</strong> Validità residua di almeno 6 mesi al momento dell'ingresso nel Paese.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>TDAC Digital Pass:</strong> Obbligatoria la pre-registrazione online su <a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer"><code>tdac.immigration.go.th</code></a> entro 72 ore dall'arrivo.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Visto Turistico:</strong> Per i cittadini italiani non è richiesto visto per soggiorni turistici inferiori a 60 giorni.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Passaporto:</strong> Validità residua di almeno 6 mesi dalla data di arrivo e almeno 2 pagine libere.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>TDAC Digital Pass:</strong> Obbligatorio completare la registrazione online su <a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer"><code>tdac.immigration.go.th</code></a> entro 72 ore prima dell'arrivo.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Franchigia Fondi:</strong> Le autorità doganali possono richiedere prova di fondi sufficienti (circa 10.000 THB a persona o 20.000 THB a nucleo familiare).</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Cultura ed Etichetta -->
+                <!-- 2. Mobilità e Trasporti -->
                 <div class="col-md-6">
                     <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-hands-praying text-teal me-2"></i>Cultura ed Etichetta</h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-taxi text-teal me-2"></i>Mobilità e App Essenziali</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Il Saluto (Wai):</strong> Ci si inchina leggermente unendo i palmi delle mani al petto (evita strette di mano formali).</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Abbigliamento nei Templi:</strong> Spalle e ginocchia devono essere rigorosamente coperte sia per uomini che per donne.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Rispetto sacro:</strong> Non toccare mai la testa di nessuno (è considerata la parte più sacra del corpo) e non puntare mai i piedi verso persone o immagini sacre del Buddha.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Ride-Hailing:</strong> Scarica subito le app <strong>Grab</strong> e <strong>Bolt</strong> per muoverti in città a prezzi trasparenti ed evitare contrattazioni con i taxi.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Bangkok Transit:</strong> Usa il <em>BTS Skytrain</em> e la <em>MRT (Metro)</em> per saltare il traffico caotico della capitale.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Traghetti e Isole:</strong> Prenota i trasferimenti in motoscafo o traghetto (es. verso le Phi Phi Islands) tramite compagnie certificate o direttamente dai resort.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Clima e Miglior Periodo -->
+                <!-- 3. Sicurezza e Numeri Utili -->
                 <div class="col-md-6">
                     <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-cloud-sun text-teal me-2"></i>Clima a Dicembre / Gennaio</h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-shield-halved text-teal me-2"></i>Sicurezza e Numeri di Emergenza</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Stagione Ideale:</strong> È il periodo fresco e secco (la stagione migliore dell'anno), con temperature piacevoli a Bangkok e clima fresco la sera a Chiang Mai.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Cosa mettere in valigia:</strong> Abiti leggeri estivi, un foulard o una felpa leggera per l'aria condizionata fortissima nei centri commerciali e per le serate nel nord.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Polizia Turistica (Tourist Police):</strong> Composizione rapida <strong>1155</strong> (operatori con supporto in lingua inglese dedicati ai turisti).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Emergenze Mediche / Ospedali:</strong> Chiamare il <strong>1669</strong>. Le strutture sanitarie private a Bangkok e Phuket sono di altissimo livello (consigliata comunque polizza assicurativa completa).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Ambasciata Italiana:</strong> A Bangkok (Tel: +66 2 285 4090).</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Gastronomia e Street Food -->
+                <!-- 4. Clima e Valuta -->
+                <div class="col-md-6">
+                    <div class="custom-card p-4 h-100">
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-coins text-teal me-2"></i>Valuta, Cambi e Clima</h5>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Moneta Locale:</strong> Baht Thailandese (THB). Porta contanti (banconote in dollari USA immacolate o Euro) da cambiare nei centri autorizzati come <em>SuperRich</em> per i tassi migliori.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Meteo Dicembre-Gennaio:</strong> Il periodo migliore dell'anno. Clima asciutto, soleggiato e ventilato nel Sud e nelle isole; serate piacevolmente fresche a Chiang Mai.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5. Etichetta e Cultura -->
+                <div class="col-md-6">
+                    <div class="custom-card p-4 h-100">
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-hands-praying text-teal me-2"></i>Etichetta e Usanze Locali</h5>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Tempie e Luoghi Sacri:</strong> Spalle e ginocchia coperte; rimuovere sempre le scarpe prima di entrare nelle sale di preghiera o nelle case private.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Rispetto Corporale:</strong> La testa è considerata sacra (mai toccarla); i piedi sono la parte più bassa e impura (mai puntarli verso immagini di Buddha o persone).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Il Saluto Tradizionale:</strong> Il <em>Wai</em> (palmi uniti all'altezza del petto con un leggero inchino).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 6. Gastronomia -->
                 <div class="col-md-6">
                     <div class="custom-card p-4 h-100">
                         <h5 class="fw-bold mb-3"><i class="fa-solid fa-utensils text-teal me-2"></i>Cucina e Street Food</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Piatti da non perdere:</strong> <em>Pad Thai</em> (tagliolini di riso saltati), <em>Tom Yum</em> (zuppa agrodipiccante), <em>Som Tum</em> (insalata di papaya verde) e il celebre <em>Mango Sticky Rice</em> come dolce.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Igiene e Sicurezza:</strong> Lo street food thailandese è eccellente e sicuro, basta scegliere le bancarelle con grande affluenza di locali.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Must da provare:</strong> <em>Pad Thai</em>, zuppa <em>Tom Yum</em>, riso al curry verde e il celebre dessert <em>Mango Sticky Rice</em>.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Consiglio igienico:</strong> Lo street food è eccellente e sicuro se consumato in bancarelle affollate da locali; preferire acqua in bottiglia sigillata ed evitare il ghiaccio non certificato.</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Consigli pratici & Backup Dati -->
+                <!-- Backup Dati -->
                 <div class="col-12">
                     <div class="custom-card p-4">
                         <h5 class="fw-bold mb-1"><i class="fa-solid fa-database text-teal me-2"></i>I tuoi dati e Backup</h5>
