@@ -39,6 +39,22 @@
             --card-shadow-hover: 0 22px 50px -10px rgba(13, 148, 136, 0.22);
         }
 
+        /* ====== SCROLLBAR PERSONALIZZATA FLUIDA ====== */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-teal);
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -51,16 +67,35 @@
             padding-bottom: env(safe-area-inset-bottom, 30px);
         }
 
-        /* ====== ANIMAZIONI DI SCORRIMENTO ====== */
+        /* ====== ANIMAZIONI DI SCORRIMENTO PREMIUM ====== */
         .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transform: translateY(35px) scale(0.98);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
         .reveal-on-scroll.is-visible {
             opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Transizioni fluide per i Tab di contenuto */
+        .tab-content > .tab-pane {
+            display: block;
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            position: absolute;
+            width: 100%;
+            pointer-events: none;
+        }
+        .tab-content > .active {
+            visibility: visible;
+            opacity: 1;
             transform: translateY(0);
+            position: relative;
+            pointer-events: auto;
         }
 
         /* ====== UTILITY COLORI VIVACI ====== */
@@ -206,6 +241,7 @@
             background: linear-gradient(135deg, var(--accent-teal), var(--accent-cyan));
             color: white;
             box-shadow: 0 8px 22px rgba(13, 148, 136, 0.4);
+            transform: scale(1.02);
         }
         .nav-pills-grid .nav-link:hover:not(.active) {
             color: var(--accent-teal);
@@ -221,7 +257,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        #pills-tabContent { scroll-margin-top: 100px; }
+        #pills-tabContent { scroll-margin-top: 100px; position: relative; min-height: 800px; }
 
         /* ====== WIDGET METEO IN TEMPO REALE ====== */
         .weather-card-container {
@@ -249,6 +285,11 @@
             text-align: center;
             border: 1px solid #f1f5f9;
             height: 100%;
+            transition: transform 0.3s ease;
+        }
+        .weather-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
         }
 
         /* ====== CARD STRUTTURALI ====== */
@@ -263,7 +304,7 @@
         }
         @media (hover: hover) {
             .custom-card:hover {
-                transform: translateY(-5px);
+                transform: translateY(-6px);
                 box-shadow: var(--card-shadow-hover);
             }
         }
@@ -279,9 +320,9 @@
             box-shadow: 0 15px 35px rgba(13, 148, 136, 0.25);
             background: linear-gradient(135deg, #0d9488, #06b6d4);
             height: 100%;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        .kpi-card:hover { transform: translateY(-3px); }
+        .kpi-card:hover { transform: translateY(-4px) scale(1.01); }
         .kpi-icon {
             position: absolute;
             right: 18px;
@@ -301,12 +342,12 @@
             padding: 22px 26px;
             margin-bottom: 16px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         .flight-card:hover {
             border-left-color: var(--accent-coral);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transform: translateX(3px);
+            transform: translateX(4px);
         }
         .flight-route {
             font-size: 1.2rem;
@@ -365,7 +406,7 @@
             background-size: cover;
             background-position: center;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.35s ease;
+            transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         .destination-card:hover { transform: scale(1.03); }
         .destination-overlay {
