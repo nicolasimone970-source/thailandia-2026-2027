@@ -38,12 +38,28 @@
             --card-shadow-hover: 0 20px 40px -10px rgba(13, 148, 136, 0.15);
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-light);
             color: #1e293b;
             -webkit-font-smoothing: antialiased;
             padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+
+        /* ====== ANIMAZIONI DI SCORRIMENTO (FADE UP) ====== */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform;
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ====== UTILITY COLORI ====== */
@@ -444,6 +460,10 @@
                 transition: none !important;
                 animation: none !important;
             }
+            .reveal-on-scroll {
+                opacity: 1 !important;
+                transform: none !important;
+            }
         }
     </style>
 </head>
@@ -451,7 +471,7 @@
 
 <!-- HERO HEADER -->
 <header class="hero-banner text-center mb-4">
-    <div class="container">
+    <div class="container reveal-on-scroll">
         <p class="hero-route">Bangkok → Chiang Mai → Phuket</p>
         <h1 class="hero-title mb-2">THAILANDIA TRIP</h1>
         <p class="hero-dates"><i class="fa-regular fa-calendar-check me-2"></i>28 dicembre 2026 – 8 gennaio 2027</p>
@@ -465,7 +485,7 @@
 <div class="container mb-5">
 
     <!-- NAVIGAZIONE A TABS -->
-    <ul class="nav nav-pills nav-pills-grid mb-4" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills nav-pills-grid mb-4 reveal-on-scroll" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="true">
                 <i class="fa-solid fa-chart-pie" aria-hidden="true"></i>
@@ -503,10 +523,10 @@
         <!-- 1. DASHBOARD -->
         <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
             <!-- KPI -->
-            <div class="row g-3 mb-4" id="statsContainer"></div>
+            <div class="row g-3 mb-4 reveal-on-scroll" id="statsContainer"></div>
 
             <!-- RIPARTIZIONE BUDGET -->
-            <div class="custom-card p-4 mb-4">
+            <div class="custom-card p-4 mb-4 reveal-on-scroll">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <h6 class="fw-bold mb-0 text-uppercase text-muted section-label"><i class="fa-solid fa-chart-bar text-teal me-2"></i>Ripartizione spese stimata (quota singola)</h6>
                     <span class="fw-bold text-teal fs-6" id="totalBudgetLabel">€ 0</span>
@@ -519,8 +539,8 @@
             </div>
 
             <!-- TAPPE -->
-            <h6 class="fw-bold mb-3 text-uppercase text-muted section-label"><i class="fa-solid fa-compass me-2"></i>Tappe del viaggio</h6>
-            <div class="row g-3 mb-4">
+            <h6 class="fw-bold mb-3 text-uppercase text-muted section-label reveal-on-scroll"><i class="fa-solid fa-compass me-2"></i>Tappe del viaggio</h6>
+            <div class="row g-3 mb-4 reveal-on-scroll">
                 <div class="col-md-4">
                     <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80');">
                         <div class="destination-overlay">
@@ -551,7 +571,7 @@
             </div>
 
             <!-- VOLI -->
-            <div class="custom-card p-3 p-md-4">
+            <div class="custom-card p-3 p-md-4 reveal-on-scroll">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="fw-bold mb-0"><i class="fa-solid fa-plane-up text-teal me-2"></i>Voli e trasporti</h5>
                     <button type="button" class="btn btn-sm btn-primary fw-bold rounded-pill px-3 shadow-sm" onclick="openFlightModal()"><i class="fa-solid fa-plus me-1"></i>Nuovo volo</button>
@@ -562,7 +582,7 @@
 
         <!-- 2. ITINERARIO -->
         <div class="tab-pane fade" id="itinerario" role="tabpanel">
-            <div class="custom-card p-3 p-md-4">
+            <div class="custom-card p-3 p-md-4 reveal-on-scroll">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h5 class="fw-bold mb-0"><i class="fa-solid fa-calendar-days text-teal me-2"></i>Itinerario dettagliato</h5>
                     <button type="button" class="btn btn-sm btn-primary fw-bold rounded-pill px-3 shadow-sm" onclick="openItineraryModal()"><i class="fa-solid fa-plus me-1"></i>Aggiungi giorno</button>
@@ -589,16 +609,16 @@
 
         <!-- 3. HOTEL -->
         <div class="tab-pane fade" id="alloggi" role="tabpanel">
-            <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-3 reveal-on-scroll">
                 <h5 class="fw-bold mb-0"><i class="fa-solid fa-hotel text-teal me-2"></i>Hotel e resort selezionati</h5>
                 <button type="button" class="btn btn-sm btn-primary fw-bold rounded-pill px-3 shadow-sm" onclick="openHotelModal()"><i class="fa-solid fa-plus me-1"></i>Aggiungi hotel</button>
             </div>
-            <div class="row g-4 mb-4" id="hotelsContainer"></div>
+            <div class="row g-4 mb-4 reveal-on-scroll" id="hotelsContainer"></div>
         </div>
 
         <!-- 4. CAPODANNO & TOUR -->
         <div class="tab-pane fade" id="esperienze" role="tabpanel">
-            <div class="row g-4">
+            <div class="row g-4 reveal-on-scroll">
                 <div class="col-md-6">
                     <div class="custom-card h-100">
                         <div style="height: 195px; overflow: hidden; position: relative;">
@@ -654,32 +674,60 @@
             </div>
         </div>
 
-        <!-- 5. INFO UTILI -->
+        <!-- 5. INFO UTILI & APPROFONDIMENTI THAILANDIA -->
         <div class="tab-pane fade" id="info" role="tabpanel">
-            <div class="row g-4">
+            <div class="row g-4 reveal-on-scroll">
+                <!-- Documenti e Burocrazia -->
                 <div class="col-md-6">
                     <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-passport text-teal me-2"></i>Documentazione e valuta</h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-passport text-teal me-2"></i>Documenti e Ingresso</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>TDAC Digital Pass:</strong> obbligatoria, da compilare su <a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer"><code>tdac.immigration.go.th</code></a> entro 72h prima dell'arrivo.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Valuta locale:</strong> Baht Thailandese (THB) | 1 EUR ≈ 37 THB. Contanti utilissimi per lo street food.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Connettività mobile:</strong> eSIM turistica (Airalo/Holafly) o SIM fisica in aeroporto (AIS/TrueMove).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Passaporto:</strong> Validità residua di almeno 6 mesi al momento dell'ingresso nel Paese.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>TDAC Digital Pass:</strong> Obbligatoria la pre-registrazione online su <a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer"><code>tdac.immigration.go.th</code></a> entro 72 ore dall'arrivo.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Visto Turistico:</strong> Per i cittadini italiani non è richiesto visto per soggiorni turistici inferiori a 60 giorni.</li>
                         </ul>
                     </div>
                 </div>
+
+                <!-- Cultura ed Etichetta -->
                 <div class="col-md-6">
                     <div class="custom-card p-4 h-100">
-                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-heart-pulse text-teal me-2"></i>Salute e consigli pratici</h5>
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-hands-praying text-teal me-2"></i>Cultura ed Etichetta</h5>
                         <ul class="list-group list-group-flush small">
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Assicurazione sanitaria:</strong> verifica massimali per ricoveri e assistenza.</li>
-                            <li class="list-group-item bg-transparent px-0 py-2"><strong>App di mobilità:</strong> scarica <strong>Grab</strong> o <strong>Bolt</strong> (funzionano esattamente come Uber).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Il Saluto (Wai):</strong> Ci si inchina leggermente unendo i palmi delle mani al petto (evita strette di mano formali).</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Abbigliamento nei Templi:</strong> Spalle e ginocchia devono essere rigorosamente coperte sia per uomini che per donne.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Rispetto sacro:</strong> Non toccare mai la testa di nessuno (è considerata la parte più sacra del corpo) e non puntare mai i piedi verso persone o immagini sacre del Buddha.</li>
                         </ul>
                     </div>
                 </div>
+
+                <!-- Clima e Miglior Periodo -->
+                <div class="col-md-6">
+                    <div class="custom-card p-4 h-100">
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-cloud-sun text-teal me-2"></i>Clima a Dicembre / Gennaio</h5>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Stagione Ideale:</strong> È il periodo fresco e secco (la stagione migliore dell'anno), con temperature piacevoli a Bangkok e clima fresco la sera a Chiang Mai.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Cosa mettere in valigia:</strong> Abiti leggeri estivi, un foulard o una felpa leggera per l'aria condizionata fortissima nei centri commerciali e per le serate nel nord.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Gastronomia e Street Food -->
+                <div class="col-md-6">
+                    <div class="custom-card p-4 h-100">
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-utensils text-teal me-2"></i>Cucina e Street Food</h5>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Piatti da non perdere:</strong> <em>Pad Thai</em> (tagliolini di riso saltati), <em>Tom Yum</em> (zuppa agrodipiccante), <em>Som Tum</em> (insalata di papaya verde) e il celebre <em>Mango Sticky Rice</em> come dolce.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Igiene e Sicurezza:</strong> Lo street food thailandese è eccellente e sicuro, basta scegliere le bancarelle con grande affluenza di locali.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Consigli pratici & Backup Dati -->
                 <div class="col-12">
                     <div class="custom-card p-4">
-                        <h5 class="fw-bold mb-1"><i class="fa-solid fa-database text-teal me-2"></i>I tuoi dati</h5>
-                        <p class="small text-muted mb-3">Le modifiche sono salvate sul tuo dispositivo. Esporta un backup per condividerle o spostarle su un altro telefono.</p>
+                        <h5 class="fw-bold mb-1"><i class="fa-solid fa-database text-teal me-2"></i>I tuoi dati e Backup</h5>
+                        <p class="small text-muted mb-3">Le modifiche sono salvate sul tuo dispositivo. Esporta un backup JSON per condividerle o spostarle su un altro telefono.</p>
                         <div class="d-flex flex-wrap gap-2">
                             <button type="button" class="btn btn-sm btn-primary rounded-pill fw-bold px-3 shadow-sm" onclick="exportData()"><i class="fa-solid fa-download me-1"></i>Esporta backup</button>
                             <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill fw-bold px-3" onclick="document.getElementById('importFile').click()"><i class="fa-solid fa-upload me-1"></i>Importa backup</button>
@@ -792,8 +840,8 @@
     const TAB_KEY = 'thailandTripActiveTab';
     const FALLBACK_HOTEL_IMG = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80';
     const DAY_MS = 86400000;
-    const TRIP_START = new Date(2026, 11, 28); // 28 dicembre 2026
-    const TRIP_END = new Date(2027, 0, 8);     // 8 gennaio 2027
+    const TRIP_START = new Date(2026, 11, 28);
+    const TRIP_END = new Date(2027, 0, 8);
 
     // ====== DATI DI BASE ======
     const defaultData = {
@@ -1268,7 +1316,7 @@
         saveData();
     };
 
-    // ====== TABS ======
+    // ====== TABS & SCROLL OBSERVER ======
     function initTabs() {
         const tabs = [...document.querySelectorAll('#pills-tab [data-bs-toggle="pill"]')];
         const saved = storageGet(TAB_KEY);
@@ -1279,7 +1327,21 @@
             storageSet(TAB_KEY, e.target.dataset.bsTarget);
             const content = el('pills-tabContent');
             if (content.getBoundingClientRect().top < 0) content.scrollIntoView({ block: 'start' });
+            initScrollObserver();
         }));
+    }
+
+    function initScrollObserver() {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal-on-scroll:not(.is-visible)').forEach(el => observer.observe(el));
     }
 
     // ====== AVVIO ======
@@ -1287,6 +1349,7 @@
         renderAll();
         initTabs();
         updateCountdown();
+        initScrollObserver();
         setInterval(updateCountdown, 60 * 60 * 1000);
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden) { updateCountdown(); renderItinerary(); }
