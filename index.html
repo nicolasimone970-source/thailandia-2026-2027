@@ -91,63 +91,85 @@
             box-shadow: 0 8px 25px rgba(13, 148, 136, 0.4);
         }
 
-        /* ====== HERO BANNER PROFESSIONALE ====== */
+        /* ====== HERO BANNER RIDISEGNATO (DESIGN PREMIUM) ====== */
         .hero-banner {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(13, 148, 136, 0.85) 100%),
-                        url('https://images.unsplash.com/photo-1506665531195-3566af294710?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            background: linear-gradient(165deg, #0f172a 0%, #1e293b 40%, #0d9488 100%);
             color: white;
-            padding: calc(85px + env(safe-area-inset-top, 0px)) 20px 75px 20px;
-            border-radius: 0 0 50px 50px;
-            box-shadow: 0 35px 70px rgba(15, 23, 42, 0.35);
+            padding: calc(45px + env(safe-area-inset-top, 0px)) 20px 45px 20px;
+            border-radius: 0 0 42px 42px;
+            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35);
             position: relative;
             overflow: hidden;
         }
-        .hero-route {
-            font-size: 0.95rem;
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+        }
+        .hero-route-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.8rem;
             color: var(--gold-light);
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-bottom: 14px;
         }
         .hero-title {
             font-weight: 800;
-            letter-spacing: -1.5px;
-            font-size: 3.2rem;
-            line-height: 1.05;
-            margin-bottom: 10px;
-            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+            letter-spacing: -1px;
+            font-size: 2.6rem;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff 30%, #fde047 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
         .hero-dates {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.92);
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
             margin-bottom: 0;
             font-weight: 600;
         }
-        .hero-countdown {
-            margin-top: 30px;
-            display: inline-flex;
-            align-items: baseline;
-            gap: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.12);
+        .hero-countdown-box {
+            margin-top: 22px;
+            background: rgba(15, 23, 42, 0.45);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 24px;
-            padding: 14px 28px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+            padding: 12px 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
         }
         .countdown-number {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: var(--gold-light);
             line-height: 1;
         }
         .countdown-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 600;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 700;
+            text-transform: lowercase;
         }
 
         /* ====== NAVIGAZIONE A TABS STYLISH ====== */
@@ -200,6 +222,33 @@
             text-overflow: ellipsis;
         }
         #pills-tabContent { scroll-margin-top: 100px; }
+
+        /* ====== WIDGET METEO PERFETTAMENTO LAYOUT ====== */
+        .weather-card-container {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 18px 20px;
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--card-shadow);
+        }
+        .weather-badge-tag {
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.1), rgba(6, 182, 212, 0.15));
+            color: var(--accent-teal-dark);
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .weather-item {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 10px 12px;
+            text-align: center;
+            border: 1px solid #f1f5f9;
+        }
 
         /* ====== CARD STRUTTURALI ====== */
         .custom-card {
@@ -434,18 +483,6 @@
             height: 100%;
         }
 
-        /* BENTO WEATHER PILL */
-        .weather-pill {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 14px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: var(--card-shadow);
-        }
-
         /* ====== DESKTOP MEDIA QUERIES ====== */
         @media (min-width: 768px) {
             .nav-pills-grid {
@@ -468,7 +505,7 @@
 
         /* ====== MOBILE CARD VIEW PER TABELLA ITINERARIO ====== */
         @media (max-width: 767.98px) {
-            .hero-title { font-size: 2.3rem; }
+            .hero-title { font-size: 2.1rem; }
             .table-mobile-cards thead { display: none; }
             .table-mobile-cards, .table-mobile-cards tbody, .table-mobile-cards tr, .table-mobile-cards td {
                 display: block;
@@ -521,15 +558,18 @@
 </head>
 <body>
 
-<!-- HERO HEADER -->
+<!-- HERO HEADER RIPULITO & RIDISEGNATO -->
 <header class="hero-banner text-center mb-4">
     <div class="container reveal-on-scroll">
-        <p class="hero-route">Bangkok → Chiang Mai → Phuket</p>
-        <h1 class="hero-title mb-2">THAILANDIA TRIP</h1>
-        <p class="hero-dates"><i class="fa-regular fa-calendar-check me-2"></i>28 dicembre 2026 – 8 gennaio 2027</p>
-        <div class="hero-countdown" aria-live="polite">
-            <div class="countdown-number" id="days">–</div>
-            <div class="countdown-label" id="label">giorni alla partenza</div>
+        <div class="hero-route-badge">
+            <i class="fa-solid fa-location-dot"></i> Bangkok → Chiang Mai → Phuket
+        </div>
+        <h1 class="hero-title">THAILANDIA TRIP</h1>
+        <p class="hero-dates"><i class="fa-regular fa-calendar-check me-1"></i>28 dicembre 2026 – 8 gennaio 2027</p>
+        
+        <div class="hero-countdown-box" aria-live="polite">
+            <span class="countdown-number" id="days">–</span>
+            <span class="countdown-label" id="label">giorni alla partenza</span>
         </div>
     </div>
 </header>
@@ -575,18 +615,32 @@
         <!-- 1. DASHBOARD -->
         <div class="tab-pane fade show active" id="dashboard" role="tabpanel">
             
-            <!-- TOP DASHBOARD: WEATHER BENTO BAR -->
-            <div class="row g-3 mb-4 reveal-on-scroll">
-                <div class="col-12">
-                    <div class="weather-pill">
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-teal-gradient px-3 py-2 rounded-pill fw-bold"><i class="fa-solid fa-cloud-sun me-1"></i>Clima Ideale (Dic-Gen)</span>
-                            <span class="small text-muted d-none d-md-inline">Stagione fresca e asciutta in tutto il Paese</span>
+            <!-- TOP DASHBOARD: WEATHER BENTO CARD PERFETTA E ORDINATA -->
+            <div class="weather-card-container mb-4 reveal-on-scroll">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                    <span class="weather-badge-tag"><i class="fa-solid fa-sun text-warning"></i> Clima Stagionale Ideale (Dic - Gen)</span>
+                    <small class="text-muted fw-bold">Periodo secco e soleggiato</small>
+                </div>
+                <div class="row g-2">
+                    <div class="col-4">
+                        <div class="weather-item">
+                            <i class="fa-solid fa-city text-teal fs-5 mb-1 d-block"></i>
+                            <span class="d-block small text-muted fw-bold">Bangkok</span>
+                            <strong class="fs-6 text-dark">31°C</strong>
                         </div>
-                        <div class="d-flex align-items-center gap-4 text-dark small fw-bold">
-                            <span><i class="fa-solid fa-city text-teal me-1"></i> BKK: <strong>31°C</strong></span>
-                            <span><i class="fa-solid fa-mountain-sun text-purple me-1"></i> CNX: <strong>26°C</strong></span>
-                            <span><i class="fa-solid fa-umbrella-beach text-gold me-1"></i> HKT: <strong>30°C</strong></span>
+                    </div>
+                    <div class="col-4">
+                        <div class="weather-item">
+                            <i class="fa-solid fa-mountain-sun text-purple fs-5 mb-1 d-block"></i>
+                            <span class="d-block small text-muted fw-bold">Chiang Mai</span>
+                            <strong class="fs-6 text-dark">26°C</strong>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="weather-item">
+                            <i class="fa-solid fa-umbrella-beach text-warning fs-5 mb-1 d-block"></i>
+                            <span class="d-block small text-muted fw-bold">Phuket</span>
+                            <strong class="fs-6 text-dark">30°C</strong>
                         </div>
                     </div>
                 </div>
@@ -622,7 +676,7 @@
                         <ul class="list-unstyled small text-muted mb-0">
                             <li class="mb-2 pb-2 border-bottom border-light"><i class="fa-solid fa-check text-teal me-2"></i><strong>Passaporto:</strong> Validità residua minima di 6 mesi.</li>
                             <li class="mb-2 pb-2 border-bottom border-light"><i class="fa-solid fa-check text-teal me-2"></i><strong>TDAC Digital Pass:</strong> Registrazione online obbligatoria entro 72 ore dall'arrivo (<a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer">tdac.immigration.go.th</a>).</li>
-                            <li class="mb-0"><i class="fa-solid fa-ban text-coral me-2"></i><strong>Vaping Vietato:</strong> Divieto assoluto di sigarette elettroniche ed IQOS (rischio multe pesanti).</li>
+                            <li class="mb-0"><i class="fa-solid fa-ban text-coral me-2"></i><strong>Vaping Vietato:</strong> Divieto assoluto di sigarettes elettroniche ed IQOS (rischio multe pesanti).</li>
                         </ul>
                     </div>
                 </div>
@@ -719,10 +773,9 @@
             <div class="row g-4 mb-4 reveal-on-scroll" id="hotelsContainer"></div>
         </div>
 
-        <!-- 4. CAPODANNO & TOUR ARRICCHITI -->
+        <!-- 4. CAPODANNO & TOUR -->
         <div class="tab-pane fade" id="esperienze" role="tabpanel">
             <div class="row g-4 reveal-on-scroll">
-                <!-- Tour 1: Capodanno Bangkok -->
                 <div class="col-md-6">
                     <div class="custom-card h-100">
                         <div style="height: 205px; overflow: hidden; position: relative;">
@@ -750,7 +803,6 @@
                     </div>
                 </div>
 
-                <!-- Tour 2: Chiang Rai -->
                 <div class="col-md-6">
                     <div class="custom-card h-100">
                         <div style="height: 205px; overflow: hidden; position: relative;">
@@ -777,7 +829,6 @@
                     </div>
                 </div>
 
-                <!-- Tour 3: Phi Phi Islands & Maya Bay -->
                 <div class="col-md-6">
                     <div class="custom-card h-100">
                         <div style="height: 205px; overflow: hidden; position: relative;">
@@ -804,7 +855,6 @@
                     </div>
                 </div>
 
-                <!-- Tour 4: Santuario Elefanti / Doi Suthep -->
                 <div class="col-md-6">
                     <div class="custom-card h-100">
                         <div style="height: 205px; overflow: hidden; position: relative;">
