@@ -508,4 +508,791 @@
             <!-- RIPARTIZIONE BUDGET -->
             <div class="custom-card p-4 mb-4">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="fw-bold mb-
+                    <h6 class="fw-bold mb-0 text-uppercase text-muted section-label"><i class="fa-solid fa-chart-bar text-teal me-2"></i>Ripartizione spese stimata (quota singola)</h6>
+                    <span class="fw-bold text-teal fs-6" id="totalBudgetLabel">€ 0</span>
+                </div>
+                <div class="progress mb-3 shadow-sm" style="height: 14px; border-radius: 10px; background-color: #e2e8f0;" id="budgetProgressBar" role="img" aria-label="Ripartizione tra voli e hotel"></div>
+                <div class="d-flex justify-content-between small text-muted fw-semibold">
+                    <span><i class="fa-solid fa-circle text-teal me-1" aria-hidden="true"></i> Voli: <strong id="flightBudgetLabel">€ 0</strong> (<span id="flightPercentLabel">0%</span>)</span>
+                    <span><i class="fa-solid fa-circle me-1" style="color: var(--accent-purple);" aria-hidden="true"></i> Hotel: <strong id="hotelBudgetLabel">€ 0</strong> (<span id="hotelPercentLabel">0%</span>)</span>
+                </div>
+            </div>
+
+            <!-- TAPPE -->
+            <h6 class="fw-bold mb-3 text-uppercase text-muted section-label"><i class="fa-solid fa-compass me-2"></i>Tappe del viaggio</h6>
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=600&q=80');">
+                        <div class="destination-overlay">
+                            <span class="badge bg-teal w-auto mb-1 align-self-start fw-bold">Tappa 1 • 3 Notti</span>
+                            <h5 class="fw-bold mb-0">Bangkok</h5>
+                            <small class="opacity-75">Capodanno & Templi Reali</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80');">
+                        <div class="destination-overlay">
+                            <span class="badge bg-purple w-auto mb-1 align-self-start fw-bold">Tappa 2 • 3 Notti</span>
+                            <h5 class="fw-bold mb-0">Chiang Mai</h5>
+                            <small class="opacity-75">Natura, Templi & Chiang Rai</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?auto=format&fit=crop&w=600&q=80');">
+                        <div class="destination-overlay">
+                            <span class="badge bg-warning text-dark w-auto mb-1 align-self-start fw-bold">Tappa 3 • 4 Notti</span>
+                            <h5 class="fw-bold mb-0">Phuket</h5>
+                            <small class="opacity-75">Mare, Phi Phi Islands & Relax</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VOLI -->
+            <div class="custom-card p-3 p-md-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold mb-0"><i class="fa-solid fa-plane-up text-teal me-2"></i>Voli e trasporti</h5>
+                    <button type="button" class="btn btn-sm btn-primary fw-bold rounded-pill px-3 shadow-sm" onclick="openFlightModal()"><i class="fa-solid fa-plus me-1"></i>Nuovo volo</button>
+                </div>
+                <div id="flightsContainer"></div>
+            </div>
+        </div>
+
+        <!-- 2. ITINERARIO -->
+        <div class="tab-pane fade" id="itinerario" role="tabpanel">
+            <div class="custom-card p-3 p-md-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold mb-0"><i class="fa-solid fa-calendar-days text-teal me-2"></i>Itinerario dettagliato</h5>
+                    <button type="button" class="btn btn-sm btn-primary fw-bold rounded-pill px-3 shadow-sm" onclick="openItineraryModal()"><i class="fa-solid fa-plus me-1"></i>Aggiungi giorno</button>
+                </div>
+                <div class="itinerary-scroll">
+                    <table class="table table-custom table-mobile-cards">
+                        <thead>
+                            <tr>
+                                <th>Giorno</th>
+                                <th>Data</th>
+                                <th>Tappa</th>
+                                <th>Mattina</th>
+                                <th>Pomeriggio</th>
+                                <th>Sera</th>
+                                <th>Struttura</th>
+                                <th class="text-end">Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itineraryTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. HOTEL -->
+        <div class="tab-pane fade" id="alloggi" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0"><i class="fa-solid fa-hotel text-teal me-2"></i>Hotel e resort selezionati</h5>
+                <button type="button" class="btn btn-sm btn-primary fw-bold rounded-pill px-3 shadow-sm" onclick="openHotelModal()"><i class="fa-solid fa-plus me-1"></i>Aggiungi hotel</button>
+            </div>
+            <div class="row g-4 mb-4" id="hotelsContainer"></div>
+        </div>
+
+        <!-- 4. CAPODANNO & TOUR -->
+        <div class="tab-pane fade" id="esperienze" role="tabpanel">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="custom-card h-100">
+                        <div style="height: 195px; overflow: hidden; position: relative;">
+                            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Capodanno su un rooftop di Bangkok" loading="lazy">
+                            <span class="badge bg-dark position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold shadow">31 Dicembre 🎆</span>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-3"><i class="fa-solid fa-champagne-glasses text-teal me-2"></i>Rooftop bar per Capodanno</h5>
+                            <div class="mb-3 p-3 bg-light rounded-4 border border-1 border-light">
+                                <h6 class="fw-bold mb-1">1. Tichuca Rooftop Bar</h6>
+                                <p class="small text-muted mb-2">Sukhumvit • Iconico albero LED illuminato 360°</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Tichuca+Rooftop+Bar+Bangkok" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill">Google Maps</a>
+                            </div>
+                            <div class="mb-3 p-3 bg-light rounded-4 border border-1 border-light">
+                                <h6 class="fw-bold mb-1">2. Octave Rooftop Lounge</h6>
+                                <p class="small text-muted mb-2">Marriott Sukhumvit • Vista panoramica su 3 livelli</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=Octave+Rooftop+Lounge+and+Bar+Bangkok" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill">Google Maps</a>
+                            </div>
+                            <div class="p-3 bg-light rounded-4 border border-1 border-light">
+                                <h6 class="fw-bold mb-1">3. Mahanakhon SkyWalk</h6>
+                                <p class="small text-muted mb-2">Silom • Vista fuochi d'artificio a 314m di altezza</p>
+                                <a href="https://www.google.com/maps/search/?api=1&query=King+Power+Mahanakhon+Bangkok" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-pill">Google Maps</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="custom-card h-100">
+                        <div style="height: 195px; overflow: hidden; position: relative;">
+                            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=800&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Wat Rong Khun, il Tempio Bianco di Chiang Rai" loading="lazy">
+                            <span class="badge bg-teal position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fw-bold shadow">03 Gennaio 🛕</span>
+                        </div>
+                        <div class="p-4">
+                            <h5 class="fw-bold mb-3"><i class="fa-solid fa-gopuram text-teal me-2"></i>Tour Chiang Rai da Chiang Mai</h5>
+                            <p class="small text-muted mb-3">Escursione di una giornata in minivan privato consigliata dalle ore 07:00.</p>
+
+                            <div class="border-start border-3 border-info ps-3 mb-3">
+                                <h6 class="fw-bold mb-1">Tempio Bianco (Wat Rong Khun)</h6>
+                                <p class="small text-muted mb-0">Capolavoro contemporaneo in gesso e specchi.</p>
+                            </div>
+                            <div class="border-start border-3 border-primary ps-3 mb-3">
+                                <h6 class="fw-bold mb-1">Tempio Blu (Rong Suea Ten)</h6>
+                                <p class="small text-muted mb-0">Sculture blu zaffiro e interni affrescati straordinari.</p>
+                            </div>
+                            <div class="border-start border-3 border-dark ps-3">
+                                <h6 class="fw-bold mb-1">Casa Nera (Baan Dam Museum)</h6>
+                                <p class="small text-muted mb-0">Galleria d'arte eclettica in legno scuro.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. INFO UTILI -->
+        <div class="tab-pane fade" id="info" role="tabpanel">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="custom-card p-4 h-100">
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-passport text-teal me-2"></i>Documentazione e valuta</h5>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>TDAC Digital Pass:</strong> obbligatoria, da compilare su <a href="https://tdac.immigration.go.th" target="_blank" rel="noopener noreferrer"><code>tdac.immigration.go.th</code></a> entro 72h prima dell'arrivo.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Valuta locale:</strong> Baht Thailandese (THB) | 1 EUR ≈ 37 THB. Contanti utilissimi per lo street food.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Connettività mobile:</strong> eSIM turistica (Airalo/Holafly) o SIM fisica in aeroporto (AIS/TrueMove).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="custom-card p-4 h-100">
+                        <h5 class="fw-bold mb-3"><i class="fa-solid fa-heart-pulse text-teal me-2"></i>Salute e consigli pratici</h5>
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>Assicurazione sanitaria:</strong> verifica massimali per ricoveri e assistenza.</li>
+                            <li class="list-group-item bg-transparent px-0 py-2"><strong>App di mobilità:</strong> scarica <strong>Grab</strong> o <strong>Bolt</strong> (funzionano esattamente come Uber).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="custom-card p-4">
+                        <h5 class="fw-bold mb-1"><i class="fa-solid fa-database text-teal me-2"></i>I tuoi dati</h5>
+                        <p class="small text-muted mb-3">Le modifiche sono salvate sul tuo dispositivo. Esporta un backup per condividerle o spostarle su un altro telefono.</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="button" class="btn btn-sm btn-primary rounded-pill fw-bold px-3 shadow-sm" onclick="exportData()"><i class="fa-solid fa-download me-1"></i>Esporta backup</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill fw-bold px-3" onclick="document.getElementById('importFile').click()"><i class="fa-solid fa-upload me-1"></i>Importa backup</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger rounded-pill fw-bold px-3" onclick="resetToDefault()"><i class="fa-solid fa-rotate-left me-1"></i>Ripristina dati originali</button>
+                        </div>
+                        <input type="file" id="importFile" accept="application/json,.json" class="d-none" onchange="importData(event)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- MODALE: ITINERARIO -->
+<div class="modal fade" id="itineraryModal" tabindex="-1" aria-labelledby="itineraryModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold" id="itineraryModalTitle">Giorno itinerario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+            </div>
+            <div class="modal-body">
+                <form id="itineraryForm">
+                    <input type="hidden" id="itinIndex">
+                    <div class="row g-2 mb-2">
+                        <div class="col-4"><label class="form-label small fw-bold" for="itinGiorno">Giorno</label><input type="text" id="itinGiorno" class="form-control" placeholder="Giorno 1" required></div>
+                        <div class="col-4"><label class="form-label small fw-bold" for="itinData">Data</label><input type="text" id="itinData" class="form-control" placeholder="29/12" required></div>
+                        <div class="col-4"><label class="form-label small fw-bold" for="itinTappa">Tappa</label><input type="text" id="itinTappa" class="form-control" placeholder="Bangkok" required></div>
+                    </div>
+                    <div class="mb-2"><label class="form-label small fw-bold" for="itinMattina">Mattina</label><input type="text" id="itinMattina" class="form-control"></div>
+                    <div class="mb-2"><label class="form-label small fw-bold" for="itinPomeriggio">Pomeriggio</label><input type="text" id="itinPomeriggio" class="form-control"></div>
+                    <div class="mb-2"><label class="form-label small fw-bold" for="itinSera">Sera</label><input type="text" id="itinSera" class="form-control"></div>
+                    <div class="mb-3"><label class="form-label small fw-bold" for="itinStruttura">Hotel / Struttura</label><input type="text" id="itinStruttura" class="form-control" placeholder="Casa Nithra"></div>
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold py-2 shadow-sm">Salva giorno</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODALE: HOTEL -->
+<div class="modal fade" id="hotelModal" tabindex="-1" aria-labelledby="hotelModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold" id="hotelModalTitle">Dettagli hotel</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+            </div>
+            <div class="modal-body">
+                <form id="hotelForm">
+                    <input type="hidden" id="hotelIndex">
+                    <div class="mb-2"><label class="form-label small fw-bold" for="hotelNome">Nome struttura</label><input type="text" id="hotelNome" class="form-control" required></div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-6"><label class="form-label small fw-bold" for="hotelCitta">Città e notti</label><input type="text" id="hotelCitta" class="form-control" placeholder="Bangkok • 3 Notti" required></div>
+                        <div class="col-6"><label class="form-label small fw-bold" for="hotelDate">Date soggiorno</label><input type="text" id="hotelDate" class="form-control" placeholder="29 Dic - 01 Gen" required></div>
+                    </div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-6"><label class="form-label small fw-bold" for="hotelQuotaSingola">Quota singola (€)</label><input type="number" id="hotelQuotaSingola" class="form-control" min="0" step="any" inputmode="decimal" required></div>
+                        <div class="col-6"><label class="form-label small fw-bold" for="hotelTotaleGruppo">Totale gruppo (€)</label><input type="number" id="hotelTotaleGruppo" class="form-control" min="0" step="any" inputmode="decimal" required></div>
+                    </div>
+                    <div class="mb-2"><label class="form-label small fw-bold" for="hotelSaldo">Stato saldo / note</label><input type="text" id="hotelSaldo" class="form-control" placeholder="Da pagare al check-in"></div>
+                    <div class="mb-2"><label class="form-label small fw-bold" for="hotelMaps">Link Google Maps</label><input type="url" id="hotelMaps" class="form-control"></div>
+                    <div class="mb-3"><label class="form-label small fw-bold" for="hotelImg">URL foto copertina</label><input type="url" id="hotelImg" class="form-control"></div>
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold py-2 shadow-sm">Salva hotel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODALE: VOLO -->
+<div class="modal fade" id="flightModal" tabindex="-1" aria-labelledby="flightModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow-lg">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold" id="flightModalTitle">Dettagli trasporto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+            </div>
+            <div class="modal-body">
+                <form id="flightForm">
+                    <input type="hidden" id="flightIndex">
+                    <div class="mb-2"><label class="form-label small fw-bold" for="flightTratta">Tratta</label><input type="text" id="flightTratta" class="form-control" placeholder="Milano MXP → Bangkok" required></div>
+                    <div class="row g-2 mb-2">
+                        <div class="col-6"><label class="form-label small fw-bold" for="flightData">Data</label><input type="text" id="flightData" class="form-control" placeholder="28/12/2026" required></div>
+                        <div class="col-6"><label class="form-label small fw-bold" for="flightTipo">Tipologia</label><input type="text" id="flightTipo" class="form-control" placeholder="Volo Internazionale" required></div>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6"><label class="form-label small fw-bold" for="flightCosto">Costo (€ / p.p.)</label><input type="number" id="flightCosto" class="form-control" min="0" step="any" inputmode="decimal" required></div>
+                        <div class="col-6"><label class="form-label small fw-bold" for="flightStato">Stato</label>
+                            <select id="flightStato" class="form-select">
+                                <option value="Prenotato">Prenotato</option>
+                                <option value="In attesa">In attesa</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill fw-bold py-2 shadow-sm">Salva trasporto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // ====== COSTANTI ======
+    const STORAGE_KEY = 'thailandTripDataV3';
+    const TAB_KEY = 'thailandTripActiveTab';
+    const FALLBACK_HOTEL_IMG = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80';
+    const DAY_MS = 86400000;
+    const TRIP_START = new Date(2026, 11, 28); // 28 dicembre 2026
+    const TRIP_END = new Date(2027, 0, 8);     // 8 gennaio 2027
+
+    // ====== DATI DI BASE ======
+    const defaultData = {
+        flights: [
+            { tratta: "Milano MXP → Bangkok (BKK)", data: "28/12/2026", tipo: "Volo Internazionale", costo: 553, stato: "Prenotato" },
+            { tratta: "Bangkok → Chiang Mai (CNX)", data: "01/01/2027", tipo: "Volo Domestico", costo: 94, stato: "Prenotato" },
+            { tratta: "Chiang Mai → Phuket (HKT)", data: "04/01/2027", tipo: "Volo Domestico", costo: 164, stato: "Prenotato" },
+            { tratta: "Phuket → Milano MXP", data: "08/01/2027", tipo: "Volo Internazionale", costo: 583, stato: "Prenotato" }
+        ],
+        itinerary: [
+            { giorno: "Giorno 1", data: "29/12", tappa: "Bangkok", mattina: "Arrivo & Check-in hotel", pomeriggio: "Tempo libero & primo contatto", sera: "Cena panoramica fiume Chao Phraya", struttura: "Casa Nithra" },
+            { giorno: "Giorno 2", data: "30/12", tappa: "Bangkok", mattina: "Grande Palazzo Reale", pomeriggio: "Wat Pho (Buddha Sdraiato)", sera: "Street food tour a Chinatown", struttura: "Casa Nithra" },
+            { giorno: "Giorno 3", data: "31/12", tappa: "Bangkok", mattina: "Shopping IconSiam / MBK", pomeriggio: "Relax & preparazione Capodanno", sera: "🎆 Rooftop Party Capodanno", struttura: "Casa Nithra" },
+            { giorno: "Giorno 4", data: "01/01", tappa: "Chiang Mai", mattina: "Relax post-Capodanno", pomeriggio: "Volo per Chiang Mai & Check-in", sera: "Centro storico murato & Night Bazaar", struttura: "MOMO Hotel" },
+            { giorno: "Giorno 5", data: "02/01", tappa: "Chiang Mai", mattina: "Wat Chedi Luang", pomeriggio: "Tempio Doi Suthep (Panoramico)", sera: "Cena tipica Khao Soi", struttura: "MOMO Hotel" },
+            { giorno: "Giorno 6", data: "03/01", tappa: "Chiang Rai", mattina: "Tempio Bianco (Wat Rong Khun)", pomeriggio: "Tempio Blu & Casa Nera", sera: "Rientro a Chiang Mai", struttura: "MOMO Hotel" },
+            { giorno: "Giorno 7", data: "04/01", tappa: "Phuket", mattina: "Check-out & Volo per Phuket", pomeriggio: "Check-in Resort & Patong Beach", sera: "Passeggiata & Cena di pesce", struttura: "Patong Paragon" },
+            { giorno: "Giorno 8", data: "05/01", tappa: "Phuket", mattina: "⛵ Tour in barca Isole Phi Phi", pomeriggio: "Maya Bay & Snorkeling", sera: "Cena a Patong", struttura: "Patong Paragon" },
+            { giorno: "Giorno 9", data: "06/01", tappa: "Phuket", mattina: "Phuket Big Buddha", pomeriggio: "Phuket Old Town", sera: "Cocktail al tramonto in spiaggia", struttura: "Patong Paragon" },
+            { giorno: "Giorno 10", data: "07/01", tappa: "Phuket", mattina: "Relax Freedom Beach", pomeriggio: "Tramonto a Promthep Cape", sera: "Cena d'arrivederci", struttura: "Patong Paragon" },
+            { giorno: "Giorno 11", data: "08/01", tappa: "Phuket", mattina: "Check-out & ultimi acquisti", pomeriggio: "Trasferimento Aeroporto Phuket", sera: "✈️ Volo di rientro in Italia", struttura: "-" }
+        ],
+        hotels: [
+            {
+                nome: "Casa Nithra Bangkok",
+                citta: "Bangkok • 3 Notti",
+                date: "29 Dic - 01 Gen",
+                saldo: "Da pagare al check-in",
+                quotaSingola: 152,
+                totaleGruppo: 760,
+                maps: "https://www.google.com/maps/search/?api=1&query=Casa+Nithra+Bangkok",
+                img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                nome: "MOMO Hotel Chiang Mai",
+                citta: "Chiang Mai • 3 Notti",
+                date: "01 Gen - 04 Gen",
+                saldo: "Da pagare al check-in",
+                quotaSingola: 89,
+                totaleGruppo: 445,
+                maps: "https://www.google.com/maps/search/?api=1&query=MOMO+Hotel+Chiang+Mai",
+                img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                nome: "Patong Paragon Resort & Spa",
+                citta: "Phuket • 4 Notti",
+                date: "04 Gen - 08 Gen",
+                saldo: "Addebito il 19 Dicembre",
+                quotaSingola: 320,
+                totaleGruppo: 1600,
+                maps: "https://www.google.com/maps/search/?api=1&query=Patong+Paragon+Resort+and+Spa+Phuket",
+                img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80"
+            }
+        ]
+    };
+
+    // ====== UTILITÀ ======
+    const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+
+    function safeUrl(value) {
+        try {
+            const url = new URL(value);
+            return (url.protocol === 'http:' || url.protocol === 'https:') ? url.href : '';
+        } catch {
+            return '';
+        }
+    }
+
+    const eur = (n) => '€ ' + Number(n || 0).toLocaleString('it-IT');
+    const el = (id) => document.getElementById(id);
+    const emptyState = (msg) => `<div class="empty-state">${msg}</div>`;
+
+    function storageGet(key) {
+        try { return localStorage.getItem(key); } catch { return null; }
+    }
+    function storageSet(key, value) {
+        try { localStorage.setItem(key, value); } catch { }
+    }
+
+    function isValidData(d) {
+        return !!d && Array.isArray(d.flights) && Array.isArray(d.itinerary) && Array.isArray(d.hotels);
+    }
+
+    function loadData() {
+        try {
+            const parsed = JSON.parse(storageGet(STORAGE_KEY));
+            if (isValidData(parsed)) return parsed;
+        } catch { }
+        return JSON.parse(JSON.stringify(defaultData));
+    }
+
+    let appData = loadData();
+
+    function saveData() {
+        storageSet(STORAGE_KEY, JSON.stringify(appData));
+        renderAll();
+    }
+
+    function resetToDefault() {
+        if (confirm("Vuoi ripristinare i dati di viaggio originali? Le modifiche fatte finora andranno perse.")) {
+            appData = JSON.parse(JSON.stringify(defaultData));
+            saveData();
+        }
+    }
+
+    // ====== EXPORT / IMPORT JSON ======
+    function exportData() {
+        const blob = new Blob([JSON.stringify(appData, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'thailandia_viaggio_2026.json';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function importData(event) {
+        const input = event.target;
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const parsed = JSON.parse(e.target.result);
+                if (!isValidData(parsed)) throw new Error('Struttura non valida');
+                appData = parsed;
+                saveData();
+                alert("Dati importati con successo!");
+            } catch {
+                alert("File non valido: serve un backup JSON esportato da questa pagina.");
+            }
+            input.value = '';
+        };
+        reader.readAsText(file);
+    }
+
+    // ====== COUNTDOWN ======
+    function updateCountdown() {
+        const daysEl = el('days');
+        const labelEl = el('label');
+        if (!daysEl || !labelEl) return;
+
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+        if (today < TRIP_START) {
+            const days = Math.round((TRIP_START - today) / DAY_MS);
+            daysEl.textContent = days;
+            labelEl.textContent = days === 1 ? 'giorno alla partenza' : 'giorni alla partenza';
+        } else if (today <= TRIP_END) {
+            daysEl.textContent = '✈️';
+            labelEl.textContent = 'siete in viaggio, buon divertimento!';
+        } else {
+            daysEl.textContent = '✓';
+            labelEl.textContent = 'viaggio concluso, bentornati!';
+        }
+    }
+
+    function isToday(dataStr) {
+        const m = /^(\d{1,2})\/(\d{1,2})/.exec(String(dataStr).trim());
+        if (!m) return false;
+        const now = new Date();
+        return now.getDate() === Number(m[1]) && (now.getMonth() + 1) === Number(m[2]);
+    }
+
+    // ====== RENDER: DASHBOARD ======
+    function renderStats() {
+        const totaleVoli = appData.flights.reduce((acc, f) => acc + Number(f.costo || 0), 0);
+        const totaleHotel = appData.hotels.reduce((acc, h) => acc + Number(h.quotaSingola || 0), 0);
+        const totaleSingolo = totaleVoli + totaleHotel;
+
+        const percVoli = totaleSingolo > 0 ? Math.round((totaleVoli / totaleSingolo) * 100) : 0;
+        const percHotel = totaleSingolo > 0 ? (100 - percVoli) : 0;
+
+        el('statsContainer').innerHTML = `
+            <div class="col-6 col-md-3">
+                <div class="kpi-card">
+                    <small class="text-white-50 fw-bold text-uppercase d-block mb-1">Partenza</small>
+                    <h5 class="fw-bold mb-0">28 Dicembre</h5>
+                    <small class="text-white-50">Malpensa → Bangkok</small>
+                    <i class="fa-solid fa-plane-departure kpi-icon" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="kpi-card" style="background: linear-gradient(135deg, #0f172a, #334155);">
+                    <small class="text-white-50 fw-bold text-uppercase d-block mb-1">Rientro</small>
+                    <h5 class="fw-bold mb-0">08 Gennaio</h5>
+                    <small class="text-white-50">Phuket → Malpensa</small>
+                    <i class="fa-solid fa-plane-arrival kpi-icon" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="kpi-card" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">
+                    <small class="text-white-50 fw-bold text-uppercase d-block mb-1">Alloggi totali</small>
+                    <h5 class="fw-bold mb-0">${appData.hotels.length} Hotel</h5>
+                    <small class="text-white-50">Tot. hotel: ${eur(totaleHotel)}</small>
+                    <i class="fa-solid fa-hotel kpi-icon" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="kpi-card" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                    <small class="text-white-50 fw-bold text-uppercase d-block mb-1">Quota p.p.</small>
+                    <h5 class="fw-bold mb-0">${eur(totaleSingolo)}</h5>
+                    <small class="text-white-50">Voli + hotel / p.p.</small>
+                    <i class="fa-solid fa-wallet kpi-icon" aria-hidden="true"></i>
+                </div>
+            </div>
+        `;
+
+        el('totalBudgetLabel').innerText = `${eur(totaleSingolo)} / persona`;
+        el('flightBudgetLabel').innerText = eur(totaleVoli);
+        el('flightPercentLabel').innerText = `${percVoli}%`;
+        el('hotelBudgetLabel').innerText = eur(totaleHotel);
+        el('hotelPercentLabel').innerText = `${percHotel}%`;
+
+        el('budgetProgressBar').innerHTML = `
+            <div class="progress-bar bg-teal" style="width: ${percVoli}%" title="Voli: ${percVoli}%"></div>
+            <div class="progress-bar bg-purple" style="width: ${percHotel}%" title="Hotel: ${percHotel}%"></div>
+        `;
+    }
+
+    // ====== RENDER: VOLI ======
+    function renderFlights() {
+        const container = el('flightsContainer');
+        if (!appData.flights.length) {
+            container.innerHTML = emptyState('Nessun volo inserito. Usa «Nuovo volo» per aggiungerne uno.');
+            return;
+        }
+        container.innerHTML = appData.flights.map((f, i) => {
+            const prenotato = f.stato === 'Prenotato';
+            return `
+            <div class="flight-card">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-light p-3 rounded-circle text-teal d-none d-sm-flex align-items-center justify-content-center" style="width:50px; height:50px;">
+                            <i class="fa-solid fa-plane fs-5" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <span class="badge bg-secondary mb-1">${esc(f.tipo)}</span>
+                            <div class="flight-route">${esc(f.tratta)}</div>
+                            <small class="text-muted"><i class="fa-regular fa-calendar me-1" aria-hidden="true"></i>Data: ${esc(f.data)}</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between justify-content-md-end gap-3 mt-2 mt-md-0">
+                        <div class="text-md-end">
+                            <span class="fw-bold fs-5 text-dark d-block">${eur(f.costo)} <small class="text-muted fs-6">/ p.p.</small></span>
+                            <span class="badge ${prenotato ? 'bg-success-subtle text-success-emphasis border border-success' : 'bg-warning-subtle text-warning-emphasis border border-warning'}">
+                                <i class="fa-solid fa-circle me-1" style="font-size: 0.5rem; vertical-align: middle;" aria-hidden="true"></i>${esc(f.stato)}
+                            </span>
+                        </div>
+                        <div class="d-flex gap-1">
+                            <button type="button" class="btn btn-sm btn-light border py-1 px-2 rounded-circle" onclick="editFlight(${i})" aria-label="Modifica volo" title="Modifica"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-sm btn-light border text-danger py-1 px-2 rounded-circle" onclick="deleteFlight(${i})" aria-label="Elimina volo" title="Elimina"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    // ====== RENDER: ITINERARIO ======
+    function renderItinerary() {
+        const tbody = el('itineraryTableBody');
+        if (!appData.itinerary.length) {
+            tbody.innerHTML = `<tr><td colspan="8">${emptyState('Itinerario vuoto. Usa «Aggiungi giorno» per iniziare.')}</td></tr>`;
+            return;
+        }
+        tbody.innerHTML = appData.itinerary.map((item, i) => {
+            const oggi = isToday(item.data);
+            return `
+            <tr class="${oggi ? 'is-today' : ''}">
+                <td data-label="Giorno"><span class="fw-bold text-teal">${esc(item.giorno)}</span>${oggi ? ' <span class="badge bg-teal ms-1">Oggi</span>' : ''}</td>
+                <td data-label="Data">${esc(item.data)}</td>
+                <td data-label="Tappa"><strong>${esc(item.tappa) || '-'}</strong></td>
+                <td data-label="Mattina">${esc(item.mattina) || '-'}</td>
+                <td data-label="Pomeriggio">${esc(item.pomeriggio) || '-'}</td>
+                <td data-label="Sera">${esc(item.sera) || '-'}</td>
+                <td data-label="Struttura"><span class="badge bg-light text-dark border">${esc(item.struttura) || '-'}</span></td>
+                <td data-label="Azioni" class="text-end">
+                    <button type="button" class="btn btn-sm btn-light border text-secondary py-1 px-2 rounded-circle me-1" onclick="editItinerary(${i})" aria-label="Modifica giorno" title="Modifica"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-sm btn-light border text-danger py-1 px-2 rounded-circle" onclick="deleteItinerary(${i})" aria-label="Elimina giorno" title="Elimina"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                </td>
+            </tr>`;
+        }).join('');
+    }
+
+    // ====== RENDER: HOTEL ======
+    function renderHotels() {
+        const container = el('hotelsContainer');
+        if (!appData.hotels.length) {
+            container.innerHTML = `<div class="col-12">${emptyState('Nessun hotel inserito. Usa «Aggiungi hotel» per aggiungerne uno.')}</div>`;
+            return;
+        }
+        container.innerHTML = appData.hotels.map((h, i) => {
+            const img = safeUrl(h.img) || FALLBACK_HOTEL_IMG;
+            const maps = safeUrl(h.maps);
+            return `
+            <div class="col-md-4">
+                <div class="custom-card h-100 d-flex flex-column">
+                    <div class="card-actions-floating">
+                        <button type="button" class="btn btn-sm btn-light border py-1 px-2 me-1 rounded-circle shadow-sm" onclick="editHotel(${i})" aria-label="Modifica hotel" title="Modifica"><i class="fa-solid fa-pen" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-sm btn-light border text-danger py-1 px-2 rounded-circle shadow-sm" onclick="deleteHotel(${i})" aria-label="Elimina hotel" title="Elimina"><i class="fa-solid fa-trash" aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="hotel-card-header">
+                        <img src="${esc(img)}" class="hotel-image" alt="${esc(h.nome)}" loading="lazy"
+                             onerror="this.onerror=null;this.src='${FALLBACK_HOTEL_IMG}'">
+                        <span class="hotel-badge-city">${esc(h.citta)}</span>
+                        <span class="hotel-badge-price">${eur(h.quotaSingola)} / p.p.</span>
+                    </div>
+
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h5 class="fw-bold mb-1">${esc(h.nome)}</h5>
+                        <p class="text-muted small mb-3"><i class="fa-regular fa-calendar me-1" aria-hidden="true"></i>${esc(h.date)}</p>
+
+                        <ul class="list-unstyled small mb-4 flex-grow-1">
+                            <li class="mb-2"><i class="fa-solid fa-credit-card text-teal me-2" aria-hidden="true"></i><strong>Saldo:</strong> ${esc(h.saldo) || '-'}</li>
+                            <li class="mb-2"><i class="fa-solid fa-users me-2" aria-hidden="true"></i><strong>Totale gruppo:</strong> ${eur(h.totaleGruppo)}</li>
+                        </ul>
+
+                        ${maps ? `
+                        <a href="${esc(maps)}" target="_blank" rel="noopener noreferrer" class="btn btn-maps w-100 justify-content-center">
+                            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Apri su Maps
+                        </a>` : ''}
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function renderAll() {
+        renderStats();
+        renderFlights();
+        renderItinerary();
+        renderHotels();
+    }
+
+    // ====== HANDLER: ITINERARIO ======
+    const itinModal = new bootstrap.Modal('#itineraryModal');
+    function openItineraryModal() {
+        el('itineraryForm').reset();
+        el('itinIndex').value = "-1";
+        el('itineraryModalTitle').innerText = "Aggiungi giorno";
+        itinModal.show();
+    }
+    function editItinerary(index) {
+        const item = appData.itinerary[index];
+        el('itinIndex').value = index;
+        el('itinGiorno').value = item.giorno || '';
+        el('itinData').value = item.data || '';
+        el('itinTappa').value = item.tappa || '';
+        el('itinMattina').value = item.mattina || '';
+        el('itinPomeriggio').value = item.pomeriggio || '';
+        el('itinSera').value = item.sera || '';
+        el('itinStruttura').value = item.struttura || '';
+        el('itineraryModalTitle').innerText = "Modifica giorno";
+        itinModal.show();
+    }
+    function deleteItinerary(index) {
+        if (confirm("Eliminare questo giorno?")) {
+            appData.itinerary.splice(index, 1);
+            saveData();
+        }
+    }
+    el('itineraryForm').onsubmit = function (e) {
+        e.preventDefault();
+        const index = parseInt(el('itinIndex').value, 10);
+        const newItem = {
+            giorno: el('itinGiorno').value.trim(),
+            data: el('itinData').value.trim(),
+            tappa: el('itinTappa').value.trim(),
+            mattina: el('itinMattina').value.trim(),
+            pomeriggio: el('itinPomeriggio').value.trim(),
+            sera: el('itinSera').value.trim(),
+            struttura: el('itinStruttura').value.trim()
+        };
+        if (index === -1) appData.itinerary.push(newItem);
+        else appData.itinerary[index] = newItem;
+        itinModal.hide();
+        saveData();
+    };
+
+    // ====== HANDLER: HOTEL ======
+    const hotelModal = new bootstrap.Modal('#hotelModal');
+    function openHotelModal() {
+        el('hotelForm').reset();
+        el('hotelIndex').value = "-1";
+        el('hotelModalTitle').innerText = "Aggiungi hotel";
+        hotelModal.show();
+    }
+    function editHotel(index) {
+        const h = appData.hotels[index];
+        el('hotelIndex').value = index;
+        el('hotelNome').value = h.nome || '';
+        el('hotelCitta').value = h.citta || '';
+        el('hotelDate').value = h.date || '';
+        el('hotelQuotaSingola').value = h.quotaSingola;
+        el('hotelTotaleGruppo').value = h.totaleGruppo;
+        el('hotelSaldo').value = h.saldo || '';
+        el('hotelMaps').value = h.maps || '';
+        el('hotelImg').value = h.img || '';
+        el('hotelModalTitle').innerText = "Modifica hotel";
+        hotelModal.show();
+    }
+    function deleteHotel(index) {
+        if (confirm("Eliminare questo alloggio?")) {
+            appData.hotels.splice(index, 1);
+            saveData();
+        }
+    }
+    el('hotelForm').onsubmit = function (e) {
+        e.preventDefault();
+        const index = parseInt(el('hotelIndex').value, 10);
+        const newHotel = {
+            nome: el('hotelNome').value.trim(),
+            citta: el('hotelCitta').value.trim(),
+            date: el('hotelDate').value.trim(),
+            quotaSingola: Number(el('hotelQuotaSingola').value),
+            totaleGruppo: Number(el('hotelTotaleGruppo').value),
+            saldo: el('hotelSaldo').value.trim(),
+            maps: el('hotelMaps').value.trim(),
+            img: el('hotelImg').value.trim()
+        };
+        if (index === -1) appData.hotels.push(newHotel);
+        else appData.hotels[index] = newHotel;
+        hotelModal.hide();
+        saveData();
+    };
+
+    // ====== HANDLER: VOLI ======
+    const flightModal = new bootstrap.Modal('#flightModal');
+    function openFlightModal() {
+        el('flightForm').reset();
+        el('flightIndex').value = "-1";
+        el('flightModalTitle').innerText = "Aggiungi volo";
+        flightModal.show();
+    }
+    function editFlight(index) {
+        const f = appData.flights[index];
+        el('flightIndex').value = index;
+        el('flightTratta').value = f.tratta || '';
+        el('flightData').value = f.data || '';
+        el('flightTipo').value = f.tipo || '';
+        el('flightCosto').value = f.costo;
+        el('flightStato').value = f.stato;
+        el('flightModalTitle').innerText = "Modifica volo";
+        flightModal.show();
+    }
+    function deleteFlight(index) {
+        if (confirm("Eliminare questo volo?")) {
+            appData.flights.splice(index, 1);
+            saveData();
+        }
+    }
+    el('flightForm').onsubmit = function (e) {
+        e.preventDefault();
+        const index = parseInt(el('flightIndex').value, 10);
+        const newFlight = {
+            tratta: el('flightTratta').value.trim(),
+            data: el('flightData').value.trim(),
+            tipo: el('flightTipo').value.trim(),
+            costo: Number(el('flightCosto').value),
+            stato: el('flightStato').value
+        };
+        if (index === -1) appData.flights.push(newFlight);
+        else appData.flights[index] = newFlight;
+        flightModal.hide();
+        saveData();
+    };
+
+    // ====== TABS ======
+    function initTabs() {
+        const tabs = [...document.querySelectorAll('#pills-tab [data-bs-toggle="pill"]')];
+        const saved = storageGet(TAB_KEY);
+        const match = tabs.find((t) => t.dataset.bsTarget === saved);
+        if (match) bootstrap.Tab.getOrCreateInstance(match).show();
+
+        tabs.forEach((t) => t.addEventListener('shown.bs.tab', (e) => {
+            storageSet(TAB_KEY, e.target.dataset.bsTarget);
+            const content = el('pills-tabContent');
+            if (content.getBoundingClientRect().top < 0) content.scrollIntoView({ block: 'start' });
+        }));
+    }
+
+    // ====== AVVIO ======
+    document.addEventListener('DOMContentLoaded', () => {
+        renderAll();
+        initTabs();
+        updateCountdown();
+        setInterval(updateCountdown, 60 * 60 * 1000);
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) { updateCountdown(); renderItinerary(); }
+        });
+    });
+</script>
+
+</body>
+</html>
