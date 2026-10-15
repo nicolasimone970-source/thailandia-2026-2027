@@ -46,7 +46,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b
   100%{transform:translateY(-380px) translateX(25px) scale(1.2);opacity:0}
 }
 
-/* Scintille / Particelle di luce dorata (Embers) */
 .ember{position:absolute;background:#fcd34d;border-radius:50%;box-shadow:0 0 8px #f59e0b;animation:riseEmber 6s infinite linear;opacity:0;z-index:1}
 .ember:nth-child(6){left:15%;width:6px;height:6px;animation-delay:0.5s;animation-duration:7s}
 .ember:nth-child(7){left:38%;width:4px;height:4px;animation-delay:2s;animation-duration:5.5s}
@@ -99,9 +98,30 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b
   to{opacity:1;transform:translateY(0)}
 }
 
-/* CARDS CON EFFETTO LIFT & SHIMMER */
+/* ANIMAZIONI SCALETTATE PER GLI ELEMENTI INTERNI (STAGGERED ENTRANCE) */
+.tab-pane.active .cx,
+.tab-pane.active .flt,
+.tab-pane.active .tbl tr,
+.tab-pane.active .chk {
+  animation: cardAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes cardAppear{
+  from{opacity:0;transform:translateY(20px) scale(0.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* Ritardi scalettati per dare un effetto professionale e magico */
+.tab-pane.active .row > *:nth-child(1){animation-delay:0.05s}
+.tab-pane.active .row > *:nth-child(2){animation-delay:0.1s}
+.tab-pane.active .row > *:nth-child(3){animation-delay:0.15s}
+.tab-pane.active .row > *:nth-child(4){animation-delay:0.2s}
+.tab-pane.active .row > *:nth-child(5){animation-delay:0.25s}
+.tab-pane.active .row > *:nth-child(6){animation-delay:0.3s}
+
+/* CARDS CON EFFETTO LIFT & GLOW DORATO/TEAL */
 .cx{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 4px 20px rgba(15,23,42,.04);overflow:hidden;transition:all .35s cubic-bezier(0.4,0,0.2,1);position:relative}
-.cx:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(15,23,42,.09);border-color:#cbd5e1}
+.cx:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(13,148,136,.12),0 0 20px rgba(245,158,11,.08);border-color:#0d9488}
 
 .lbl{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
 .sec{font-weight:800;font-size:1.05rem;margin:0}
@@ -127,8 +147,8 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b
 .dest-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background:linear-gradient(0deg,rgba(15,23,42,.92),rgba(15,23,42,.05) 75%);pointer-events:none}
 .dest-overlay .tag{align-self:flex-start;background:var(--teal);font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:6px}
 
-.flt{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;margin-bottom:12px;background:#fff;transition:all .25s ease}
-.flt:hover{transform:translateX(4px);box-shadow:0 4px 15px rgba(0,0,0,.05);border-color:#cbd5e1}
+.flt{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;margin-bottom:12px;background:#fff;transition:all .3s ease}
+.flt:hover{transform:translateX(6px);box-shadow:0 6px 20px rgba(13,148,136,.12);border-color:var(--teal)}
 
 .himg,.timg{position:relative;display:block;height:200px;overflow:hidden}
 .himg img,.timg img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(0.4,0,0.2,1)}
@@ -139,8 +159,8 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b
 .acts{position:absolute;top:12px;right:12px;z-index:5;background:rgba(255,255,255,.95);backdrop-filter:blur(4px);border-radius:14px;padding:4px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
 .btn-maps{background:#1a73e8;color:#fff;font-weight:700;border-radius:12px;font-size:.88rem;transition:all .2s ease}
 .btn-maps:hover{background:#1558b8;color:#fff;transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,115,232,.3)}
-.spot{border-left:3px solid var(--teal);padding-left:14px;margin-bottom:18px}
-.spot:last-child{margin-bottom:0}
+.spot{border-left:3px solid var(--teal);padding-left:14px;margin-bottom:18px;transition:transform .2s ease}
+.spot:hover{transform:translateX(3px)}
 .g{padding-left:1.1rem;margin:0}
 .g li{font-size:.88rem;color:#334155;margin-bottom:.6rem;line-height:1.5}
 .g li:last-child{margin-bottom:0}
@@ -149,14 +169,15 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b
 .ph b{color:var(--teal-d);text-align:right}
 
 .chk{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#f8fafc;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;cursor:pointer;font-size:.88rem;transition:all .25s ease}
-.chk:hover{background:#f1f5f9;transform:translateX(3px);border-color:#cbd5e1}
+.chk:hover{background:#f1f5f9;transform:translateX(4px);border-color:var(--teal)}
 .chk input{width:18px;height:18px;accent-color:var(--teal);flex:none;transition:transform .2s ease}
 .chk input:checked{transform:scale(1.2)}
 .chk.done span{text-decoration:line-through;color:#94a3b8}
 
 .tbl th{background:#f8fafc;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;padding:16px}
 .tbl td{padding:16px;vertical-align:middle;font-size:.9rem}
-.tbl tr{transition:background-color .2s ease}
+.tbl tr{transition:all .25s ease}
+.tbl tr:hover{background-color:rgba(13,148,136,.04);transform:scale(1.002)}
 .tbl tr.today{background:rgba(13,148,136,.1);animation:pulseToday 2.5s infinite alternate}
 
 @keyframes pulseToday{
@@ -410,7 +431,7 @@ const GUIDE=[
 `<b>Capodanno a Bangkok:</b> la sera del 31 le strade del centro si bloccano. Muoviti presto, preferisci BTS e MRT e organizza il rientro con anticipo.`]],
 ['hands-praying','Cultura e regole',[
 `<b>Templi:</b> spalle e ginocchia coperte e scarpe tolte prima di entrare negli edifici sacri. Non arrampicarti sulle statue e non puntare i piedi verso Buddha o verso le persone.`,
-`<b>Monaci:</b> le donne non debeno toccarli né passargli oggetti direttamente.`,
+`<b>Monaci:</b> le donne non devono toccarli né passargli oggetti direttamente.`,
 `<b>Testa e piedi:</b> la testa è sacra e non va toccata (nemmeno ai bambini), i piedi sono considerati impuri.`,
 `<b>Famiglia reale:</b> massimo rispetto. La lesa maestà è un reato grave: niente battute o commenti. Non calpestare banconote o monete cadute: hanno il volto del re.`,
 `<b>Saluto:</b> il <em>wai</em> (mani giunte e lieve inchino) si ricambia con un sorriso. Alzare la voce o perdere la calma è molto malvisto.`,
