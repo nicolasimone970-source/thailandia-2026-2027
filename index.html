@@ -30,7 +30,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 .title-container{position:relative;display:inline-block;padding:10px 20px}
 .hero h1{font-weight:800;letter-spacing:-.02em;font-size:2.4rem;margin:0;position:relative;z-index:2}
 
-/* Orbita e Aereo */
+/* Orbita e Aereo che vola attorno al titolo */
 .plane-orbit{position:absolute;top:50%;left:50%;width:260px;height:80px;margin-top:-40px;margin-left:-130px;border-radius:50%;pointer-events:none;z-index:3;animation:orbitFly 7s linear infinite}
 .plane-icon{position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(90deg);color:#fcd34d;font-size:1.3rem;filter:drop-shadow(0 0 6px rgba(252,211,77,.8))}
 
@@ -64,7 +64,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 .tabs .nav-link.active{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(13,148,136,.3)}
 .tabs .nav-link:hover:not(.active){background:#f1f5f9;color:var(--teal)}
 
-/* TAB ANIMATIONS */
 .tab-pane.active{animation:fadeInUp .4s ease-out forwards}
 
 @keyframes fadeInUp{
@@ -72,7 +71,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
   to{opacity:1;transform:translateY(0)}
 }
 
-/* CARDS E ELEMENTI */
+/* CARDS E CAROSELLO TAPPE */
 .cx{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 4px 18px rgba(15,23,42,.05);overflow:hidden;transition:all .3s ease}
 .cx:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(15,23,42,.1)}
 
@@ -92,10 +91,13 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 .conv{background:var(--ink);color:#fff;border-radius:var(--r);padding:22px;height:100%}
 .conv .form-control{background:#1e293b;border-color:#334155;color:#fff}
 
-.dest{height:200px;border-radius:var(--r);background-size:cover;background-position:center;position:relative;overflow:hidden;color:#fff;transition:transform .4s ease}
-.dest:hover{transform:scale(1.02)}
-.dest>div{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;background:linear-gradient(0deg,rgba(15,23,42,.9),rgba(15,23,42,.05) 70%)}
-.dest .tag{align-self:flex-start;background:var(--teal);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:6px}
+/* CAROSELLO DESTINAZIONI TAPPE */
+.dest-carousel{height:220px;border-radius:var(--r);position:relative;overflow:hidden;color:#fff}
+.dest-carousel .carousel-inner, .dest-carousel .carousel-item{height:100%}
+.dest-carousel img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease-in-out}
+.dest-carousel .carousel-item.active img{transform:scale(1.08)}
+.dest-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;background:linear-gradient(0deg,rgba(15,23,42,.92),rgba(15,23,42,.05) 75%);pointer-events:none}
+.dest-overlay .tag{align-self:flex-start;background:var(--teal);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:6px}
 
 .flt{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;margin-bottom:10px;background:#fff;transition:all .25s ease}
 .flt:hover{transform:translateX(4px);box-shadow:0 4px 14px rgba(0,0,0,.06)}
@@ -373,7 +375,7 @@ const GUIDE=[
 `<b>Scooter:</b> meglio evitare. Servono patente adatta e casco, e non tutte le assicurazioni coprono gli incidenti.`,
 `<b>Capodanno a Bangkok:</b> la sera del 31 le strade del centro si bloccano. Muoviti presto, preferisci BTS e MRT e organizza il rientro con anticipo.`]],
 ['hands-praying','Cultura e regole',[
-`<b>Templi:</b> spalle e ginocchia coperte e scarpe tolte prima di entrare negli edifici sacri. Non arrampicarti sulle statue e non puntare i piedi verso Buddha o verso les persone.`,
+`<b>Templi:</b> spalle e ginocchia coperte e scarpe tolte prima di entrare negli edifici sacri. Non arrampicarti sulle statue e non puntare i piedi verso Buddha o verso le persone.`,
 `<b>Monaci:</b> le donne non devono toccarli né passargli oggetti direttamente.`,
 `<b>Testa e piedi:</b> la testa è sacra e non va toccata (nemmeno ai bambini), i piedi sono considerati impuri.`,
 `<b>Famiglia reale:</b> massimo rispetto. La lesa maestà è un reato grave: niente battute o commenti. Non calpestare banconote o monete cadute: hanno il volto del re.`,
@@ -388,7 +390,7 @@ const GUIDE=[
 `<b>Sole e mare:</b> UV molto forti, quindi SPF 50 e cappello. Nei parchi marini come le Phi Phi usa creme reef-safe.`,
 `<b>Farmaci personali:</b> portali nella confezione originale e, se serve, con ricetta o lettera del medico.`]],
 ['suitcase','Valigia e app',[
-`<b>Vestiti:</b> leggeri e traspiranti, più una felpa per le sere di Chiang Mai. Per i templi pantaloni lunghi o gonna sotto il ginocchio e sandali facili da sfilare.`,
+`<b>Vestiti: leggeri e traspiranti, più una felpa per le sere di Chiang Mai. Per i templi pantaloni lunghi o gonna sotto il ginocchio e sandali facili da sfilare.`,
 `<b>Mare:</b> costume, telo, scarpette da scoglio, crema reef-safe e repellente.`,
 `<b>Elettronica:</b> adattatore universale e power bank. Le spine italiane a 2 poli tonde (tipo C) di solito entrano, quelle a 3 poli no.`,
 `<b>Connettività:</b> eSIM turistica (Airalo, Holafly) da attivare prima di partire oppure SIM fisica in aeroporto (AIS, TrueMove).`,
@@ -431,10 +433,51 @@ function conv(s){const e=$('eur'),t=$('thb');
 if(s==='e'){const v=parseFloat(e.value)||0;t.value=v?Math.round(v*RATE):''}
 else{const v=parseFloat(t.value)||0;e.value=v?(v/RATE).toFixed(2):''}}
 
-// ===== RENDER =====
-const STOPS=[['1508009603885-50cf7c579365','Tappa 1 • 3 Notti','Bangkok','Capodanno & Templi Reali'],['1537996194471-e657df975ab4','Tappa 2 • 3 Notti','Chiang Mai','Natura, Templi & Chiang Rai'],['1590523741831-ab7e8b8f9c7f','Tappa 3 • 4 Notti','Phuket','Mare, Phi Phi Islands & Relax']];
+// ===== RENDER CON CAROSELLO DI FOTO =====
+const STOPS=[
+  {
+    id: 'bkk-carousel',
+    tag: 'Tappa 1 • 3 Notti',
+    title: 'Bangkok',
+    sub: 'Capodanno & Templi Reali',
+    imgs: ['1508009603885-50cf7c579365', '1563492065599-3520f775eeed', '1514525253161-7a46d19cd819']
+  },
+  {
+    id: 'cnx-carousel',
+    tag: 'Tappa 2 • 3 Notti',
+    title: 'Chiang Mai',
+    sub: 'Natura, Templi & Chiang Rai',
+    imgs: ['1537996194471-e657df975ab4', '1557050543-4d5f4e07ef46', '1528181304800-259b08848526']
+  },
+  {
+    id: 'hkt-carousel',
+    tag: 'Tappa 3 • 4 Notti',
+    title: 'Phuket',
+    sub: 'Mare, Phi Phi Islands & Relax',
+    imgs: ['1590523741831-ab7e8b8f9c7f', '1589394815804-964ed0be2eb5', '1507525428034-b723cf961d3e']
+  }
+];
+
 function renderStatic(){
-$('stops').innerHTML=STOPS.map(([i,t,n,s])=>`<div class="col-md-4"><div class="dest" style="background-image:url('${U(i,600)}')"><div><span class="tag">${t}</span><h5 class="fw-bold mb-0">${n}</h5><small class="opacity-75">${s}</small></div></div></div>`).join('');
+$('stops').innerHTML=STOPS.map(s=>`
+  <div class="col-md-4">
+    <div id="${s.id}" class="carousel slide carousel-fade dest-carousel" data-bs-ride="carousel" data-bs-interval="3500">
+      <div class="carousel-inner">
+        ${s.imgs.map((img, idx)=>`
+          <div class="carousel-item ${idx===0?'active':''}">
+            <img src="${U(img, 600)}" alt="${s.title}">
+          </div>
+        `).join('')}
+      </div>
+      <div class="dest-overlay">
+        <span class="tag">${s.tag}</span>
+        <h5 class="fw-bold mb-0">${s.title}</h5>
+        <small class="opacity-75">${s.sub}</small>
+      </div>
+    </div>
+  </div>
+`).join('');
+
 $('facts').innerHTML=FACTS.map(([l,v,s])=>`<div class="col-6 col-md-3"><div class="cx fact"><span class="lbl">${l}</span><b>${v}</b><small>${s}</small></div></div>`).join('');
 $('climate').innerHTML=CLIMATE.map(([c,t,n])=>`<div class="col-md-4"><div class="cx p-3 h-100"><div class="d-flex justify-content-between align-items-center mb-1"><strong>${c}</strong><span class="badge bg-light text-dark border">${t}</span></div><p class="small text-muted mb-0">${n}</p></div></div>`).join('');
 $('guide').innerHTML=GUIDE.map(([ic,t,l])=>`<div class="col-md-6"><div class="cx p-4 h-100"><h5 class="sec mb-3"><i class="fa-solid fa-${ic}"></i>${t}</h5><ul class="g">${l.map(x=>`<li>${x}</li>`).join('')}</ul></div></div>`).join('');
