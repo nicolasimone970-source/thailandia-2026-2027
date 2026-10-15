@@ -417,6 +417,192 @@ tabs.forEach(t=>t.addEventListener('shown.bs.tab',e=>{sSet(TK,e.target.dataset.b
 setInterval(countdown,36e5);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){countdown();renderItinerary()}});
 });
+/*nuovo scrpt*/
+(function () {
+  'use strict';
+  var R = matchMedia('(prefers-reduced-motion: reduce)').matches, ready = false;
+
+  /* ---------- STILI ---------- */
+  var css = `
+@keyframes fx-rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fx-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes fx-spin{to{transform:rotate(360deg)}}
+@keyframes fx-pop{0%{transform:scale(.55) rotate(-24deg)}60%{transform:scale(1.28) rotate(8deg)}100%{transform:none}}
+@keyframes fx-grow{from{transform:scaleX(0)}}
+@keyframes fx-drift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(46px,30px) scale(1.18)}}
+@keyframes fx-flow{0%,100%{background-position:0 20%}50%{background-position:100% 80%}}
+@keyframes fx-glow{0%,100%{box-shadow:0 0 0 0 rgba(252,211,77,0)}50%{box-shadow:0 0 30px 3px rgba(252,211,77,.35)}}
+@keyframes fx-ping{0%{box-shadow:0 0 0 0 rgba(25,135,84,.55)}100%{box-shadow:0 0 0 10px rgba(25,135,84,0)}}
+@keyframes fx-fly{0%{transform:translate(0,0) rotate(-6deg);opacity:0}3%{opacity:.85}30%{opacity:.85}35%,100%{transform:translate(calc(100vw + 120px),-130px) rotate(-6deg);opacity:0}}
+
+/* Hero: unico momento orchestrato */
+.hero{position:relative;overflow:hidden;background-size:200% 200%;animation:fx-flow 18s ease-in-out infinite}
+.hero .container{position:relative;z-index:1}
+.hero .container>*{animation:fx-rise .9s cubic-bezier(.2,.8,.2,1) backwards}
+.hero .container>:nth-child(2){animation-delay:.14s}
+.hero .container>:nth-child(3){animation-delay:.28s}
+.hero .container>.count{animation:fx-rise .9s .45s cubic-bezier(.2,.8,.2,1) backwards,fx-glow 3.4s 1.6s ease-in-out infinite}
+.hero .route i{display:inline-block;animation:fx-bob 2.2s ease-in-out infinite}
+.orb{position:absolute;border-radius:50%;filter:blur(46px);pointer-events:none;animation:fx-drift 13s ease-in-out infinite}
+.orb.o1{width:240px;height:240px;top:-90px;left:-70px;background:#14b8a6;opacity:.4}
+.orb.o2{width:280px;height:280px;bottom:-130px;right:-80px;background:#f59e0b;opacity:.24;animation-duration:17s;animation-direction:reverse}
+.plane{position:absolute;left:-60px;top:64%;font-size:1.5rem;color:#fff;opacity:0;pointer-events:none;animation:fx-fly 18s 1.4s cubic-bezier(.45,.05,.55,.95) infinite}
+
+/* Barra di avanzamento scroll */
+.sp{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;height:3px;z-index:1080;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#0d9488,#f59e0b);pointer-events:none}
+
+/* Tab con indicatore che scivola */
+.tabs .nav-link{position:relative;z-index:1;transition:color .3s,background-color .3s}
+.tabs.has-ind .nav-link.active{background:transparent}
+.tabs .nav-link.active i{animation:fx-pop .5s cubic-bezier(.2,.9,.3,1.3)}
+.ind{position:absolute;left:0;top:0;z-index:0;border-radius:13px;background:linear-gradient(135deg,#0d9488,#14b8a6);box-shadow:0 6px 18px rgba(13,148,136,.4);pointer-events:none}
+.tabs.ready .ind{transition:transform .5s cubic-bezier(.65,0,.25,1),width .5s cubic-bezier(.65,0,.25,1),height .5s}
+
+/* Comparsa allo scroll */
+.rv{opacity:0}
+.rv.in{opacity:1;animation:fx-rise .7s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i,0)*90ms)}
+#bar .progress-bar{transform-origin:left;animation:fx-grow 1.3s cubic-bezier(.2,.8,.2,1) .25s backwards}
+.rv:not(.in) #bar .progress-bar{animation:none;transform:scaleX(0)}
+
+/* Risposte al tocco / hover */
+.dest,.kpi,#hotels .cx,#tours .cx{transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s,filter .4s}
+.dest:hover,.kpi:hover,#hotels .cx:hover,#tours .cx:hover{transform:translateY(-6px)}
+.dest:hover{box-shadow:0 18px 36px rgba(15,23,42,.28);filter:saturate(1.15)}
+#hotels .cx:hover,#tours .cx:hover{box-shadow:0 20px 40px rgba(15,23,42,.16)}
+.himg::after,.timg::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.32) 50%,transparent 62%);transform:translateX(-110%);transition:transform .9s}
+.cx:hover .himg::after,.cx:hover .timg::after{transform:translateX(110%)}
+.flt{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.flt:hover{transform:translateX(6px);box-shadow:0 8px 22px rgba(15,23,42,.1);border-left-color:var(--gold)}
+.spot{transition:padding-left .3s,border-color .3s}
+.spot:hover{padding-left:20px;border-left-color:var(--gold)}
+.chk{transition:transform .25s,background-color .3s,border-color .3s}
+.chk:hover{transform:translateX(4px);border-color:var(--teal)}
+.chk.done{background:#f0fdfa;border-color:#99f6e4}
+.btn{transition:transform .2s,box-shadow .25s,background-color .25s,border-color .25s,color .25s}
+.btn:active{transform:scale(.94)}
+.btn-light.rounded-circle:hover{transform:rotate(14deg) scale(1.12)}
+.btn-primary{position:relative;overflow:hidden}
+.btn-primary::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.38) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s}
+.btn-primary:hover::after{transform:translateX(120%)}
+
+/* Meteo, badge "Oggi", modale */
+.wxi i{animation:fx-bob 3.6s ease-in-out infinite}
+.wxi i.fa-sun{animation:fx-spin 22s linear infinite}
+.tbl .badge.bg-success{animation:fx-ping 1.8s infinite}
+.modal.fade .modal-dialog{opacity:0;transform:translateY(36px) scale(.93);transition:transform .5s cubic-bezier(.2,.9,.3,1.25),opacity .3s}
+.modal.show .modal-dialog{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+`;
+  var st = document.createElement('style');
+  st.textContent = css;
+  document.head.appendChild(st);
+
+  /* ---------- COUNT-UP ---------- */
+  function count(el, d) {
+    if (!el || R) return;
+    var o = el.textContent, m = o.match(/\d[\d.]*/);
+    if (!m) return;
+    var to = parseInt(m[0].replace(/\./g, ''), 10);
+    if (!to) return;
+    var a = o.slice(0, m.index), b = o.slice(m.index + m[0].length), t0 = performance.now();
+    d = d || 1300;
+    (function f(t) {
+      var p = Math.min((t - t0) / d, 1), e = 1 - Math.pow(1 - p, 4);
+      el.textContent = p < 1 ? a + Math.round(to * e).toLocaleString('it-IT') + b : o;
+      if (p < 1) requestAnimationFrame(f);
+    })(t0);
+  }
+
+  /* ---------- REVEAL ALLO SCROLL ---------- */
+  var SEL = '.tab-pane>.cx,.tab-pane>.lbl,.tab-pane>.d-flex,.tab-pane>.row:not([id])>*,' +
+            '#stats>*,#stops>*,#flights>*,#itin>*,#hotels>*,#tours>*,#facts>*,#climate>*,#guide>*';
+  var CU = '#days,#tot,#fb,#hb,#stats>:nth-child(n+3) h5';
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var t = e.target;
+      io.unobserve(t);
+      if (t.dataset.cu) count(t); else t.classList.add('in');
+    });
+  }, { threshold: .1, rootMargin: '0px 0px -5% 0px' });
+
+  function fx() {
+    if (R) return;
+    document.querySelectorAll(SEL).forEach(function (el) {
+      if (el.dataset.fx) return;
+      el.dataset.fx = 1;
+      var p = el.parentNode,
+          i = p.matches('.row,tbody,#flights') ? Array.prototype.indexOf.call(p.children, el) : 0;
+      el.style.setProperty('--i', Math.min(i, 3));
+      el.classList.add('rv');
+      io.observe(el);
+    });
+    document.querySelectorAll(CU).forEach(function (el) {
+      if (el.dataset.cu) return;
+      el.dataset.cu = 1;
+      io.observe(el);
+    });
+  }
+
+  /* Dopo ogni salvataggio la pagina ridisegna le liste: rianimo i nuovi elementi */
+  if (typeof window.renderAll === 'function') {
+    var ra = window.renderAll;
+    window.renderAll = function () {
+      var again = ready;
+      ra();
+      fx();
+      if (again) ['tot', 'fb', 'hb'].forEach(function (id) { count(document.getElementById(id), 900); });
+    };
+  }
+
+  /* ---------- AVVIO ---------- */
+  function init() {
+    var hero = document.querySelector('.hero');
+    if (hero) hero.insertAdjacentHTML('afterbegin',
+      '<span class="orb o1" aria-hidden="true"></span><span class="orb o2" aria-hidden="true"></span>' +
+      '<i class="fa-solid fa-plane-departure plane" aria-hidden="true"></i>');
+
+    var sp = document.createElement('div'), tk = 0;
+    sp.className = 'sp';
+    document.body.prepend(sp);
+    addEventListener('scroll', function () {
+      if (tk) return;
+      tk = requestAnimationFrame(function () {
+        tk = 0;
+        var h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+        sp.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
+      });
+    }, { passive: true });
+
+    var tb = document.getElementById('tabs');
+    if (tb) {
+      var ind = document.createElement('span');
+      ind.className = 'ind';
+      tb.insertBefore(ind, tb.firstChild);
+      var place = function (b) {
+        var a = b || tb.querySelector('.nav-link.active');
+        if (!a) return;
+        ind.style.width = a.offsetWidth + 'px';
+        ind.style.height = a.offsetHeight + 'px';
+        ind.style.transform = 'translate(' + a.offsetLeft + 'px,' + a.offsetTop + 'px)';
+      };
+      place();
+      tb.classList.add('has-ind');
+      requestAnimationFrame(function () { requestAnimationFrame(function () { tb.classList.add('ready'); }); });
+      tb.addEventListener('show.bs.tab', function (e) { place(e.target); });
+      tb.addEventListener('shown.bs.tab', function () { place(); });
+      addEventListener('resize', function () { place(); });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { place(); });
+    }
+
+    fx();
+    ready = true;
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+  /*nuovo scrpt*/
 </script>
 </body>
 </html>
