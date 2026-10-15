@@ -23,23 +23,23 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 .btn-primary{--bs-btn-bg:var(--teal);--bs-btn-border-color:var(--teal);--bs-btn-hover-bg:var(--teal-d);--bs-btn-hover-border-color:var(--teal-d);--bs-btn-active-bg:#0a6f66;--bs-btn-active-border-color:#0a6f66;font-weight:700;transition:all .25s ease}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(13,148,136,.3)}
 
-/* HERO & ANIMAZIONE AEREO */
-.hero{background:linear-gradient(160deg,#0f172a 0%,#17325a 55%,#0d9488 135%);color:#fff;text-align:center;padding:calc(40px + env(safe-area-inset-top,0px)) 20px 54px;border-radius:0 0 32px 32px;position:relative;overflow:hidden}
-.hero .route{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fcd34d;margin-bottom:10px}
+/* AEREO CHE VOLA PER LA PAGINA */
+.page-flying-plane{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:99;overflow:hidden}
+.wandering-plane{position:absolute;font-size:1.6rem;color:#fcd34d;filter:drop-shadow(0 0 8px rgba(252,211,77,.8));animation:flyAcrossPage 16s linear infinite}
 
-.title-container{position:relative;display:inline-block;padding:10px 20px}
-.hero h1{font-weight:800;letter-spacing:-.02em;font-size:2.4rem;margin:0;position:relative;z-index:2}
-
-/* Orbita e Aereo che vola attorno al titolo */
-.plane-orbit{position:absolute;top:50%;left:50%;width:260px;height:80px;margin-top:-40px;margin-left:-130px;border-radius:50%;pointer-events:none;z-index:3;animation:orbitFly 7s linear infinite}
-.plane-icon{position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(90deg);color:#fcd34d;font-size:1.3rem;filter:drop-shadow(0 0 6px rgba(252,211,77,.8))}
-
-@keyframes orbitFly{
-  0%{transform:rotate(0deg) rotateX(60deg) rotateZ(0deg)}
-  100%{transform:rotate(360deg) rotateX(60deg) rotateZ(-360deg)}
+@keyframes flyAcrossPage{
+  0%{top:85vh;left:-60px;transform:rotate(-25deg) scale(.8)}
+  25%{top:30vh;left:35vw;transform:rotate(10deg) scale(1)}
+  50%{top:60vh;left:75vw;transform:rotate(-15deg) scale(1.1)}
+  75%{top:15vh;left:90vw;transform:rotate(5deg) scale(.9)}
+  100%{top:-60px;left:calc(100vw + 60px);transform:rotate(-30deg) scale(.85)}
 }
 
-/* Nuvole e Palme Fluttuanti */
+/* HERO & DECORAZIONI */
+.hero{background:linear-gradient(160deg,#0f172a 0%,#17325a 55%,#0d9488 135%);color:#fff;text-align:center;padding:calc(40px + env(safe-area-inset-top,0px)) 20px 54px;border-radius:0 0 32px 32px;position:relative;overflow:hidden}
+.hero .route{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fcd34d;margin-bottom:10px}
+.hero h1{font-weight:800;letter-spacing:-.02em;font-size:2.4rem;margin:0 0 6px;position:relative;z-index:2}
+
 .hero-deco{position:absolute;opacity:.15;pointer-events:none;animation:floatDeco 6s ease-in-out infinite alternate}
 .hero-deco.cloud1{top:15%;left:5%;font-size:2.5rem;animation-duration:7s}
 .hero-deco.cloud2{top:25%;right:6%;font-size:3rem;animation-duration:9s;animation-delay:-2s}
@@ -140,7 +140,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 .form-control:focus,.form-select:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,148,136,.15)}
 .empty{text-align:center;color:var(--mut);padding:36px 16px}
 
-@media(min-width:768px){.tabs{display:flex;justify-content:center;gap:6px}.tabs .nav-link{flex-direction:row;gap:10px;padding:10px 26px;font-size:.88rem}.hero h1{font-size:2.9rem}.plane-orbit{width:360px;height:100px;margin-top:-50px;margin-left:-180px}}
+@media(min-width:768px){.tabs{display:flex;justify-content:center;gap:6px}.tabs .nav-link{flex-direction:row;gap:10px;padding:10px 26px;font-size:.88rem}.hero h1{font-size:2.9rem}}
 @media(max-width:767.98px){
 .tbl thead{display:none}.tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
 .tbl tr{margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 16px}
@@ -153,6 +153,11 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 </head>
 <body>
 
+<!-- AEREO CHE VOLA PER LA PAGINA -->
+<div class="page-flying-plane">
+  <i class="fa-solid fa-plane wandering-plane"></i>
+</div>
+
 <header class="hero">
   <div class="hero-deco cloud1"><i class="fa-solid fa-cloud"></i></div>
   <div class="hero-deco cloud2"><i class="fa-solid fa-cloud"></i></div>
@@ -161,14 +166,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 
   <div class="container">
     <div class="route"><i class="fa-solid fa-location-dot me-1"></i>Bangkok → Chiang Mai → Phuket</div>
-    
-    <div class="title-container">
-      <h1>Thailandia Trip</h1>
-      <div class="plane-orbit">
-        <i class="fa-solid fa-plane plane-icon"></i>
-      </div>
-    </div>
-
+    <h1>Thailandia Trip</h1>
     <div class="dates"><i class="fa-regular fa-calendar-check me-1"></i>28 dicembre 2026 – 8 gennaio 2027</div>
     <div class="count" aria-live="polite"><b id="days">–</b><span id="label">giorni alla partenza</span></div>
   </div>
@@ -390,7 +388,7 @@ const GUIDE=[
 `<b>Sole e mare:</b> UV molto forti, quindi SPF 50 e cappello. Nei parchi marini come le Phi Phi usa creme reef-safe.`,
 `<b>Farmaci personali:</b> portali nella confezione originale e, se serve, con ricetta o lettera del medico.`]],
 ['suitcase','Valigia e app',[
-`<b>Vestiti: leggeri e traspiranti, più una felpa per le sere di Chiang Mai. Per i templi pantaloni lunghi o gonna sotto il ginocchio e sandali facili da sfilare.`,
+`<b>Vestiti:</b> leggeri e traspiranti, più una felpa per le sere di Chiang Mai. Per i templi pantaloni lunghi o gonna sotto il ginocchio e sandali facili da sfilare.`,
 `<b>Mare:</b> costume, telo, scarpette da scoglio, crema reef-safe e repellente.`,
 `<b>Elettronica:</b> adattatore universale e power bank. Le spine italiane a 2 poli tonde (tipo C) di solito entrano, quelle a 3 poli no.`,
 `<b>Connettività:</b> eSIM turistica (Airalo, Holafly) da attivare prima di partire oppure SIM fisica in aeroporto (AIS, TrueMove).`,
