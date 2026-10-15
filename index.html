@@ -16,36 +16,37 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
-:root{--ink:#0f172a;--teal:#0d9488;--teal-d:#0b7f75;--gold:#f59e0b;--line:#e2e8f0;--mut:#64748b;--r:18px}
+:root{--ink:#0f172a;--teal:#0d9488;--teal-d:#0b7f75;--gold:#f59e0b;--line:#e2e8f0;--mut:#64748b;--r:20px}
 html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,24px);overflow-x:hidden}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,24px);overflow-x:hidden}
 .text-teal{color:var(--teal)!important}
-.btn-primary{--bs-btn-bg:var(--teal);--bs-btn-border-color:var(--teal);--bs-btn-hover-bg:var(--teal-d);--bs-btn-hover-border-color:var(--teal-d);--bs-btn-active-bg:#0a6f66;--bs-btn-active-border-color:#0a6f66;font-weight:700;transition:all .25s ease}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(13,148,136,.3)}
 
-/* HERO & LANTERNE THAILANDESI FLUTTUANTI */
-.hero{background:linear-gradient(160deg,#0f172a 0%,#17325a 55%,#0d9488 135%);color:#fff;text-align:center;padding:calc(40px + env(safe-area-inset-top,0px)) 20px 54px;border-radius:0 0 32px 32px;position:relative;overflow:hidden}
-.hero .route{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fcd34d;margin-bottom:10px;position:relative;z-index:2}
-.hero h1{font-weight:800;letter-spacing:-.02em;font-size:2.4rem;margin:0 0 6px;position:relative;z-index:2}
+/* BOTTONI PROFESSIONALI */
+.btn-primary{--bs-btn-bg:var(--teal);--bs-btn-border-color:var(--teal);--bs-btn-hover-bg:var(--teal-d);--bs-btn-hover-border-color:var(--teal-d);--bs-btn-active-bg:#0a6f66;--bs-btn-active-border-color:#0a6f66;font-weight:700;transition:all .3s cubic-bezier(0.4,0,0.2,1);box-shadow:0 4px 12px rgba(13,148,136,.2)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(13,148,136,.35)}
 
-/* Effetto Lanterne Fluttuanti Tradizionali */
+/* HERO & LANTERNE THAILANDESI */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0d9488 120%);color:#fff;text-align:center;padding:calc(48px + env(safe-area-inset-top,0px)) 20px 64px;border-radius:0 0 36px 36px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(15,23,42,.15)}
+.hero .route{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#fcd34d;margin-bottom:12px;position:relative;z-index:2;animation:fadeInDown .8s ease}
+.hero h1{font-weight:800;letter-spacing:-.03em;font-size:2.6rem;margin:0 0 8px;position:relative;z-index:2;animation:fadeInUp .8s ease}
+
+/* Lanterne Fluttuanti */
 .floating-lanterns{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-.lantern{position:absolute;bottom:-60px;width:18px;height:26px;background:radial-gradient(circle,#fffb85 0%,#f59e0b 60%,#b45309 100%);border-radius:50% 50% 40% 40%;box-shadow:0 0 15px #f59e0b,0 0 25px #fcd34d;animation:floatLantern 9s ease-in-out infinite;opacity:0.75}
-.lantern:nth-child(1){left:12%;animation-duration:10s;animation-delay:0s}
-.lantern:nth-child(2){left:28%;animation-duration:8s;animation-delay:3s}
-.lantern:nth-child(3){left:50%;animation-duration:11s;animation-delay:1.5s}
-.lantern:nth-child(4){left:72%;animation-duration:9s;animation-delay:4s}
-.lantern:nth-child(5){left:88%;animation-duration:7.5s;animation-delay:2s}
+.lantern{position:absolute;bottom:-60px;width:16px;height:24px;background:radial-gradient(circle,#fffb85 0%,#f59e0b 60%,#b45309 100%);border-radius:50% 50% 40% 40%;box-shadow:0 0 12px #f59e0b,0 0 20px #fcd34d;animation:floatLantern 10s ease-in-out infinite;opacity:0.7}
+.lantern:nth-child(1){left:10%;animation-duration:11s;animation-delay:0s}
+.lantern:nth-child(2){left:25%;animation-duration:8.5s;animation-delay:2.5s}
+.lantern:nth-child(3){left:48%;animation-duration:12s;animation-delay:1s}
+.lantern:nth-child(4){left:70%;animation-duration:9s;animation-delay:3.5s}
+.lantern:nth-child(5){left:88%;animation-duration:7.8s;animation-delay:1.8s}
 
 @keyframes floatLantern{
-  0%{transform:translateY(0) translateX(0) scale(0.8);opacity:0}
-  20%{opacity:0.85}
-  80%{opacity:0.75}
-  100%{transform:translateY(-340px) translateX(25px) scale(1.1);opacity:0}
+  0%{transform:translateY(0) translateX(0) scale(0.7);opacity:0}
+  20%{opacity:0.8}
+  80%{opacity:0.7}
+  100%{transform:translateY(-360px) translateX(20px) scale(1.15);opacity:0}
 }
 
-/* Nuvole e Palme Fluttuanti */
-.hero-deco{position:absolute;opacity:.15;pointer-events:none;animation:floatDeco 6s ease-in-out infinite alternate;z-index:2}
+.hero-deco{position:absolute;opacity:.12;pointer-events:none;animation:floatDeco 6s ease-in-out infinite alternate;z-index:2}
 .hero-deco.cloud1{top:15%;left:5%;font-size:2.5rem;animation-duration:7s}
 .hero-deco.cloud2{top:25%;right:6%;font-size:3rem;animation-duration:9s;animation-delay:-2s}
 .hero-deco.palm1{bottom:10%;left:3%;font-size:2.2rem;animation-duration:5s}
@@ -53,104 +54,112 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 
 @keyframes floatDeco{
   0%{transform:translateY(0) rotate(0deg)}
-  100%{transform:translateY(-12px) rotate(4deg)}
+  100%{transform:translateY(-10px) rotate(3deg)}
 }
 
-.hero .dates{opacity:.82;font-weight:500;font-size:.95rem;position:relative;z-index:2}
-.count{display:inline-flex;align-items:baseline;gap:10px;margin-top:20px;padding:10px 24px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);border-radius:999px;position:relative;z-index:2;transition:transform .3s ease}
-.count:hover{transform:scale(1.04)}
+.hero .dates{opacity:.85;font-weight:500;font-size:.95rem;position:relative;z-index:2;animation:fadeInUp 1s ease}
+.count{display:inline-flex;align-items:baseline;gap:10px;margin-top:22px;padding:10px 26px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border-radius:999px;position:relative;z-index:2;transition:all .3s ease;animation:fadeInUp 1.2s ease}
+.count:hover{transform:scale(1.03);background:rgba(255,255,255,.12);box-shadow:0 4px 15px rgba(0,0,0,.2)}
 .count b{font-size:1.8rem;color:#fcd34d;line-height:1}
 
-/* TABS */
-.tabs{position:sticky;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:20;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:6px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px rgba(15,23,42,.1);margin:-26px auto 24px;max-width:780px}
-.tabs .nav-link{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px;border-radius:13px;color:var(--mut);font-weight:700;font-size:.72rem;white-space:nowrap;transition:all .25s ease}
-.tabs .nav-link i{font-size:1.1rem;transition:transform .25s ease}
-.tabs .nav-link:hover i{transform:scale(1.2)}
-.tabs .nav-link.active{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(13,148,136,.3)}
+/* TABS STILOSE */
+.tabs{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:20;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:6px;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 30px rgba(15,23,42,.08);margin:-30px auto 28px;max-width:780px}
+.tabs .nav-link{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px;border-radius:14px;color:var(--mut);font-weight:700;font-size:.72rem;white-space:nowrap;transition:all .3s cubic-bezier(0.4,0,0.2,1)}
+.tabs .nav-link i{font-size:1.1rem;transition:transform .3s ease}
+.tabs .nav-link:hover i{transform:scale(1.15);color:var(--teal)}
+.tabs .nav-link.active{background:var(--teal);color:#fff;box-shadow:0 4px 14px rgba(13,148,136,.35);transform:translateY(-1px)}
 .tabs .nav-link:hover:not(.active){background:#f1f5f9;color:var(--teal)}
 
-.tab-pane.active{animation:fadeInUp .4s ease-out forwards}
+.tab-pane.active{animation:fadeInUpSmooth .45s cubic-bezier(0.16, 1, 0.3, 1) forwards}
 
+@keyframes fadeInUpSmooth{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeInDown{
+  from{opacity:0;transform:translateY(-10px)}
+  to{opacity:1;transform:translateY(0)}
+}
 @keyframes fadeInUp{
-  from{opacity:0;transform:translateY(12px)}
+  from{opacity:0;transform:translateY(10px)}
   to{opacity:1;transform:translateY(0)}
 }
 
-/* CARDS E CAROSELLO TAPPE */
-.cx{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 4px 18px rgba(15,23,42,.05);overflow:hidden;transition:all .3s ease}
-.cx:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(15,23,42,.1)}
+/* CARDS CON EFFETTO LIFT */
+.cx{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 4px 20px rgba(15,23,42,.04);overflow:hidden;transition:all .35s cubic-bezier(0.4,0,0.2,1)}
+.cx:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(15,23,42,.09);border-color:#cbd5e1}
 
 .lbl{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
 .sec{font-weight:800;font-size:1.05rem;margin:0}
 .sec i{color:var(--teal);margin-right:8px}
-.fact{padding:14px 16px;height:100%}
+.fact{padding:16px;height:100%}
 .fact b{display:block;font-size:1.15rem;color:var(--ink)}
 .fact small{color:var(--mut)}
-.wxi{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:12px 8px;text-align:center;height:100%;transition:transform .25s ease}
-.wxi:hover{transform:scale(1.03)}
-.kpi{padding:16px 18px;border-radius:var(--r);color:#fff;height:100%;position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease}
-.kpi:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.wxi{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:14px 8px;text-align:center;height:100%;transition:all .25s ease}
+.wxi:hover{transform:scale(1.03);background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.04)}
+.kpi{padding:18px;border-radius:var(--r);color:#fff;height:100%;position:relative;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.08);transition:all .3s ease}
+.kpi:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,.15)}
 .kpi i{position:absolute;right:14px;bottom:10px;font-size:3.2rem;opacity:.15;transition:transform .4s ease}
-.kpi:hover i{transform:scale(1.15) rotate(-5deg)}
-.kpi small{color:rgba(255,255,255,.7)}
-.conv{background:var(--ink);color:#fff;border-radius:var(--r);padding:22px;height:100%}
+.kpi:hover i{transform:scale(1.15) rotate(-6deg)}
+.kpi small{color:rgba(255,255,255,.75)}
+.conv{background:var(--ink);color:#fff;border-radius:var(--r);padding:24px;height:100%;box-shadow:0 8px 24px rgba(15,23,42,.15)}
 .conv .form-control{background:#1e293b;border-color:#334155;color:#fff}
 
-/* CAROSELLO DESTINAZIONI TAPPE */
-.dest-carousel{height:220px;border-radius:var(--r);position:relative;overflow:hidden;color:#fff}
+/* CAROSELLO DESTINAZIONI */
+.dest-carousel{height:220px;border-radius:var(--r);position:relative;overflow:hidden;color:#fff;box-shadow:0 4px 18px rgba(0,0,0,.08)}
 .dest-carousel .carousel-inner, .dest-carousel .carousel-item{height:100%}
 .dest-carousel img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease-in-out}
 .dest-carousel .carousel-item.active img{transform:scale(1.08)}
-.dest-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;background:linear-gradient(0deg,rgba(15,23,42,.92),rgba(15,23,42,.05) 75%);pointer-events:none}
-.dest-overlay .tag{align-self:flex-start;background:var(--teal);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:6px}
+.dest-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;background:linear-gradient(0deg,rgba(15,23,42,.92),rgba(15,23,42,.05) 75%);pointer-events:none}
+.dest-overlay .tag{align-self:flex-start;background:var(--teal);font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:6px}
 
-.flt{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;margin-bottom:10px;background:#fff;transition:all .25s ease}
-.flt:hover{transform:translateX(4px);box-shadow:0 4px 14px rgba(0,0,0,.06)}
+.flt{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:16px 20px;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;margin-bottom:12px;background:#fff;transition:all .25s ease}
+.flt:hover{transform:translateX(4px);box-shadow:0 4px 15px rgba(0,0,0,.05);border-color:#cbd5e1}
 
 .himg,.timg{position:relative;display:block;height:200px;overflow:hidden}
-.himg img,.timg img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.himg img,.timg img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(0.4,0,0.2,1)}
 .cx:hover .himg img,.cx:hover .timg img{transform:scale(1.06)}
-.pill{position:absolute;font-size:.78rem;font-weight:700;padding:5px 14px;border-radius:999px;color:#fff}
-.pill.a{top:14px;left:14px;background:rgba(15,23,42,.82)}
+.pill{position:absolute;font-size:.78rem;font-weight:700;padding:5px 14px;border-radius:999px;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.pill.a{top:14px;left:14px;background:rgba(15,23,42,.85);backdrop-filter:blur(4px)}
 .pill.b{bottom:14px;right:14px;background:var(--teal)}
-.acts{position:absolute;top:12px;right:12px;z-index:5;background:rgba(255,255,255,.94);border-radius:14px;padding:4px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.acts{position:absolute;top:12px;right:12px;z-index:5;background:rgba(255,255,255,.95);backdrop-filter:blur(4px);border-radius:14px;padding:4px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
 .btn-maps{background:#1a73e8;color:#fff;font-weight:700;border-radius:12px;font-size:.88rem;transition:all .2s ease}
-.btn-maps:hover{background:#1558b8;color:#fff;transform:translateY(-1px)}
-.spot{border-left:3px solid var(--teal);padding-left:12px;margin-bottom:16px}
+.btn-maps:hover{background:#1558b8;color:#fff;transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,115,232,.3)}
+.spot{border-left:3px solid var(--teal);padding-left:14px;margin-bottom:18px}
 .spot:last-child{margin-bottom:0}
 .g{padding-left:1.1rem;margin:0}
-.g li{font-size:.88rem;color:#334155;margin-bottom:.55rem;line-height:1.5}
+.g li{font-size:.88rem;color:#334155;margin-bottom:.6rem;line-height:1.5}
 .g li:last-child{margin-bottom:0}
-.ph{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #f1f5f9;font-size:.9rem}
+.ph{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:.9rem}
 .ph:last-child{border:0}
 .ph b{color:var(--teal-d);text-align:right}
 
-.chk{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#f8fafc;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer;font-size:.88rem;transition:all .2s ease}
-.chk:hover{background:#f1f5f9;transform:translateX(2px)}
+.chk{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#f8fafc;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;cursor:pointer;font-size:.88rem;transition:all .25s ease}
+.chk:hover{background:#f1f5f9;transform:translateX(3px);border-color:#cbd5e1}
 .chk input{width:18px;height:18px;accent-color:var(--teal);flex:none;transition:transform .2s ease}
-.chk input:checked{transform:scale(1.15)}
+.chk input:checked{transform:scale(1.2)}
 .chk.done span{text-decoration:line-through;color:#94a3b8}
 
-.tbl th{background:#f8fafc;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;padding:14px}
-.tbl td{padding:14px;vertical-align:middle;font-size:.9rem}
+.tbl th{background:#f8fafc;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;padding:16px}
+.tbl td{padding:16px;vertical-align:middle;font-size:.9rem}
 .tbl tr{transition:background-color .2s ease}
-.tbl tr.today{background:rgba(13,148,136,.12);animation:pulseToday 2s infinite alternate}
+.tbl tr.today{background:rgba(13,148,136,.1);animation:pulseToday 2.5s infinite alternate}
 
 @keyframes pulseToday{
   0%{background:rgba(13,148,136,.06)}
-  100%{background:rgba(13,148,136,.14)}
+  100%{background:rgba(13,148,136,.16)}
 }
 
-.form-control,.form-select{border-radius:12px;padding:10px 14px;transition:all .2s ease}
+.form-control,.form-select{border-radius:12px;padding:11px 16px;border-color:var(--line);transition:all .25s ease}
 .form-control:focus,.form-select:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,148,136,.15)}
-.empty{text-align:center;color:var(--mut);padding:36px 16px}
+.empty{text-align:center;color:var(--mut);padding:40px 16px}
 
-@media(min-width:768px){.tabs{display:flex;justify-content:center;gap:6px}.tabs .nav-link{flex-direction:row;gap:10px;padding:10px 26px;font-size:.88rem}.hero h1{font-size:2.9rem}}
+@media(min-width:768px){.tabs{display:flex;justify-content:center;gap:6px}.tabs .nav-link{flex-direction:row;gap:10px;padding:10px 28px;font-size:.88rem}.hero h1{font-size:3rem}}
 @media(max-width:767.98px){
 .tbl thead{display:none}.tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
-.tbl tr{margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 16px}
+.tbl tr{margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 16px;box-shadow:0 2px 10px rgba(0,0,0,.02)}
 .tbl tr.today{border:2px solid var(--teal)}
-.tbl td{display:flex;justify-content:space-between;gap:12px;text-align:right;padding:9px 0;border-bottom:1px dashed #f1f5f9}
+.tbl td{display:flex;justify-content:space-between;gap:12px;text-align:right;padding:10px 0;border-bottom:1px dashed #f1f5f9}
 .tbl td:last-child{border:0;justify-content:flex-end}
 .tbl td::before{content:attr(data-label);font-weight:800;color:var(--mut);text-transform:uppercase;font-size:.7rem;text-align:left}
 .tbl td[data-label=Azioni]::before{display:none}}
@@ -159,7 +168,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 <body>
 
 <header class="hero">
-  <!-- Lanterne Thailandesi Fluttuanti Decorative -->
+  <!-- Lanterne Thailandesi Fluttuanti -->
   <div class="floating-lanterns">
     <div class="lantern"></div>
     <div class="lantern"></div>
@@ -279,7 +288,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
   </div>
 </div>
 
-<!-- MODALE UNICA (voli, itinerario, hotel) -->
+<!-- MODALE UNICA -->
 <div class="modal fade" id="crud" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content rounded-4 border-0 shadow-lg">
   <div class="modal-header border-0 pb-0"><h5 class="modal-title fw-bold" id="crudTitle"></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button></div>
   <div class="modal-body"><form id="crudForm"><div id="crudFields"></div><button type="submit" class="btn btn-primary w-100 rounded-pill py-2 mt-2">Salva</button></form></div>
@@ -370,7 +379,7 @@ const GUIDE=[
 `<b>Prelievi:</b> con carta straniera ogni prelievo ha una commissione fissa di circa 220–250 THB (fino a 350 in alcuni sportelli con certe Mastercard). Meglio pochi prelievi di importo alto (di solito fino a 20.000–30.000 THB), controllando la commissione a schermo prima di confermare.`,
 `Paga sempre in <b>THB</b>, mai nella valuta di casa quando sportello o POS lo propone: la conversione è sfavorevole.`,
 `Carta di riserva nella cassaforte dell'hotel e banca avvisata del viaggio. Una carta senza commissioni sull'estero (es. Wise o Revolut) fa risparmiare.`,
-`<b>Cambio:</b> i cambiavalute in città (a Bangkok molto usati i SuperRich) di solito battono aeroporto e hotel.`,
+`<strong>Cambio:</strong> i cambiavalute in città (a Bangkok molto usati i SuperRich) di solito battono aeroporto e hotel.`,
 `<b>Mance</b> non obbligatorie: 20–50 THB per il facchino e qualche moneta al ristorante, controllando se il 10% di servizio è già incluso.`,
 `<b>Prezzi:</b> al mercato si tratta con il sorriso; nei negozi, nei ristoranti e con Grab il prezzo è fisso.`]],
 ['taxi','Muoversi',[
@@ -398,7 +407,7 @@ const GUIDE=[
 `<b>Farmaci personali:</b> portali nella confezione originale e, se serve, con ricetta o lettera del medico.`]],
 ['suitcase','Valigia e app',[
 `<b>Vestiti:</b> leggeri e traspiranti, più una felpa per le sere di Chiang Mai. Per i templi pantaloni lunghi o gonna sotto il ginocchio e sandali facili da sfilare.`,
-`<b>Mare:</b> costume, telo, scarpette da scoglio, crema reef-safe e repellente.`,
+`<strong>Mare:</strong> costume, telo, scarpette da scoglio, crema reef-safe e repellente.`,
 `<b>Elettronica:</b> adattatore universale e power bank. Le spine italiane a 2 poli tonde (tipo C) di solito entrano, quelle a 3 poli no.`,
 `<b>Connettività:</b> eSIM turistica (Airalo, Holafly) da attivare prima di partire oppure SIM fisica in aeroporto (AIS, TrueMove).`,
 `<b>App utili:</b> Grab, Bolt, Google Maps con mappe offline, Google Translate con il thailandese scaricato e LINE, molto usata dai locali.`,
