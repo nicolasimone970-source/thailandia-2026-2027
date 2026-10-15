@@ -18,46 +18,97 @@
 <style>
 :root{--ink:#0f172a;--teal:#0d9488;--teal-d:#0b7f75;--gold:#f59e0b;--line:#e2e8f0;--mut:#64748b;--r:18px}
 html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,24px)}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,24px);overflow-x:hidden}
 .text-teal{color:var(--teal)!important}
-.btn-primary{--bs-btn-bg:var(--teal);--bs-btn-border-color:var(--teal);--bs-btn-hover-bg:var(--teal-d);--bs-btn-hover-border-color:var(--teal-d);--bs-btn-active-bg:#0a6f66;--bs-btn-active-border-color:#0a6f66;font-weight:700}
-.hero{background:linear-gradient(160deg,#0f172a 0%,#17325a 55%,#0d9488 135%);color:#fff;text-align:center;padding:calc(40px + env(safe-area-inset-top,0px)) 20px 54px;border-radius:0 0 32px 32px}
+.btn-primary{--bs-btn-bg:var(--teal);--bs-btn-border-color:var(--teal);--bs-btn-hover-bg:var(--teal-d);--bs-btn-hover-border-color:var(--teal-d);--bs-btn-active-bg:#0a6f66;--bs-btn-active-border-color:#0a6f66;font-weight:700;transition:all .25s ease}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(13,148,136,.3)}
+
+/* HERO & ANIMAZIONE AEREO */
+.hero{background:linear-gradient(160deg,#0f172a 0%,#17325a 55%,#0d9488 135%);color:#fff;text-align:center;padding:calc(40px + env(safe-area-inset-top,0px)) 20px 54px;border-radius:0 0 32px 32px;position:relative;overflow:hidden}
 .hero .route{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fcd34d;margin-bottom:10px}
-.hero h1{font-weight:800;letter-spacing:-.02em;font-size:2.4rem;margin:0 0 6px}
-.hero .dates{opacity:.82;font-weight:500;font-size:.95rem}
-.count{display:inline-flex;align-items:baseline;gap:10px;margin-top:20px;padding:10px 24px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);border-radius:999px}
+
+.title-container{position:relative;display:inline-block;padding:10px 20px}
+.hero h1{font-weight:800;letter-spacing:-.02em;font-size:2.4rem;margin:0;position:relative;z-index:2}
+
+/* Orbita e Aereo */
+.plane-orbit{position:absolute;top:50%;left:50%;width:260px;height:80px;margin-top:-40px;margin-left:-130px;border-radius:50%;pointer-events:none;z-index:3;animation:orbitFly 7s linear infinite}
+.plane-icon{position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(90deg);color:#fcd34d;font-size:1.3rem;filter:drop-shadow(0 0 6px rgba(252,211,77,.8))}
+
+@keyframes orbitFly{
+  0%{transform:rotate(0deg) rotateX(60deg) rotateZ(0deg)}
+  100%{transform:rotate(360deg) rotateX(60deg) rotateZ(-360deg)}
+}
+
+/* Nuvole e Palme Fluttuanti */
+.hero-deco{position:absolute;opacity:.15;pointer-events:none;animation:floatDeco 6s ease-in-out infinite alternate}
+.hero-deco.cloud1{top:15%;left:5%;font-size:2.5rem;animation-duration:7s}
+.hero-deco.cloud2{top:25%;right:6%;font-size:3rem;animation-duration:9s;animation-delay:-2s}
+.hero-deco.palm1{bottom:10%;left:3%;font-size:2.2rem;animation-duration:5s}
+.hero-deco.palm2{bottom:12%;right:4%;font-size:2.2rem;animation-duration:6s;animation-delay:-1s}
+
+@keyframes floatDeco{
+  0%{transform:translateY(0) rotate(0deg)}
+  100%{transform:translateY(-12px) rotate(4deg)}
+}
+
+.hero .dates{opacity:.82;font-weight:500;font-size:.95rem;position:relative;z-index:2}
+.count{display:inline-flex;align-items:baseline;gap:10px;margin-top:20px;padding:10px 24px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);border-radius:999px;position:relative;z-index:2;transition:transform .3s ease}
+.count:hover{transform:scale(1.04)}
 .count b{font-size:1.8rem;color:#fcd34d;line-height:1}
+
+/* TABS */
 .tabs{position:sticky;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:20;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:6px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px rgba(15,23,42,.1);margin:-26px auto 24px;max-width:780px}
-.tabs .nav-link{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px;border-radius:13px;color:var(--mut);font-weight:700;font-size:.72rem;white-space:nowrap}
-.tabs .nav-link i{font-size:1.1rem}
-.tabs .nav-link.active{background:var(--teal);color:#fff}
+.tabs .nav-link{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px;border-radius:13px;color:var(--mut);font-weight:700;font-size:.72rem;white-space:nowrap;transition:all .25s ease}
+.tabs .nav-link i{font-size:1.1rem;transition:transform .25s ease}
+.tabs .nav-link:hover i{transform:scale(1.2)}
+.tabs .nav-link.active{background:var(--teal);color:#fff;box-shadow:0 4px 12px rgba(13,148,136,.3)}
 .tabs .nav-link:hover:not(.active){background:#f1f5f9;color:var(--teal)}
-.cx{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 4px 18px rgba(15,23,42,.05);overflow:hidden}
+
+/* TAB ANIMATIONS */
+.tab-pane.active{animation:fadeInUp .4s ease-out forwards}
+
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* CARDS E ELEMENTI */
+.cx{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 4px 18px rgba(15,23,42,.05);overflow:hidden;transition:all .3s ease}
+.cx:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(15,23,42,.1)}
+
 .lbl{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
 .sec{font-weight:800;font-size:1.05rem;margin:0}
 .sec i{color:var(--teal);margin-right:8px}
 .fact{padding:14px 16px;height:100%}
 .fact b{display:block;font-size:1.15rem;color:var(--ink)}
 .fact small{color:var(--mut)}
-.wxi{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:12px 8px;text-align:center;height:100%}
-.kpi{padding:16px 18px;border-radius:var(--r);color:#fff;height:100%;position:relative;overflow:hidden}
-.kpi i{position:absolute;right:14px;bottom:10px;font-size:3.2rem;opacity:.15}
+.wxi{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:12px 8px;text-align:center;height:100%;transition:transform .25s ease}
+.wxi:hover{transform:scale(1.03)}
+.kpi{padding:16px 18px;border-radius:var(--r);color:#fff;height:100%;position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease}
+.kpi:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.kpi i{position:absolute;right:14px;bottom:10px;font-size:3.2rem;opacity:.15;transition:transform .4s ease}
+.kpi:hover i{transform:scale(1.15) rotate(-5deg)}
 .kpi small{color:rgba(255,255,255,.7)}
 .conv{background:var(--ink);color:#fff;border-radius:var(--r);padding:22px;height:100%}
 .conv .form-control{background:#1e293b;border-color:#334155;color:#fff}
-.dest{height:200px;border-radius:var(--r);background-size:cover;background-position:center;position:relative;overflow:hidden;color:#fff}
+
+.dest{height:200px;border-radius:var(--r);background-size:cover;background-position:center;position:relative;overflow:hidden;color:#fff;transition:transform .4s ease}
+.dest:hover{transform:scale(1.02)}
 .dest>div{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;background:linear-gradient(0deg,rgba(15,23,42,.9),rgba(15,23,42,.05) 70%)}
 .dest .tag{align-self:flex-start;background:var(--teal);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:6px}
-.flt{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;margin-bottom:10px;background:#fff}
+
+.flt{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:16px 18px;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:14px;margin-bottom:10px;background:#fff;transition:all .25s ease}
+.flt:hover{transform:translateX(4px);box-shadow:0 4px 14px rgba(0,0,0,.06)}
+
 .himg,.timg{position:relative;display:block;height:200px;overflow:hidden}
-.himg img,.timg img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.cx:hover .himg img,.cx:hover .timg img{transform:scale(1.05)}
+.himg img,.timg img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.cx:hover .himg img,.cx:hover .timg img{transform:scale(1.06)}
 .pill{position:absolute;font-size:.78rem;font-weight:700;padding:5px 14px;border-radius:999px;color:#fff}
 .pill.a{top:14px;left:14px;background:rgba(15,23,42,.82)}
 .pill.b{bottom:14px;right:14px;background:var(--teal)}
 .acts{position:absolute;top:12px;right:12px;z-index:5;background:rgba(255,255,255,.94);border-radius:14px;padding:4px;box-shadow:0 4px 14px rgba(0,0,0,.15)}
-.btn-maps{background:#1a73e8;color:#fff;font-weight:700;border-radius:12px;font-size:.88rem}
-.btn-maps:hover{background:#1558b8;color:#fff}
+.btn-maps{background:#1a73e8;color:#fff;font-weight:700;border-radius:12px;font-size:.88rem;transition:all .2s ease}
+.btn-maps:hover{background:#1558b8;color:#fff;transform:translateY(-1px)}
 .spot{border-left:3px solid var(--teal);padding-left:12px;margin-bottom:16px}
 .spot:last-child{margin-bottom:0}
 .g{padding-left:1.1rem;margin:0}
@@ -66,16 +117,28 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 .ph{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #f1f5f9;font-size:.9rem}
 .ph:last-child{border:0}
 .ph b{color:var(--teal-d);text-align:right}
-.chk{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#f8fafc;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer;font-size:.88rem}
-.chk input{width:18px;height:18px;accent-color:var(--teal);flex:none}
+
+.chk{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#f8fafc;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;cursor:pointer;font-size:.88rem;transition:all .2s ease}
+.chk:hover{background:#f1f5f9;transform:translateX(2px)}
+.chk input{width:18px;height:18px;accent-color:var(--teal);flex:none;transition:transform .2s ease}
+.chk input:checked{transform:scale(1.15)}
 .chk.done span{text-decoration:line-through;color:#94a3b8}
+
 .tbl th{background:#f8fafc;color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;padding:14px}
 .tbl td{padding:14px;vertical-align:middle;font-size:.9rem}
-.tbl tr.today{background:rgba(13,148,136,.08)}
-.form-control,.form-select{border-radius:12px;padding:10px 14px}
+.tbl tr{transition:background-color .2s ease}
+.tbl tr.today{background:rgba(13,148,136,.12);animation:pulseToday 2s infinite alternate}
+
+@keyframes pulseToday{
+  0%{background:rgba(13,148,136,.06)}
+  100%{background:rgba(13,148,136,.14)}
+}
+
+.form-control,.form-select{border-radius:12px;padding:10px 14px;transition:all .2s ease}
 .form-control:focus,.form-select:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,148,136,.15)}
 .empty{text-align:center;color:var(--mut);padding:36px 16px}
-@media(min-width:768px){.tabs{display:flex;justify-content:center;gap:6px}.tabs .nav-link{flex-direction:row;gap:10px;padding:10px 26px;font-size:.88rem}.hero h1{font-size:2.9rem}}
+
+@media(min-width:768px){.tabs{display:flex;justify-content:center;gap:6px}.tabs .nav-link{flex-direction:row;gap:10px;padding:10px 26px;font-size:.88rem}.hero h1{font-size:2.9rem}.plane-orbit{width:360px;height:100px;margin-top:-50px;margin-left:-180px}}
 @media(max-width:767.98px){
 .tbl thead{display:none}.tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
 .tbl tr{margin-bottom:14px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 16px}
@@ -89,9 +152,21 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f6f8fb;color:#1e293b
 <body>
 
 <header class="hero">
+  <div class="hero-deco cloud1"><i class="fa-solid fa-cloud"></i></div>
+  <div class="hero-deco cloud2"><i class="fa-solid fa-cloud"></i></div>
+  <div class="hero-deco palm1"><i class="fa-solid fa-tree"></i></div>
+  <div class="hero-deco palm2"><i class="fa-solid fa-tree"></i></div>
+
   <div class="container">
     <div class="route"><i class="fa-solid fa-location-dot me-1"></i>Bangkok → Chiang Mai → Phuket</div>
-    <h1>Thailandia Trip</h1>
+    
+    <div class="title-container">
+      <h1>Thailandia Trip</h1>
+      <div class="plane-orbit">
+        <i class="fa-solid fa-plane plane-icon"></i>
+      </div>
+    </div>
+
     <div class="dates"><i class="fa-regular fa-calendar-check me-1"></i>28 dicembre 2026 – 8 gennaio 2027</div>
     <div class="count" aria-live="polite"><b id="days">–</b><span id="label">giorni alla partenza</span></div>
   </div>
@@ -298,7 +373,7 @@ const GUIDE=[
 `<b>Scooter:</b> meglio evitare. Servono patente adatta e casco, e non tutte le assicurazioni coprono gli incidenti.`,
 `<b>Capodanno a Bangkok:</b> la sera del 31 le strade del centro si bloccano. Muoviti presto, preferisci BTS e MRT e organizza il rientro con anticipo.`]],
 ['hands-praying','Cultura e regole',[
-`<b>Templi:</b> spalle e ginocchia coperte e scarpe tolte prima di entrare negli edifici sacri. Non arrampicarti sulle statue e non puntare i piedi verso Buddha o verso le persone.`,
+`<b>Templi:</b> spalle e ginocchia coperte e scarpe tolte prima di entrare negli edifici sacri. Non arrampicarti sulle statue e non puntare i piedi verso Buddha o verso les persone.`,
 `<b>Monaci:</b> le donne non devono toccarli né passargli oggetti direttamente.`,
 `<b>Testa e piedi:</b> la testa è sacra e non va toccata (nemmeno ai bambini), i piedi sono considerati impuri.`,
 `<b>Famiglia reale:</b> massimo rispetto. La lesa maestà è un reato grave: niente battute o commenti. Non calpestare banconote o monete cadute: hanno il volto del re.`,
@@ -348,8 +423,7 @@ $('wx').innerHTML=CITIES.map(([id,n])=>`<div class="col-4"><div class="wxi"><i i
 CITIES.forEach(async([id,,la,lo])=>{try{
 const d=await(await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${la}&longitude=${lo}&current=temperature_2m,weather_code&daily=temperature_2m_max,temperature_2m_min&timezone=auto`)).json();
 const[w,ic]=wx(d.current.weather_code);
-$(id+'t').textContent=Math.round(d.current.temperature_2m)+'°C';$(id+'c').textContent=w;$(id+'i').className='fa-solid '+ic+' fs-4 d-block mb-1';
-$(id+'m').innerHTML=`Min <b>${Math.round(d.daily.temperature_2m_min[0])}°</b> | Max <b>${Math.round(d.daily.temperature_2m_max[0])}°</b>`;
+$(id+'t').textContent=Math.round(d.current.temperature_2m)+'°C';$(id+'c').textContent=w;$(id+'i').className='fa-solid '+ic+' fs-4 d-block mb-1';$(id+'m').innerHTML=`Min <b>${Math.round(d.daily.temperature_2m_min[0])}°</b> | Max <b>${Math.round(d.daily.temperature_2m_max[0])}°</b>`;
 }catch{$(id+'c').textContent='Non disponibile'}})}
 
 // ===== CONVERTITORE =====
@@ -372,8 +446,7 @@ function renderStats(){
 const fl=data.flights.reduce((a,f)=>a+Number(f.costo||0),0),ho=data.hotels.reduce((a,h)=>a+Number(h.quotaSingola||0),0),tot=fl+ho,pf=tot?Math.round(fl/tot*100):0,ph=tot?100-pf:0;
 const K=(bg,l,v,s,ic)=>`<div class="col-6 col-md-3"><div class="kpi" style="background:${bg}"><small class="fw-bold text-uppercase d-block mb-1">${l}</small><h5 class="fw-bold mb-0">${v}</h5><small>${s}</small><i class="fa-solid fa-${ic}"></i></div></div>`;
 $('stats').innerHTML=K('#0f172a','Partenza','28 Dicembre','Malpensa → Bangkok','plane-departure')+K('#0d9488','Rientro','08 Gennaio','Phuket → Malpensa','plane-arrival')+K('#4f46e5','Alloggi',data.hotels.length+' Hotel','Tot. hotel: '+eur(ho),'hotel')+K('#b45309','Quota p.p.',eur(tot),'Voli + hotel / p.p.','wallet');
-$('tot').textContent=eur(tot)+' / persona';$('fb').textContent=eur(fl)+' ('+pf+'%)';$('hb').textContent=eur(ho)+' ('+ph+'%)';
-$('bar').innerHTML=`<div class="progress-bar" style="width:${pf}%;background:var(--teal)"></div><div class="progress-bar" style="width:${ph}%;background:#6366f1"></div>`}
+$('tot').textContent=eur(tot)+' / persona';$('fb').textContent=eur(fl)+' ('+pf+'%)';$('hb').textContent=eur(ho)+' ('+ph+'\%)';$('bar').innerHTML=`<div class="progress-bar" style="width:${pf}%;background:var(--teal)"></div><div class="progress-bar" style="width:${ph}%;background:#6366f1"></div>`}
 
 const empty=m=>`<div class="empty">${m}</div>`;
 const btnE=(k,i,ex='')=>`<button type="button" class="btn btn-sm btn-light border py-1 px-2 rounded-circle ${ex}" onclick="openForm('${k}',${i})" aria-label="Modifica" title="Modifica"><i class="fa-solid fa-pen"></i></button> <button type="button" class="btn btn-sm btn-light border text-danger py-1 px-2 rounded-circle" onclick="del('${k}',${i})" aria-label="Elimina" title="Elimina"><i class="fa-solid fa-trash"></i></button>`;
