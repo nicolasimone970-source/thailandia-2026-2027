@@ -25,25 +25,39 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b
 .btn-primary{--bs-btn-bg:var(--teal);--bs-btn-border-color:var(--teal);--bs-btn-hover-bg:var(--teal-d);--bs-btn-hover-border-color:var(--teal-d);--bs-btn-active-bg:#0a6f66;--bs-btn-active-border-color:#0a6f66;font-weight:700;transition:all .3s cubic-bezier(0.4,0,0.2,1);box-shadow:0 4px 12px rgba(13,148,136,.2)}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(13,148,136,.35)}
 
-/* HERO & LANTERNE THAILANDESI */
+/* HERO & LANTERNE / SCINTILLE DORATE */
 .hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0d9488 120%);color:#fff;text-align:center;padding:calc(48px + env(safe-area-inset-top,0px)) 20px 64px;border-radius:0 0 36px 36px;position:relative;overflow:hidden;box-shadow:0 10px 30px rgba(15,23,42,.15)}
 .hero .route{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#fcd34d;margin-bottom:12px;position:relative;z-index:2;animation:fadeInDown .8s ease}
 .hero h1{font-weight:800;letter-spacing:-.03em;font-size:2.6rem;margin:0 0 8px;position:relative;z-index:2;animation:fadeInUp .8s ease}
 
-/* Lanterne Fluttuanti */
+/* Lanterne Fluttuanti e Scintille */
 .floating-lanterns{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
-.lantern{position:absolute;bottom:-60px;width:16px;height:24px;background:radial-gradient(circle,#fffb85 0%,#f59e0b 60%,#b45309 100%);border-radius:50% 50% 40% 40%;box-shadow:0 0 12px #f59e0b,0 0 20px #fcd34d;animation:floatLantern 10s ease-in-out infinite;opacity:0.7}
-.lantern:nth-child(1){left:10%;animation-duration:11s;animation-delay:0s}
-.lantern:nth-child(2){left:25%;animation-duration:8.5s;animation-delay:2.5s}
-.lantern:nth-child(3){left:48%;animation-duration:12s;animation-delay:1s}
-.lantern:nth-child(4){left:70%;animation-duration:9s;animation-delay:3.5s}
-.lantern:nth-child(5){left:88%;animation-duration:7.8s;animation-delay:1.8s}
+.lantern{position:absolute;bottom:-60px;width:16px;height:24px;background:radial-gradient(circle,#fffb85 0%,#f59e0b 60%,#b45309 100%);border-radius:50% 50% 40% 40%;box-shadow:0 0 14px #f59e0b,0 0 22px #fcd34d;animation:floatLantern 10s ease-in-out infinite;opacity:0.75}
+.lantern:nth-child(1){left:8%;animation-duration:11s;animation-delay:0s}
+.lantern:nth-child(2){left:22%;animation-duration:8.5s;animation-delay:2s}
+.lantern:nth-child(3){left:45%;animation-duration:12.5s;animation-delay:1s}
+.lantern:nth-child(4){left:68%;animation-duration:9s;animation-delay:3.5s}
+.lantern:nth-child(5){left:85%;animation-duration:7.8s;animation-delay:1.5s}
 
 @keyframes floatLantern{
   0%{transform:translateY(0) translateX(0) scale(0.7);opacity:0}
-  20%{opacity:0.8}
-  80%{opacity:0.7}
-  100%{transform:translateY(-360px) translateX(20px) scale(1.15);opacity:0}
+  20%{opacity:0.85}
+  80%{opacity:0.75}
+  100%{transform:translateY(-380px) translateX(25px) scale(1.2);opacity:0}
+}
+
+/* Scintille / Particelle di luce dorata (Embers) */
+.ember{position:absolute;background:#fcd34d;border-radius:50%;box-shadow:0 0 8px #f59e0b;animation:riseEmber 6s infinite linear;opacity:0;z-index:1}
+.ember:nth-child(6){left:15%;width:6px;height:6px;animation-delay:0.5s;animation-duration:7s}
+.ember:nth-child(7){left:38%;width:4px;height:4px;animation-delay:2s;animation-duration:5.5s}
+.ember:nth-child(8){left:60%;width:5px;height:5px;animation-delay:1s;animation-duration:8s}
+.ember:nth-child(9){left:82%;width:4px;height:4px;animation-delay:3s;animation-duration:6s}
+
+@keyframes riseEmber{
+  0%{bottom:-10px;transform:translateX(0) scale(0.5);opacity:0}
+  30%{opacity:0.8}
+  70%{opacity:0.6}
+  100%{bottom:100%;transform:translateX(35px) scale(1.3);opacity:0}
 }
 
 .hero-deco{position:absolute;opacity:.12;pointer-events:none;animation:floatDeco 6s ease-in-out infinite alternate;z-index:2}
@@ -85,8 +99,8 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b
   to{opacity:1;transform:translateY(0)}
 }
 
-/* CARDS CON EFFETTO LIFT */
-.cx{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 4px 20px rgba(15,23,42,.04);overflow:hidden;transition:all .35s cubic-bezier(0.4,0,0.2,1)}
+/* CARDS CON EFFETTO LIFT & SHIMMER */
+.cx{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 4px 20px rgba(15,23,42,.04);overflow:hidden;transition:all .35s cubic-bezier(0.4,0,0.2,1);position:relative}
 .cx:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(15,23,42,.09);border-color:#cbd5e1}
 
 .lbl{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
@@ -168,13 +182,17 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#f8fafc;color:#1e293b
 <body>
 
 <header class="hero">
-  <!-- Lanterne Thailandesi Fluttuanti -->
+  <!-- Lanterne Thailandesi e Scintille Dorate -->
   <div class="floating-lanterns">
     <div class="lantern"></div>
     <div class="lantern"></div>
     <div class="lantern"></div>
     <div class="lantern"></div>
     <div class="lantern"></div>
+    <div class="ember"></div>
+    <div class="ember"></div>
+    <div class="ember"></div>
+    <div class="ember"></div>
   </div>
 
   <div class="hero-deco cloud1"><i class="fa-solid fa-cloud"></i></div>
@@ -392,7 +410,7 @@ const GUIDE=[
 `<b>Capodanno a Bangkok:</b> la sera del 31 le strade del centro si bloccano. Muoviti presto, preferisci BTS e MRT e organizza il rientro con anticipo.`]],
 ['hands-praying','Cultura e regole',[
 `<b>Templi:</b> spalle e ginocchia coperte e scarpe tolte prima di entrare negli edifici sacri. Non arrampicarti sulle statue e non puntare i piedi verso Buddha o verso le persone.`,
-`<b>Monaci:</b> le donne non devono toccarli né passargli oggetti direttamente.`,
+`<b>Monaci:</b> le donne non debeno toccarli né passargli oggetti direttamente.`,
 `<b>Testa e piedi:</b> la testa è sacra e non va toccata (nemmeno ai bambini), i piedi sono considerati impuri.`,
 `<b>Famiglia reale:</b> massimo rispetto. La lesa maestà è un reato grave: niente battute o commenti. Non calpestare banconote o monete cadute: hanno il volto del re.`,
 `<b>Saluto:</b> il <em>wai</em> (mani giunte e lieve inchino) si ricambia con un sorriso. Alzare la voce o perdere la calma è molto malvisto.`,
